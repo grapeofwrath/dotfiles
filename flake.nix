@@ -36,11 +36,13 @@
     # 'nix fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
     # nixos-rebuild --flake .#your-hostname
-    nixosConfigurations.grapestation = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs outputs;};
-      modules = [
-        ./nixos/machines/grapestation
-      ];
+    nixosConfigurations = {
+      grapestation = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nixos/machines/grapestation
+        ];
+      };
     };
   };
 }

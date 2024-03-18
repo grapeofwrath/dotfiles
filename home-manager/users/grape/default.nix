@@ -9,11 +9,8 @@
   ];
   systemd.user.startServices = "sd-switch";
   home.packages = with pkgs; [
+    # cli
     git
-    nushell
-    kitty
-    brave
-    carapace
     zoxide
     starship
     (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
@@ -21,20 +18,28 @@
     direnv
     fzf
     tree
-    discord
     ripgrep
+    alejandra
+    exercism
+    zoxide
+    sops
+    ssh-to-age
+    age
+    # desktop
+    kitty
+    brave
+    discord
     spotify
     element-desktop
+    # gaming
+    brave
+    discord
+    spotify
+    element-desktop
+    wineWowPackages.staging
   ];
   programs = {
     home-manager.enable = true;
-    zoxide.enable = true;
-    direnv = {
-      enable = true;
-      enableNushellIntegration = true;
-      nix-direnv.enable = true;
-    };
-    fzf.enable = true;
   };
   programs.git = {
     enable = true;

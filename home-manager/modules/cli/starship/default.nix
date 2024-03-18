@@ -1,6 +1,7 @@
 {
   programs.starship = {
     enable = true;
+    enableBashIntegration = true;
     settings = {
       aws.disabled = true;
       gcloud.disabled = true;

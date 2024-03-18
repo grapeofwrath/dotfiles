@@ -21,7 +21,7 @@ in {
   ];
 
   system.stateVersion = "23.11";
-  networking = { inherit hostName; };
+  networking = {inherit hostName;};
   networking.networkmanager.enable = true;
 
   nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
@@ -59,7 +59,7 @@ in {
   environment.shellAliases = {
     nvim = "nix run github:grapeofwrath/nixvim-flake";
     n = "nvim";
-    rebuild = "sudo nixos-rebuild switch --flake ~/${hostName}#${hostName}";
+    rebuild = "sudo nixos-rebuild switch --flake ~/orion#${hostName}";
     update = "sudo nix flake update";
   };
 
@@ -92,20 +92,10 @@ in {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
-    nushell
-    carapace
     vim
     neovim
     curl
     wget
-    zoxide
-    gnupg
-    sops
-    ssh-to-age
-    age
-    alejandra
-    wineWowPackages.staging
-    exercism
   ];
 
   programs.dconf.enable = true;
@@ -128,7 +118,7 @@ in {
       isNormalUser = true;
       description = "Grape of Wrath";
       extraGroups = ["networkmanager" "wheel"];
-      shell = pkgs.nushell;
+      #shell = pkgs.nushell;
     };
   };
   home-manager.extraSpecialArgs = {inherit inputs outputs;};
