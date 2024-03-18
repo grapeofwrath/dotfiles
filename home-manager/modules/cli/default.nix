@@ -1,0 +1,7 @@
+{
+  imports = [
+    ./lf
+    ./shell
+    ./starship
+  ];
+}

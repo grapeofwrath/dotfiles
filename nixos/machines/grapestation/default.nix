@@ -5,7 +5,11 @@
   inputs,
   outputs,
   ...
-}: {
+}: let
+  hostName = "grapestation";
+  timeZone = "America/Chicago";
+  defaultLocale = "en_US.UTF-8";
+in {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.hardware.nixosModules.common-cpu-amd
@@ -17,7 +21,7 @@
   ];
 
   system.stateVersion = "23.11";
-  networking.hostName = "orion";
+  networking = { inherit hostName; };
   networking.networkmanager.enable = true;
 
   nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
@@ -46,22 +50,17 @@
     magicOrExtension = ''\x7fELF....AI\x02'';
   };
 
-  time.timeZone = "America/Chicago";
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
+  time = {inherit timeZone;};
+  i18n = {inherit defaultLocale;};
 
   environment.variables = {
     EDITOR = "nvim";
+  };
+  environment.shellAliases = {
+    nvim = "nix run github:grapeofwrath/nixvim-flake";
+    n = "nvim";
+    rebuild = "sudo nixos-rebuild switch --flake ~/${hostName}#${hostName}";
+    update = "sudo nix flake update";
   };
 
   hardware.bluetooth.enable = true;
@@ -81,8 +80,8 @@
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
     displayManager.sddm = {
       enable = true;
       autoNumlock = true;
@@ -137,7 +136,7 @@
   home-manager.useGlobalPkgs = true;
   home-manager.users = {
     grape = {
-      imports = [../home-manager];
+      imports = [../../../home-manager/users/grape];
       home = {
         username = "grape";
         homeDirectory = "/home/grape";
@@ -152,11 +151,9 @@
     builders-use-substitutes = true;
     substituters = [
       "https://hyprland.cachix.org"
-      "https://anyrun.chachix.org"
     ];
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
     ];
   };
   programs.hyprland = {

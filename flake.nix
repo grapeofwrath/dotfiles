@@ -1,6 +1,4 @@
 {
-  description = "Your new nix config";
-
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
@@ -38,10 +36,10 @@
     # 'nix fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
     # nixos-rebuild --flake .#your-hostname
-    nixosConfigurations.orion = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.grapestation = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs;};
       modules = [
-        ./nixos
+        ./nixos/machines/grapestation
       ];
     };
   };
