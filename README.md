@@ -4,7 +4,7 @@ Organizing my thoughts as I go.
 
 ## Modularity - K.I.S.S.
 
-See [https://github.com/Misterio77/nix-config](Misterio77's config) as an in depth example/proof of concept, though possibly not as complex as I'd like to implement.
+See [Misterio77's config](https://github.com/Misterio77/nix-config) as an in depth example/proof of concept, though possibly not as complex as I'd like to implement.
 
 ### Directory Structure
 
