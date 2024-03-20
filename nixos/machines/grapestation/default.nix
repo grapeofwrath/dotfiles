@@ -43,15 +43,15 @@ in {
   environment.variables = {
     EDITOR = "nvim";
   };
+  # system aliases
   environment.shellAliases = {
+    grep = "rg";
     nvim = "nix run github:grapeofwrath/nixvim-flake";
     n = "nvim";
-    rebuild = "sudo nixos-rebuild switch --flake ${nixConfDir}#${hostName}";
-    update = "sudo nix flake update";
     ll = "ls -la";
     ".." = "cd ..";
-    "goinit" = "nix flake init --template github:grapeofwrath/dev-templates#let-it-go";
-    "gonew" = "nix flake new --template github:grapeofwrath/dev-templates#let-it-go";
+    tree = "tree --dirsfirst -F";
+    mkdir = "mkdir -pv";
   };
 
   hardware.bluetooth.enable = true;
