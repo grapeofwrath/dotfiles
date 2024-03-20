@@ -7,7 +7,7 @@
   ...
 }: let
   hostName = "grapestation";
-  nixConfDir = "~/Documents/dev/nix/orion";
+  #nixConfDir = "~/Documents/dev/nix/orion";
   timeZone = "America/Chicago";
   defaultLocale = "en_US.UTF-8";
 in {
@@ -117,7 +117,7 @@ in {
   home-manager.useGlobalPkgs = true;
   home-manager.users = {
     grape = {
-      imports = [../../../home-manager/users/grape];
+      imports = [../../../home-manager/grape/${hostName}.nix];
       home = {
         username = "grape";
         homeDirectory = "/home/grape";

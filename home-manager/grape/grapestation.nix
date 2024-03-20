@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ../../modules
+    ../modules
   ];
   systemd.user.startServices = "sd-switch";
   home.packages = with pkgs; [
@@ -14,13 +14,8 @@
     # cli
     (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
     font-awesome
-    fzf
     tree
-    ripgrep
     exercism
-    sops
-    ssh-to-age
-    age
 
     # desktop
     brave
@@ -39,7 +34,7 @@
   programs.git = {
     enable = true;
     userName = "grapeofwrath";
-    userEmail = "grapeofwrath@noreply.gitea.com";
+    userEmail = "69535018+grapeofwrath@users.noreply.github.com";
     extraConfig = {
       url."ssh://git@github.com" = {
         insteadOf = "https://github.com";
