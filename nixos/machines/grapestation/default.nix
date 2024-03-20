@@ -14,7 +14,7 @@ in {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-gpu-amd
+    inputs.hardware.nixosModules.common-gpu-intel
     inputs.hardware.nixosModules.common-pc-ssd
     inputs.sops-nix.nixosModules.sops
 

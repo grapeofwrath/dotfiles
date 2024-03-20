@@ -2,6 +2,6 @@
   imports = [
     #./hyprland
     ./kitty
-    ./themes
+    #./themes
   ];
 }
