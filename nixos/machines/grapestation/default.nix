@@ -48,7 +48,7 @@ in {
     grep = "rg";
     nvim = "nix run github:grapeofwrath/nixvim-flake";
     n = "nvim";
-    ll = "ls -la";
+    ll = "ls -alF";
     ".." = "cd ..";
     tree = "tree --dirsfirst -F";
     mkdir = "mkdir -pv";
