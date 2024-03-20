@@ -9,7 +9,7 @@
       wheel_scroll_min_lines = 1;
       window_padding_width = 10;
       confirm_os_window_close = 0;
-      background_opacity = "0.90";
+      background_opacity = "1";
     };
   };
 }

@@ -9,37 +9,32 @@
   ];
   systemd.user.startServices = "sd-switch";
   home.packages = with pkgs; [
+    # Packages that don't have custom configs go here
+
     # cli
-    git
-    zoxide
-    starship
     (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
     font-awesome
-    direnv
     fzf
     tree
     ripgrep
-    alejandra
     exercism
-    zoxide
     sops
     ssh-to-age
     age
+
     # desktop
-    kitty
     brave
     discord
     spotify
     element-desktop
+    gnome.gnome-keyring
+
     # gaming
-    brave
-    discord
-    spotify
-    element-desktop
     wineWowPackages.staging
   ];
   programs = {
     home-manager.enable = true;
+    ssh.enable = true;
   };
   programs.git = {
     enable = true;

@@ -10,8 +10,6 @@
     hardware.url = "github:nixos/nixos-hardware";
     sops-nix.url = "github:Mic92/sops-nix";
     hyprland.url = "github:hyprwm/Hyprland";
-    #anyrun.url = "github:Kirottu/anyrun";
-    #anyrun.inputs.nixpkgs.follows = "nixpkgs";
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
@@ -24,6 +22,7 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+    lib = nixpkgs.lib; #// home-manager.lib;
     systems = [
       "aarch64-linux"
       "i686-linux"
@@ -31,13 +30,24 @@
       "aarch64-darwin"
       "x86_64-darwin"
     ];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
+    forAllSystems = f: lib.genAttrs systems (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs systems (system:
+      import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      });
   in {
+    inherit lib;
+
     # 'nix fmt'
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    formatter = forAllSystems (pkgs: pkgs.alejandra);
+
+    # devshell for working with nixconfig
+    devShells = forAllSystems (pkgs: import ./shell.nix {inherit pkgs;});
+
     # nixos-rebuild --flake .#your-hostname
     nixosConfigurations = {
-      grapestation = nixpkgs.lib.nixosSystem {
+      grapestation = lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/machines/grapestation

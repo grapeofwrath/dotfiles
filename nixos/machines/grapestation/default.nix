@@ -7,6 +7,7 @@
   ...
 }: let
   hostName = "grapestation";
+  nixConfDir = "~/Documents/dev/nix/orion";
   timeZone = "America/Chicago";
   defaultLocale = "en_US.UTF-8";
 in {
@@ -18,25 +19,11 @@ in {
     inputs.sops-nix.nixosModules.sops
 
     ./hardware-configuration.nix
+    ../../modules
   ];
 
-  system.stateVersion = "23.11";
   networking = {inherit hostName;};
   networking.networkmanager.enable = true;
-
-  nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
-  nix.nixPath = ["/etc/nix/path"];
-  environment.etc =
-    lib.mapAttrs'
-    (name: value: {
-      name = "nix/path/${name}";
-      value.source = value.flake;
-    })
-    config.nix.registry;
-  nix.settings = {
-    experimental-features = "nix-command flakes";
-    auto-optimise-store = true;
-  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -59,8 +46,12 @@ in {
   environment.shellAliases = {
     nvim = "nix run github:grapeofwrath/nixvim-flake";
     n = "nvim";
-    rebuild = "sudo nixos-rebuild switch --flake ~/orion#${hostName}";
+    rebuild = "sudo nixos-rebuild switch --flake ${nixConfDir}#${hostName}";
     update = "sudo nix flake update";
+    ll = "ls -la";
+    ".." = "cd ..";
+    "dev go init" = "nix flake init --template github:grapeofwrath/dev-templates#let-it-go";
+    "dev go new" = "nix flake new --template github:grapeofwrath/dev-templates#let-it-go";
   };
 
   hardware.bluetooth.enable = true;
@@ -88,8 +79,8 @@ in {
       wayland.enable = true;
     };
   };
+  services.gnome.gnome-keyring.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
     vim
@@ -137,6 +128,7 @@ in {
     };
   };
 
+  # hyprland
   nix.settings = {
     builders-use-substitutes = true;
     substituters = [
@@ -149,26 +141,5 @@ in {
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  };
-
-  # gaming
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    gamescopeSession.enable = true;
-  };
-  programs.gamemode = {
-    enable = true;
-    settings = {
-      general = {
-        softrealtime = "on";
-        inhibit_screensaver = 1;
-      };
-      gpu = {
-        apply_gpu_optimisations = "accept-responsibility";
-        gpu_device = 0;
-        amd_performance_level = "high";
-      };
-    };
   };
 }
