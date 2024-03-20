@@ -50,8 +50,8 @@ in {
     update = "sudo nix flake update";
     ll = "ls -la";
     ".." = "cd ..";
-    "dev go init" = "nix flake init --template github:grapeofwrath/dev-templates#let-it-go";
-    "dev go new" = "nix flake new --template github:grapeofwrath/dev-templates#let-it-go";
+    "goinit" = "nix flake init --template github:grapeofwrath/dev-templates#let-it-go";
+    "gonew" = "nix flake new --template github:grapeofwrath/dev-templates#let-it-go";
   };
 
   hardware.bluetooth.enable = true;
