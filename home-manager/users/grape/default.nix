@@ -41,8 +41,8 @@
     userName = "grapeofwrath";
     userEmail = "grapeofwrath@noreply.gitea.com";
     extraConfig = {
-      url."ssh://git@gitea.com" = {
-        insteadOf = "https://gitea.com";
+      url."ssh://git@github.com" = {
+        insteadOf = "https://github.com";
       };
       init.defaultBranch = "main";
     };
