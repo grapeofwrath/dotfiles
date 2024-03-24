@@ -23,6 +23,7 @@
     spotify
     element-desktop
     gnome.gnome-keyring
+    kdePackages.qtstyleplugin-kvantum
 
     # gaming
     wineWowPackages.staging

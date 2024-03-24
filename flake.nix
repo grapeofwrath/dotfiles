@@ -1,10 +1,9 @@
 {
   inputs = {
-    # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    # TODO enable stable pkgs instance alongside unstable
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     hardware.url = "github:nixos/nixos-hardware";
@@ -45,8 +44,8 @@
     # devshell for working with nixconfig
     devShells = forAllSystems (pkgs: import ./shell.nix {inherit pkgs;});
 
-    # nixos-rebuild --flake .#your-hostname
     nixosConfigurations = {
+      # nixos-rebuild --flake .#your-hostname
       grapestation = lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
