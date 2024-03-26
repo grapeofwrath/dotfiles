@@ -1,8 +1,8 @@
 {
+  description = "A very basic flake";
+
   inputs = {
-    # TODO enable stable pkgs instance alongside unstable
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -50,6 +50,12 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/machines/grapestation
+        ];
+      };
+      grapelab = lib.nixosSystem {
+        specialArgs = { inherit inputs outputs; };
+        modules = [
+          ./nixos/machines/grapelab
         ];
       };
     };
