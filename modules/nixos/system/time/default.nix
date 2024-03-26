@@ -1,12 +1,5 @@
-{
-  options,
-  config,
-  pkgs,
-  lib,
-  ...
-}:
-with lib;
-with lib.orion;
+{ options, config, pkgs, lib, ... }:
+with lib; with lib.orion;
 let
   cfg = config.orion.system.time;
 in {

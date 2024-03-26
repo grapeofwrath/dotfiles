@@ -25,9 +25,9 @@ in {
   networking = {inherit hostName;};
   networking.networkmanager.enable = true;
 
-  #boot.loader.systemd-boot.enable = true;
-  #boot.loader.efi.canTouchEfiVariables = true;
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.binfmt.registrations.appimage = {
     wrapInterpreterInShell = false;
     interpreter = "${pkgs.appimage-run}/bin/appimage-run";
@@ -73,6 +73,7 @@ in {
     enable = true;
     xkb.layout = "us";
     xkb.variant = "";
+    xkb.options = "caps:escape";
     displayManager.sddm = {
       enable = true;
       autoNumlock = true;
