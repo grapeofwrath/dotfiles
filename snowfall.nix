@@ -49,6 +49,9 @@
           nixos-hardware.nixosModules.common-cpu-amd
           nixos-hardware.nixosModules.common-gpu-amd
         ];
+        grapepad.modules = with inputs; [
+          nixos-hardware.nixosModules.common-cpu-intel
+        ];
       };
     };
 }

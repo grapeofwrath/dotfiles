@@ -52,10 +52,10 @@
           ./nixos/machines/grapestation
         ];
       };
-      grapelab = lib.nixosSystem {
+      grapepad = lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
         modules = [
-          ./nixos/machines/grapelab
+          ./nixos/machines/grapepad
         ];
       };
     };
