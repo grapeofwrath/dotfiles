@@ -44,14 +44,18 @@
         home-manager.nixosModules.home-manager
       ];
       # nixos configurations
-      systems.hosts = {
-        grapestation.modules = with inputs; [
+      systems.hosts.grapestation = {
+        modules = with inputs; [
           nixos-hardware.nixosModules.common-cpu-amd
           nixos-hardware.nixosModules.common-gpu-amd
         ];
-        grapepad.modules = with inputs; [
+        specialArgs = { inherit lib; };
+      };
+      systems.hosts.grapepad = {
+        modules = with inputs; [
           nixos-hardware.nixosModules.common-cpu-intel
         ];
+        specialArgs = { inherit lib; };
       };
     };
 }
