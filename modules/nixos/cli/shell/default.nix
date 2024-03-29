@@ -1,8 +1,5 @@
-{ options, config, pkgs, lib, ... }:
-with lib; with lib.orion;
-let
-  cfg = config.orion.cli.shell;
-in {
+{options,config,pkgs,lib,...}: with lib; with lib.orion;
+let cfg = config.orion.cli.shell; in {
   options.orion.cli.shell = with types; {
     aliases = mkOpt attrs {} "Shell aliases available system wide";
   };

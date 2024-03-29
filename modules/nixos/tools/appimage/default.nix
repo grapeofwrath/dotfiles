@@ -1,8 +1,5 @@
-{ options, config, pkgs, lib, ... }:
-with lib; with lib.orion;
-let
-  cfg = config.orion.tools.appimage;
-in {
+{options,config,pkgs,lib,...}: with lib; with lib.orion;
+let cfg = config.orion.tools.appimage; in {
   options.tools.appimage = with types; {
     enable = mkBoolOpt false "Enable appimage support";
   };

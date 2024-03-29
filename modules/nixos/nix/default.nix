@@ -1,8 +1,5 @@
-{ options, config, pkgs, lib, ... }:
-with lib; with lib.orion;
-let
-  cfg = config.orion.nix;
-in {
+{options,config,pkgs,lib,...}: with lib; with lib.orion;
+let cfg = config.orion.nix; in {
   options.orion.nix = with types; {
     enable = mkBoolOpt true "Enable nix configuration module";
   };

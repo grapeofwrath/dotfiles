@@ -1,8 +1,5 @@
-{ options, config, lib, ... }:
-with lib; with lib.orion;
-let
-  cfg = config.orion.system.xkb;
-in {
+{options,config,pkgs,lib,...}: with lib; with lib.orion;
+let cfg = config.orion.system.xkb; in {
   options.orion.system.xkb = with types; {
     enable = mkBoolOpt false "Configure xkb";
   };

@@ -1,8 +1,5 @@
-{ options, config, pkgs, lib, ... }:
-with lib; with lib.orion;
-let
-  cfg = config.orion.hardware.audio;
-in {
+{options,config,pkgs,lib,...}: with lib; with lib.orion;
+let cfg = config.orion.hardware.audio; in {
   options.orion.network.audio = with types; {
     enable = mkBoolOpt false "Enable audio configuration module";
   };

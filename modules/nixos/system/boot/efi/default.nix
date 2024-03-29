@@ -1,8 +1,5 @@
-{ options, config, pkgs, lib, ... }:
-with lib; with lib.orion;
-let
-  cfg = config.orion.system.boot;
-in {
+{options,config,pkgs,lib,...}: with lib; with lib.orion;
+let cfg = config.orion.system.boot; in {
   options.orion.system.boot = with types; {
     enable = mkBoolOpt false "Enable systemd-boot";
     #latestKernel = mkBoolOpt false "Use latest kernel";

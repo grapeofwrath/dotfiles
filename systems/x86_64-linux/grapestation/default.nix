@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, outputs, ... }: {
+{config,pkgs,lib,inputs,outputs,...}: {
   imports = [./hardware-config.nix];
 
   orion = {

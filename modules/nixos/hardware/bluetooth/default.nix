@@ -1,8 +1,5 @@
-{ options, config, pkgs, lib, ... }:
-with lib; with lib.orion;
-let
-  cfg = config.orion.hardware.bluetooth;
-in {
+{options,config,pkgs,lib,...}: with lib; with lib.orion;
+let cfg = config.orion.hardware.bluetooth; in {
   options.orion.hardware.bluetooth = with types; {
     enable = mkBoolOpt false "Enable bluetooth support";
   };

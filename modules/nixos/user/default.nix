@@ -1,8 +1,5 @@
-{ options, config, pkgs, lib, ... }:
-with lib; with lib.orion;
-let
-  cfg = config.orion.user;
-in {
+{options,config,pkgs,lib,...}: with lib; with lib.orion;
+let cfg = config.orion.user; in {
   options.orion.user = with types; {
     name = mkOpt str "grape" "The name for the user account";
     description = mkOpt str "Marcus Montgomery" "The user description";

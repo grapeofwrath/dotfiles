@@ -1,5 +1,4 @@
-{ options, config, pkgs, lib, ... }:
-with lib; with lib.orion;
+{options,config,pkgs,lib,...}: with lib; with lib.orion;
 let cfg = config.orion.suites.common; in {
   options.orion.suites.common = with types; {
     enable = mkBoolOpt false "Enable common configuration modules";

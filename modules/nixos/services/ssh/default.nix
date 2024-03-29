@@ -1,8 +1,5 @@
-{ options, config, pkgs, lib, ... }:
-with lib; with lib.orion;
-let
-  cfg = config.orion.tools.ssh;
-in {
+{options,config,pkgs,lib,...}: with lib; with lib.orion;
+let cfg = config.orion.tools.ssh; in {
   options.orion.tools.ssh = with types; {
     enable = mkBoolOpt false "Enable ssh";
   };
