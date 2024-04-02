@@ -1,7 +1,7 @@
 {config,lib,pkgs,...}: {
   imports = [
     ./hardware-config.nix
-    ../modules/nixos
+    ../modules
   ];
   orion = {
     hardware.bluetooth.enable = true;
