@@ -1,6 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{config,lib,pkgs,...}: {
   imports = [
     ./hardware-config.nix
-    ../../modules/nixos
+    ../modules/nixos
   ];
+  orion = {
+    hardware.bluetooth.enable = true;
+    system.latestKernel = true;
+  };
 }
