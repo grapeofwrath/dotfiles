@@ -28,12 +28,12 @@
           config.allowUnfreePredicate = true;
         });
       # Personal
-      grapelib = import ./lib/grapelib { inherit lib; };
+      libgrape = import ./lib/grapelib { inherit lib; };
       # Helper to turn ./thing/someprofile.nix to someprofile
       nameFromNixFile = file: lib.strings.removeSuffix ".nix" (baseNameOf file);
     in {
       nixosConfigurations = let
-        systemDirs = grapelib.allSubDirs ./systems;
+        systemDirs = libgrape.allSubDirs ./systems;
         mkConfig = dir:
           (let
             userData = import dir;
@@ -42,7 +42,7 @@
           in lib.nixosSystem {
             inherit pkgs system;
             modules = [ userData.module ];
-            specialArgs = { inherit grapelib; };
+            specialArgs = { inherit libgrape; };
           });
         in (builtins.listToAttrs (map (dir: {
           name = builtins.baseNameOf dir;
@@ -50,7 +50,7 @@
         }) systemDirs));
 
         homeConfigurations = let
-          userDirs = grapelib.allSubdirs ./homes;
+          userDirs = libgrape.allSubdirs ./homes;
           mkConfig = dir:
             (let
               userData = import dir;
@@ -58,7 +58,7 @@
             in home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
               modules = [];
-              extraSpecialArgs = { inherit grapelib; };
+              extraSpecialArgs = { inherit libgrape; };
             });
           in (builtins.listToAttrs (map (file: {
             name = nameFromNixFile file;
