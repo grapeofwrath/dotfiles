@@ -1,6 +1,3 @@
-{
-  imports = [
-    ./cli
-    ./desktop
-  ];
+{libgrape,...}: {
+  imports = libgrape.allSubdirs ./.;
 }

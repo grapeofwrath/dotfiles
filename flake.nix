@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "Grapeofwrath's NixOS & Home Manager configurations";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -13,51 +13,56 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     home-manager,
-    nixos-hardware,
+    hardware,
     sops-nix,
     ...
-  } @ inputs: let
-    inherit (self) outputs;
-    lib = nixpkgs.lib; #// home-manager.lib;
-    systems = [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-    forAllSystems = f: lib.genAttrs systems (system: f pkgsFor.${system});
-    pkgsFor = lib.genAttrs systems (system:
-      import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      });
-  in {
-    inherit lib;
+  }@inputs:
+    let
+      # Nix
+      lib = nixpkgs.lib;
+      mkPkgs = system:
+        (import nixpkgs {
+          inherit system;
+          config.allowUnfreePredicate = true;
+        });
+      # Personal
+      libgrape = import ./lib/libgrape { inherit lib; };
+      # Helper to turn ./thing/someprofile.nix to someprofile
+      nameFromNixFile = file: lib.strings.removeSuffix ".nix" (baseNameOf file);
+    in {
+      nixosConfigurations = let
+        systemDirs = libgrape.allSubDirs ./nixos/systems;
+        mkConfig = dir:
+          (let
+            userData = import dir;
+            system = userData.system;
+            pkgs = mkPkgs system;
+          in lib.nixosSystem {
+            inherit pkgs system;
+            modules = [ userData.module ];
+            specialArgs = { inherit libgrape; };
+          });
+        in (builtins.listToAttrs (map (dir: {
+          name = builtins.baseNameOf dir;
+          value = mkConfig dir;
+        }) systemDirs));
 
-    # 'nix fmt'
-    formatter = forAllSystems (pkgs: pkgs.alejandra);
-
-    # devshell for working with nixconfig
-    devShells = forAllSystems (pkgs: import ./shell.nix {inherit pkgs;});
-
-    nixosConfigurations = {
-      # nixos-rebuild --flake .#your-hostname
-      grapestation = lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./nixos/machines/grapestation
-        ];
-      };
-      grapepad = lib.nixosSystem {
-        specialArgs = { inherit inputs outputs; };
-        modules = [
-          ./nixos/machines/grapepad
-        ];
-      };
+        homeConfigurations = let
+          userDirs = libgrape.allSubdirs ./home-manager/homes;
+          mkConfig = dir:
+            (let
+              userData = import dir;
+              pkgs = mkPkgs userData.system;
+            in home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              modules = [];
+              extraSpecialArgs = { inherit libgrape; };
+            });
+          in (builtins.listToAttrs (map (file: {
+            name = nameFromNixFile file;
+            value = mkConfig file;
+          }) userDirs));
     };
-  };
 }

@@ -1,7 +1,3 @@
-{
-  imports = [
-    #./hyprland
-    ./kitty
-    #./themes
-  ];
+{libgrape,...}:{
+  imports = libgrape.allSubdirs ./.;
 }

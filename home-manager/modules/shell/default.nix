@@ -19,5 +19,25 @@ let cfg = config.orion.shell; in {
       rebuild = "sudo nixos-rebuild switch --flake .#${config.networking.hostName}";
       update = "sudo nix flake update";
     } ++ cfg.aliases;
+    programs = {
+      zoxide = {
+        enable = true;
+        enableBashIntegration = true;
+      };
+      direnv = {
+        enable = true;
+        enableBashIntegration = true;
+        nix-direnv.enable = true;
+      };
+      fzf.enable = true;
+      ripgrep.enable = true;
+      btop = {
+        enable = true;
+        settings = {
+          color_theme = "Default";
+          theme_background = false;
+        };
+      };
+    };
   };
 }

@@ -1,6 +1,3 @@
-{
-  imports = [
-    ./gaming
-    ./nix
-  ];
+{libgrape,...}: {
+  imports = libgrape.allSubdirs ./.;
 }

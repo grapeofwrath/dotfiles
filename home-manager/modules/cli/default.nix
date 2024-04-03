@@ -1,7 +1,3 @@
-{
-  imports = [
-    ./lf
-    ./shell
-    ./starship
-  ];
+{libgrape,...}: {
+  imports = libgrape.allSubdirs ./.;
 }

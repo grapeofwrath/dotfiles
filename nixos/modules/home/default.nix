@@ -1,5 +1,5 @@
-{inputs,outputs,config,pkgs,...}: {
-  environment.systemPackages = with pkgs; [
+{inputs,outputs,pkgs,...}: {
+  environment.systemPackages = [
     inputs.home-manager.packages.${pkgs.system}.default
   ];
   home-manager.extraSpecialArgs = {inherit inputs outputs;};
