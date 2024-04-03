@@ -33,7 +33,7 @@
       nameFromNixFile = file: lib.strings.removeSuffix ".nix" (baseNameOf file);
     in {
       nixosConfigurations = let
-        systemDirs = libgrape.allSubDirs ./systems;
+        systemDirs = libgrape.allSubDirs ./nixos/systems;
         mkConfig = dir:
           (let
             userData = import dir;
@@ -50,7 +50,7 @@
         }) systemDirs));
 
         homeConfigurations = let
-          userDirs = libgrape.allSubdirs ./homes;
+          userDirs = libgrape.allSubdirs ./home-manager/homes;
           mkConfig = dir:
             (let
               userData = import dir;
