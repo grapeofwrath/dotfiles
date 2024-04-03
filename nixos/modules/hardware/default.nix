@@ -1,7 +1,11 @@
 {config,lib,...}: with lib;
-let cfg = config.orion.hardware; in {
-  options.orion.hardware = {
-    bluetooth.enable = mkEnableOption "bluetooth";
+let cfg = config.orion.nixos.hardware; in {
+  options.orion.nixos.hardware = {
+    #bluetooth = mkOption {
+    #  description = "Enable bluetooth";
+    #  type = types.bool;
+    #  default = false;
+    #};
     hostName = mkOption {
       type = types.str;
       default = "nixos";
@@ -18,13 +22,13 @@ let cfg = config.orion.hardware; in {
       pulse.enable = true;
     };
 
-    hardware.bluetooth = mkIf cfg.bluetooth.enable {
-      enable = true;
-      hardware.bluetooth.powerOnBoot = true;
-    };
+    #hardware.bluetooth = mkIf cfg.bluetooth {
+    #  enable = true;
+    #  hardware.bluetooth.powerOnBoot = true;
+    #};
     # not sure if this is necessary, maybe just with hyprland?
     # adds secondary bluetooth systray icon on plasma
-    #services.blueman.enable = mkIf cfg.bluetooth.enable true;
+    #services.blueman.enable = mkIf cfg.bluetooth true;
 
     networking = {inherit hostName;};
     networking.networkmanager.enable = true;

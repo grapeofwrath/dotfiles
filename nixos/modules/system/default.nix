@@ -1,6 +1,6 @@
 {config,pkgs,lib,...}: with lib;
-let cfg = config.orion.system; in {
-  options.orion.system = {
+let cfg = config.orion.nixos.system; in {
+  options.orion.nixos.system = {
     latestKernel = mkOption {
       description = "Enable the latest kernel";
       type = types.bool;

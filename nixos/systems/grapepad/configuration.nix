@@ -1,11 +1,11 @@
-{config,lib,pkgs,...}: {
+{inputs,config,lib,pkgs,...}: {
   imports = [
     ./hardware-config.nix
     ../../modules
   ];
   orion = {
     hardware = {
-      bluetooth.enable = true;
+      #bluetooth = false;
       hostName = "grapepad";
     };
     system.latestKernel = true;

@@ -1,6 +1,6 @@
 {config,lib,...}: with lib;
-let cfg = config.orion.desktop.plasma; in {
-  options.orion.desktop.plasma = {
+let cfg = config.orion.nixos.desktop.plasma; in {
+  options.orion.nixos.desktop.plasma = {
     enable = mkEnableOption "plasma";
   };
   config = mkIf cfg.enable {
