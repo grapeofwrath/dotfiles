@@ -16,7 +16,7 @@ let cfg = config.orion.shell; in {
       ".." = "cd ..";
       tree = "tree --dirsfirst -F";
       mkdir = "mkdir -pv";
-      rebuild = "sudo nixos-rebuild switch --flake ~/Documents/dev/nix/orion#${config.networking.hostName}";
+      rebuild = "sudo nixos-rebuild switch --flake .#${config.networking.hostName}";
       update = "sudo nix flake update";
     } ++ cfg.aliases;
   };

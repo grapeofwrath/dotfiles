@@ -28,7 +28,7 @@
           config.allowUnfreePredicate = true;
         });
       # Personal
-      libgrape = import ./lib/grapelib { inherit lib; };
+      libgrape = import ./lib/libgrape { inherit lib; };
       # Helper to turn ./thing/someprofile.nix to someprofile
       nameFromNixFile = file: lib.strings.removeSuffix ".nix" (baseNameOf file);
     in {
