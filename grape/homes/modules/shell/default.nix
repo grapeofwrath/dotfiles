@@ -1,10 +1,14 @@
-{options,config,pkgs,lib,...}: with lib; with lib.orion;
-let cfg = config.orion.cli.shell; in {
-  options.orion.cli.shell = with types; {
-    aliases = mkOpt attrs {} "Shell aliases available system wide";
+{libgrape,config,lib,...}: with lib;
+let cfg = config.orion.shell; in {
+  imports = libgrape.allSubdirs ./.;
+  options.orion.shell = with types; {
+    aliases = mkOption {
+      description = "Shell aliases available accross all shells";
+      type = types.attrsOf str;
+    };
   };
   config = {
-    environment.shellAliases = {
+    home.shellAliases = {
       grep = "rg";
       nvim = "nix run github:grapeofwrath/nixvim-flake";
       n = "nvim";

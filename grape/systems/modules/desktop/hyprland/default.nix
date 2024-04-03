@@ -1,7 +1,7 @@
-{options,config,pkgs,lib,...}: with lib; with lib.orion;
+{config,pkgs,lib,...}: with lib;
 let cfg = config.orion.desktop.hyprland; in {
-  options.orion.desktop.hyprland = with types; {
-    enable = mkBoolOpt false "Enable Hyprland session";
+  options.orion.desktop.hyprland = {
+    enable = mkEnableOption "hyprland";
   };
   config = mkIf cfg.enable {
     nix.settings = {

@@ -1,7 +1,7 @@
-{options,config,pkgs,lib,...}: with lib; with lib.orion;
+{config,lib,...}: with lib;
 let cfg = config.orion.desktop.plasma; in {
-  options.orion.desktop.plasma = with types; {
-    enable = mkBoolOpt false "Enable Plasma desktop environment with SDDM";
+  options.orion.desktop.plasma = {
+    enable = mkEnableOption "plasma";
   };
   config = mkIf cfg.enable {
     services.desktopManager.plasma6.enable = true;

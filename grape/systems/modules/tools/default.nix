@@ -1,10 +1,10 @@
-{options,config,pkgs,lib,...}: with lib; with lib.orion;
-let cfg = config.orion.tools.appimage; in {
-  options.tools.appimage = with types; {
-    enable = mkBoolOpt false "Enable appimage support";
+{config,pkgs,lib,...}: with lib;
+let cfg = config.orion.tools; in {
+  options.orion.tools = {
+    appimage.enable = mkEnableOption "appimage";
   };
-  config = mkIf cfg.enable {
-    boot.binfmt.registrations.appimage = {
+  config = {
+    boot.binfmt.registrations.appimage = mkIf cfg.appimage.enable {
       wrapInterpreterInShell = false;
       interpreter = "${pkgs.appimage-run}/bin/appimage-run";
       recognitionType = "magic";

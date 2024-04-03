@@ -1,7 +1,7 @@
-{options,config,pkgs,lib,...}: with lib; with lib.orion;
+{config,pkgs,lib,...}: with lib;
 let cfg = config.orion.apps.steam; in {
-  options.orion.apps.steam = with types; {
-    enable = mkBoolOpt false "Enable steam";
+  options.orion.apps.steam = {
+    enable = mkEnableOption "steam";
   };
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
