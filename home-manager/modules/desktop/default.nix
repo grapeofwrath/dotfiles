@@ -1,3 +1,6 @@
 {libgrape,...}:{
-  imports = libgrape.allSubdirs ./.;
+  imports = [
+    #libgrape.allSubdirs ./.
+    ./kitty
+  ];
 }

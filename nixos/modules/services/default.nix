@@ -1,6 +1,6 @@
 {config,lib,...}: with lib;
-let cfg = config.orion.nixos.services; in {
-  options.orion.nixos.services = {
+let cfg = config.orion.services; in {
+  options.orion.services = {
     tailscale.enable = mkEnableOption "tailscale";
   };
   config = {

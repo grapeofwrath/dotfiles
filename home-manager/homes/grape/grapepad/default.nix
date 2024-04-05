@@ -1,14 +1,14 @@
-{lib,pkgs,...}: {
-  imports = [ ../../modules ];
+{pkgs,...}: {
+  imports = [ ../../../modules ];
 
   home = {
     username = "grape";
     homeDirectory = "/home/grape";
-    nixpkgs.config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-    };
   };
+  #nixpkgs.config = {
+  #  allowUnfree = true;
+  #  allowUnfreePredicate = _: true;
+  #};
 
   home.packages = with pkgs; [
     # desktop
@@ -21,7 +21,5 @@
     # gaming
     wineWowPackages.staging
   ];
-  
-  # Don't change this, this is the initial install version
   home.stateVersion = "23.11";
 }

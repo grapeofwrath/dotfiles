@@ -1,6 +1,6 @@
 {config,pkgs,lib,...}: with lib;
-let cfg = config.orion.nixos.tools; in {
-  options.orion.nixos.tools = {
+let cfg = config.orion.tools; in {
+  options.orion.tools = {
     appimage.enable = mkEnableOption "appimage";
   };
   config = {

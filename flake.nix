@@ -25,12 +25,10 @@
       mkPkgs = system:
         (import nixpkgs {
           inherit system;
-          config.allowUnfreePredicate = true;
+          config.allowUnfree = true;
         });
       # Personal
       libgrape = import ./lib/libgrape { inherit lib; };
-      # Helper to turn ./thing/someprofile.nix to someprofile
-      nameFromNixFile = file: lib.strings.removeSuffix ".nix" (baseNameOf file);
     in {
       nixosConfigurations = let
         systemDirs = libgrape.allSubdirs ./nixos/systems;
@@ -42,27 +40,11 @@
           in lib.nixosSystem {
             inherit pkgs system;
             modules = [ userData.module ];
-            specialArgs = { inherit libgrape; };
+            specialArgs = { inherit inputs libgrape; };
           });
         in (builtins.listToAttrs (map (dir: {
           name = builtins.baseNameOf dir;
           value = mkConfig dir;
         }) systemDirs));
-
-        homeConfigurations = let
-          userDirs = libgrape.allSubdirs ./home-manager/homes;
-          mkConfig = dir:
-            (let
-              userData = import dir;
-              pkgs = mkPkgs userData.system;
-            in home-manager.lib.homeManagerConfiguration {
-              inherit pkgs;
-              modules = [];
-              extraSpecialArgs = { inherit libgrape; };
-            });
-          in (builtins.listToAttrs (map (file: {
-            name = nameFromNixFile file;
-            value = mkConfig file;
-          }) userDirs));
     };
 }

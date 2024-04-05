@@ -1,6 +1,6 @@
-{config,pkgs,lib,...}: with lib;
-let cfg = config.orion.nixos.desktop.hyprland; in {
-  options.orion.nixos.desktop.hyprland = {
+{inputs,config,pkgs,lib,...}: with lib;
+let cfg = config.orion.desktop.hyprland; in {
+  options.orion.desktop.hyprland = {
     enable = mkEnableOption "hyprland";
   };
   config = mkIf cfg.enable {

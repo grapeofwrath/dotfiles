@@ -5,7 +5,7 @@
   ];
   orion = {
     hardware = {
-      #bluetooth = false;
+      #bluetooth.enable = false;
       hostName = "grapepad";
     };
     system.latestKernel = true;

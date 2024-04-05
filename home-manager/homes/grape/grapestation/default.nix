@@ -1,5 +1,5 @@
 {lib,pkgs,...}: {
-  imports = [ ../../modules ];
+  imports = [ ../../../modules ];
 
   home = {
     username = "grape";
@@ -21,7 +21,5 @@
     # gaming
     wineWowPackages.staging
   ];
-  
-  # Don't change this, this is the initial install version
   home.stateVersion = "23.11";
 }

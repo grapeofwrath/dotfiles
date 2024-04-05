@@ -1,6 +1,6 @@
 {config,pkgs,lib,...}: with lib;
-let cfg = config.orion.nixos.apps.steam; in {
-  options.orion.nixos.apps.steam = {
+let cfg = config.orion.apps.steam; in {
+  options.orion.apps.steam = {
     enable = mkEnableOption "steam";
   };
   config = mkIf cfg.enable {

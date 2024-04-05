@@ -1,12 +1,16 @@
-{libgrape,config,lib,...}: with lib;
+{libgrape,config,osConfig,lib,...}: with lib;
 let cfg = config.orion.home-manager.shell; in {
-  imports = libgrape.allSubdirs ./.;
-  options.orion.home-manager.shell = with types; {
-    aliases = mkOption {
-      description = "Shell aliases available accross all shells";
-      type = types.attrsOf str;
-    };
-  };
+  imports = [
+    #libgrape.allSubdirs ./.
+    ./bash
+    ./starship
+  ];
+  #options.orion.home-manager.shell = {
+  #  aliases = mkOption {
+  #    description = "Shell aliases available accross all shells";
+  #    type = with types; attrsOf str;
+  #  };
+  #};
   config = {
     home.shellAliases = {
       grep = "rg";
@@ -16,9 +20,10 @@ let cfg = config.orion.home-manager.shell; in {
       ".." = "cd ..";
       tree = "tree --dirsfirst -F";
       mkdir = "mkdir -pv";
-      rebuild = "sudo nixos-rebuild switch --flake .#${config.networking.hostName}";
+      rebuild = "sudo nixos-rebuild switch --flake .#${osConfig.networking.hostName}";
       update = "sudo nix flake update";
-    } ++ cfg.aliases;
+    };
+    #} ++ cfg.aliases;
     programs = {
       zoxide = {
         enable = true;

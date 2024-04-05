@@ -1,13 +1,13 @@
 {config,pkgs,lib,...}: with lib;
-let cfg = config.orion.nixos.system; in {
-  options.orion.nixos.system = {
+let cfg = config.orion.system; in {
+  options.orion.system = {
     latestKernel = mkOption {
       description = "Enable the latest kernel";
       type = types.bool;
     };
     variables = mkOption {
       description = "Environment variables to apply to the system";
-      type = types.attrsOf str;
+      type = types.attrsOf types.str;
       default = {
         EDITOR = "nvim";
       };
@@ -24,11 +24,11 @@ let cfg = config.orion.nixos.system; in {
 
     time.timeZone = mkDefault "America/Chicago";
 
-    environment = {inherit variables;};
+    environment = {inherit (cfg) variables;};
 
     console.useXkbConfig = true;
     services.xserver = {
-      layout = mkDefault "us";
+      xkb.layout = mkDefault "us";
       xkb.options = "caps:escape";
     };
   };
