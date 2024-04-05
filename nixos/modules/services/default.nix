@@ -5,7 +5,7 @@ let cfg = config.orion.services; in {
   };
   config = {
     # TODO find correct way to auto add ssh keys
-    # programs.ssh.startAgent = true;
+    programs.ssh.startAgent = true;
     services.openssh = {
       enable = true;
       settings = {
