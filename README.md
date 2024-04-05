@@ -6,52 +6,82 @@ Organizing my thoughts as I go.
 
 See [Misterio77's config](https://github.com/Misterio77/nix-config) as an in depth example/proof of concept, though possibly not as complex as I'd like to implement.
 
-### Directory Structure
+<details>
+<summary>### Directory Structure</summary>
 
 ```
-.
+./
+├── home-manager/
+│   ├── homes/
+│   │   └── grape/
+│   │       ├── grapepad/
+│   │       │   └── default.nix
+│   │       └── grapestation/
+│   │           └── default.nix
+│   └── modules/
+│       ├── base/
+│       │   └── default.nix
+│       ├── cli/
+│       │   ├── git/
+│       │   │   └── default.nix
+│       │   ├── lf/
+│       │   │   ├── default.nix
+│       │   │   └── icons
+│       │   └── default.nix
+│       ├── desktop/
+│       │   ├── kitty/
+│       │   │   └── default.nix
+│       │   └── default.nix
+│       ├── shell/
+│       │   ├── bash/
+│       │   │   └── default.nix
+│       │   ├── starship/
+│       │   │   └── default.nix
+│       │   └── default.nix
+│       └── default.nix
+├── lib/
+│   └── libgrape/
+│       └── default.nix
+├── nixos/
+│   ├── modules/
+│   │   ├── apps/
+│   │   │   ├── steam/
+│   │   │   │   └── default.nix
+│   │   │   └── default.nix
+│   │   ├── base/
+│   │   │   └── default.nix
+│   │   ├── desktop/
+│   │   │   ├── hyprland/
+│   │   │   │   └── default.nix
+│   │   │   ├── plasma/
+│   │   │   │   └── default.nix
+│   │   │   └── default.nix
+│   │   ├── hardware/
+│   │   │   └── default.nix
+│   │   ├── services/
+│   │   │   └── default.nix
+│   │   ├── system/
+│   │   │   └── default.nix
+│   │   ├── tools/
+│   │   │   └── default.nix
+│   │   ├── users/
+│   │   │   └── default.nix
+│   │   └── default.nix
+│   └── systems/
+│       ├── grapepad/
+│       │   ├── configuration.nix
+│       │   ├── default.nix
+│       │   └── hardware-config.nix
+│       └── grapestation/
+│           ├── configuration.nix
+│           ├── default.nix
+│           └── hardware-config.nix
 ├── flake.lock
 ├── flake.nix
-├── home-manager
-│   ├── modules
-│   │   ├── assets
-│   │   │   └── icons
-│   │   ├── cli
-│   │   │   ├── default.nix
-│   │   │   ├── lf
-│   │   │   │   └── default.nix
-│   │   │   ├── shell
-│   │   │   │   └── default.nix
-│   │   │   └── starship
-│   │   │       └── default.nix
-│   │   ├── default.nix
-│   │   └── desktop
-│   │       ├── default.nix
-│   │       ├── hyprland
-│   │       │   ├── default.nix
-│   │       │   ├── swaylock.nix
-│   │       │   ├── swaync.nix
-│   │       │   └── waybar.nix
-│   │       └── kitty
-│   │           └── default.nix
-│   └── users
-│       └── grape
-│           └── default.nix
-├── nixos
-│   ├── machines
-│   │   ├── grapelab
-│   │   │   └── default.nix
-│   │   ├── grapepad
-│   │   │   └── default.nix
-│   │   └── grapestation
-│   │       ├── default.nix
-│   │       └── hardware-configuration.nix
-│   └── modules
-│       ├── default.nix
-│       └── gaming
-│           └── default.nix
-└── README.md
+├── README.md
+└── shell.nix
 ```
+</details>
 
 **NEEDS UPDATING** There are three main files upon which each system depends (unless there are multiple users):
 
