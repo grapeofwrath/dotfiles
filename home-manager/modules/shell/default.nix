@@ -1,6 +1,5 @@
-{config,osConfig,lib,libgrape,...}: with lib;
+{config,osConfig,lib,...}: with lib;
 let cfg = config.orion.home-manager.shell; in {
-  imports = libgrape.allSubdirs ./.;
   #options.orion.home-manager.shell = {
   #  aliases = mkOption {
   #    description = "Shell aliases available accross all shells";

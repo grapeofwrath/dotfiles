@@ -1,1 +1,0 @@
-{libgrape,...}: { imports = libgrape.allSubdirs ./.; }
