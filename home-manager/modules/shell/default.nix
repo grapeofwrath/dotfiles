@@ -1,7 +1,6 @@
-{libgrape,config,osConfig,lib,...}: with lib;
+{config,osConfig,lib,...}: with lib;
 let cfg = config.orion.home-manager.shell; in {
   imports = [
-    #libgrape.allSubdirs ./.
     ./bash
     ./starship
   ];
