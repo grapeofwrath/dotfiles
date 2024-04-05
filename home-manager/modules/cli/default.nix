@@ -1,6 +1,1 @@
-{...}: {
-  imports = [
-    ./git
-    ./lf
-  ];
-}
+{libgrape,...}: { imports = libgrape.allSubdirs ./.; }

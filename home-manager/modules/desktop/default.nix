@@ -1,5 +1,1 @@
-{...}:{
-  imports = [
-    ./kitty
-  ];
-}
+{libgrape,...}: { imports = libgrape.allSubdirs ./.; }

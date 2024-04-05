@@ -5,10 +5,6 @@
     username = "grape";
     homeDirectory = "/home/grape";
   };
-  #nixpkgs.config = {
-  #  allowUnfree = true;
-  #  allowUnfreePredicate = _: true;
-  #};
 
   home.packages = with pkgs; [
     # desktop

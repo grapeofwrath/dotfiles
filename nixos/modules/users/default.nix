@@ -1,4 +1,4 @@
-{inputs,outputs,config,pkgs,...}: {
+{libgrape,inputs,outputs,config,pkgs,...}: {
   imports = [inputs.home-manager.nixosModules.home-manager];
   users = {
     # mutableUsers = false;
@@ -18,7 +18,7 @@
   ];
   home-manager = {
     users.grape = import ../../../home-manager/homes/grape/${config.networking.hostName};
-    extraSpecialArgs = {inherit inputs outputs;};
+    extraSpecialArgs = {inherit inputs outputs libgrape;};
     useUserPackages = true;
     useGlobalPkgs = true;
   };
