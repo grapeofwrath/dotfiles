@@ -1,6 +1,6 @@
 {config,osConfig,lib,...}: with lib;
-let cfg = config.orion.home-manager.shell; in {
-  #options.orion.home-manager.shell = {
+let cfg = config.orion.shell; in {
+  #options.orion.shell = {
   #  aliases = mkOption {
   #    description = "Shell aliases available accross all shells";
   #    type = with types; attrsOf str;
@@ -15,8 +15,10 @@ let cfg = config.orion.home-manager.shell; in {
       ".." = "cd ..";
       tree = "tree --dirsfirst -F";
       mkdir = "mkdir -pv";
+      # nix
       rebuild = "sudo nixos-rebuild switch --flake .#${osConfig.networking.hostName}";
       update = "sudo nix flake update";
+      da = "direnv allow";
     };
     #} ++ cfg.aliases;
     programs = {

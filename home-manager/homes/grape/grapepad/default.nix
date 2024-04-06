@@ -17,5 +17,11 @@
     # gaming
     wineWowPackages.staging
   ];
+
+  #orion.shell.aliases = {
+  #  da = "direnv allow";
+  #};
+
+  # Believe it or not, if you change this? Straight to jail.
   home.stateVersion = "23.11";
 }

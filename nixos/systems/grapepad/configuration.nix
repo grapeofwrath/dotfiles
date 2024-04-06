@@ -4,6 +4,10 @@
     ../../modules
   ];
   orion = {
+    battery = {
+      enable = true;
+      intelCPU = true;
+    };
     hardware = {
       #bluetooth.enable = false;
       hostName = "grapepad";
