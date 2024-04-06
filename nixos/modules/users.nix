@@ -12,5 +12,5 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  home-manager.users.grape = import ../../../home-manager/homes/grape/${config.networking.hostName};
+  home-manager.users.grape = import ../../home-manager/homes/grape/${config.networking.hostName};
 }
