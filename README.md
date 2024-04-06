@@ -60,7 +60,7 @@ At the moment, there is only [libgrape](./lib/libgrape/default.nix) which is pri
 ## Todo
 
 - [ ] finish setting up Hyprland
-- [ ] add nushell
+- [x] add nushell
 - [ ] setup sops-nix again
 - [ ] setup steam to launch independant session [see Jovian NixOS](https://github.com/Jovian-Experiments/Jovian-NixOS)
 - [ ] add configuration for grapelab (homelab server)
