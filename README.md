@@ -4,7 +4,7 @@ Organizing my thoughts as I go.
 
 ## NixOS
 
-For each directory in [`nixos/systems/`](./nixos/systems), a nixos configuration is generated in the flake. The directory name should be the corresponding hostname. Within each system directory, there are three files: `configuration.nix`, `default.nix`, and `hardware-config.nix`. The file that is imported for each system in the flake is `default.nix`, and it has the following structure:
+For each directory in [nixos/systems/](./nixos/systems), a nixos configuration is generated in the flake. The directory name should be the corresponding hostname. Within each system directory, there are three files: `configuration.nix`, `default.nix`, and `hardware-config.nix`. The file that is imported for each system in the flake is `default.nix`, and it has the following structure:
 
 ```nix
 {
@@ -17,13 +17,13 @@ For each directory in [`nixos/systems/`](./nixos/systems), a nixos configuration
 
 `module` imports the main configuration file
 
-NixOS modules are imported via [`modules/default.nix`](./nixos/modules/default.nix).
+NixOS modules are imported via [modules/default.nix](./nixos/modules/default.nix).
 
 ## Home Manager
 
-Home Manager is currently installed as a NixOS module, see [`home.nix`](./nixos/modules/home.nix) and [`users.nix`](./nixos/modules/users.nix). Each home manager configuration is located in `./home-manager/homes/$user/$hostName.nix`. This directory structure may need to be changed to accomodate setting up a standalone home manager instance similar to [Evertras](https://github.com/Evertras/nix-systems) / how the system configurations are setup in the flake.
+Home Manager is currently installed as a NixOS module, see [home.nix](./nixos/modules/home.nix) and [users.nix](./nixos/modules/users.nix). Each home manager configuration is located in `./home-manager/homes/$user/$hostName.nix`. This directory structure may need to be changed to accomodate setting up a standalone home manager instance similar to [Evertras](https://github.com/Evertras/nix-systems) / how the system configurations are setup in the flake.
 
-Home manager modules are imported via [`modules/default.nix`](./home-manager/modules/default.nix).
+Home manager modules are imported via [modules/default.nix](./home-manager/modules/default.nix).
 
 ## Modules
 
@@ -55,7 +55,7 @@ Modules are put into files with their respective names; and directories are used
 
 ## Lib
 
-At the moment, there is only [`libgrape`](./lib/libgrape/default.nix) which is primarily used in [`flake.nix`](./flake.nix) in order to generate configs from directories. Eventually I may add a few other things such as theming here as well.
+At the moment, there is only [libgrape](./lib/libgrape/default.nix) which is primarily used in [flake.nix](./flake.nix) in order to generate configs from directories. Eventually I may add a few other things such as theming here as well.
 
 ## Todo
 
@@ -80,4 +80,5 @@ When adding a new ssh key to `secrets.yaml`, don't forget to add it to the ssh a
 ## References
 
 [Evertras](https://github.com/Evertras/nix-systems)
+
 [evanjs](https://github.com/evanjs/nixos_cfg)
