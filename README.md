@@ -76,3 +76,8 @@ When adding a new ssh key to `secrets.yaml`, don't forget to add it to the ssh a
     - This doesn't seem to work, need to find the proper way
 - or `ssh-add ~/path/to/key`
 - I think a systemd service is what I need to use in order to make this happen automatically
+
+## References
+
+[Evertras](https://github.com/Evertras/nix-systems)
+[evanjs](https://github.com/evanjs/nixos_cfg)
