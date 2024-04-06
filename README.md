@@ -2,11 +2,8 @@
 
 Organizing my thoughts as I go.
 
-## Modularity - K.I.S.S.
-
-See [Misterio77's config](https://github.com/Misterio77/nix-config) as an in depth example/proof of concept, though possibly not as complex as I'd like to implement.
-
 <details>
+
 <summary>### Directory Structure</summary>
 
 ```
@@ -19,25 +16,18 @@ See [Misterio77's config](https://github.com/Misterio77/nix-config) as an in dep
 │   │       └── grapestation/
 │   │           └── default.nix
 │   └── modules/
-│       ├── base/
-│       │   └── default.nix
 │       ├── cli/
-│       │   ├── git/
-│       │   │   └── default.nix
 │       │   ├── lf/
 │       │   │   ├── default.nix
 │       │   │   └── icons
-│       │   └── default.nix
+│       │   └── git.nix
 │       ├── desktop/
-│       │   ├── kitty/
-│       │   │   └── default.nix
-│       │   └── default.nix
+│       │   └── kitty.nix
 │       ├── shell/
-│       │   ├── bash/
-│       │   │   └── default.nix
-│       │   ├── starship/
-│       │   │   └── default.nix
-│       │   └── default.nix
+│       │   ├── bash.nix
+│       │   ├── default.nix
+│       │   └── starship.nix
+│       ├── base.nix
 │       └── default.nix
 ├── lib/
 │   └── libgrape/
@@ -45,28 +35,19 @@ See [Misterio77's config](https://github.com/Misterio77/nix-config) as an in dep
 ├── nixos/
 │   ├── modules/
 │   │   ├── apps/
-│   │   │   ├── steam/
-│   │   │   │   └── default.nix
-│   │   │   └── default.nix
-│   │   ├── base/
-│   │   │   └── default.nix
+│   │   │   └── steam.nix
 │   │   ├── desktop/
-│   │   │   ├── hyprland/
-│   │   │   │   └── default.nix
-│   │   │   ├── plasma/
-│   │   │   │   └── default.nix
-│   │   │   └── default.nix
-│   │   ├── hardware/
-│   │   │   └── default.nix
-│   │   ├── services/
-│   │   │   └── default.nix
-│   │   ├── system/
-│   │   │   └── default.nix
-│   │   ├── tools/
-│   │   │   └── default.nix
-│   │   ├── users/
-│   │   │   └── default.nix
-│   │   └── default.nix
+│   │   │   ├── default.nix
+│   │   │   ├── hyprland.nix
+│   │   │   └── plasma.nix
+│   │   ├── base.nix
+│   │   ├── default.nix
+│   │   ├── hardware.nix
+│   │   ├── home.nix
+│   │   ├── services.nix
+│   │   ├── system.nix
+│   │   ├── tools.nix
+│   │   └── users.nix
 │   └── systems/
 │       ├── grapepad/
 │       │   ├── configuration.nix
@@ -83,11 +64,17 @@ See [Misterio77's config](https://github.com/Misterio77/nix-config) as an in dep
 ```
 </details>
 
-**NEEDS UPDATING** There are three main files upon which each system depends (unless there are multiple users):
+For each directory in [`./nixos/systems/`](./nixos/systems), a nixos configuration is generated in the flake. The directory name should be the corresponding hostname. Within each system directory, there are three files: `configuration.nix`, `default.nix`, and `hardware-config.nix`. The file that is imported for each system in the flake is `default.nix`, and it has the following structure:
 
-- **flake.nix:** For each host, it imports `./hosts/$hostname`
-- **hosts/$hostname/default.nix:** Imports `./hardware-configuration.nix`, `./../configuration,nix` for shared system settings, and `./../users/$user.nix` for each user
-- **hosts/users/$user.nix:** Imports the home-manager config for the corresponding system via `./../../home/$user/$hostname.nix` as well as some shared settings through `./../../home/home.nix`
+```nix
+{
+  system = "x86_64-linux";
+  module = ./configuration.nix;
+}
+```
+
+`system` is the system's architecture
+`module` imports the main configuration file
 
 ## Misc
 
