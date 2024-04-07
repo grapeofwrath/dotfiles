@@ -1,4 +1,4 @@
-{config,...}: {
+{config,pkgs,...}: {
   users = {
     # mutableUsers = false;
 
@@ -7,6 +7,7 @@
       home = "/home/grape";
       group = "users";
       extraGroups = [ "wheel" "networkmanager" ];
+      shell = pkgs.nushell;
     };
   };
 
