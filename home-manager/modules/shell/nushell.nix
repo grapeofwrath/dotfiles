@@ -1,4 +1,4 @@
-{config,lib,...}: with lib;
+{osConfig,config,lib,...}: with lib;
 let cfg = config.orion.shell.nushell; in {
   options.orion.shell.nushell = {
     enable = mkEnableOption "Enable nushell";
@@ -31,6 +31,15 @@ let cfg = config.orion.shell.nushell; in {
           prepend /home/myuser/.apps |
           append /usr/bin/env
         )
+        def "n" [] {
+          nix run github:grapeofwrath/nixvim-flake
+        }
+        def "flake rebuild" [flag: string = switch] {
+          sudo nixos-rebuild switch --flake .#${osConfig.networking.hostName}
+        }
+        def "flake update" [] {
+          sudo nix flake update
+        }
       '';
     };
     programs.carapace = {

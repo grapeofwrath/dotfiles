@@ -16,8 +16,7 @@ let cfg = config.orion.shell; in {
       tree = "tree --dirsfirst -F";
       mkdir = "mkdir -pv";
       # nix
-      rebuild = "sudo nixos-rebuild switch --flake .#${osConfig.networking.hostName}";
-      update = "sudo nix flake update";
+      #update = "sudo nix flake update";
       da = "direnv allow";
     };
     #} ++ cfg.aliases;
@@ -25,10 +24,12 @@ let cfg = config.orion.shell; in {
       zoxide = {
         enable = true;
         enableBashIntegration = true;
+        enableNushellIntegration = true;
       };
       direnv = {
         enable = true;
         enableBashIntegration = true;
+        enableNushellIntegration = true;
         nix-direnv.enable = true;
       };
       fzf.enable = true;
