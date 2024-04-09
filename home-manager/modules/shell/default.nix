@@ -35,10 +35,10 @@ let cfg = config.orion.shell; in {
       ripgrep.enable = true;
       btop = {
         enable = true;
-        settings = {
-          color_theme = "Default";
-          theme_background = false;
-        };
+        #settings = {
+        #  color_theme = "Default";
+        #  theme_background = false;
+        #};
       };
     };
   };

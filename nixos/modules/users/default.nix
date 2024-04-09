@@ -1,7 +1,6 @@
 {config,pkgs,...}: {
   users = {
-    # mutableUsers = false;
-
+  # mutableUsers = false;
     users.grape = {
       isNormalUser = true;
       home = "/home/grape";
@@ -13,5 +12,5 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  home-manager.users.grape = import ../../home-manager/homes/grape/${config.networking.hostName};
+  home-manager.users.grape = import ../../../home-manager/homes/grape/${config.networking.hostName};
 }
