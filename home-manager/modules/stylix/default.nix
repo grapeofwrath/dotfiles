@@ -1,10 +1,9 @@
 {inputs,config,lib,...}: {
   imports = [
-    inputs.stylix.nixosModules.stylix
+    inputs.stylix.homeManagerModules.stylix
   ];
   stylix = {
     image = ./wallpaper.jpg;
     base16Scheme = ./campfire.yaml;
-    homeManagerIntegration.autoImport = false;
   };
 }

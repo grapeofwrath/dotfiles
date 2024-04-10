@@ -1,5 +1,5 @@
 {lib,pkgs,...}: {
-  imports = [ ../../../modules ];
+  imports = [ ../../modules ];
 
   home = {
     username = "grape";

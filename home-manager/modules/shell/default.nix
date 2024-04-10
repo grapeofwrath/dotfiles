@@ -1,4 +1,4 @@
-{config,osConfig,lib,...}: with lib;
+{config,lib,...}: with lib;
 let cfg = config.orion.shell; in {
   #options.orion.shell = {
   #  aliases = mkOption {

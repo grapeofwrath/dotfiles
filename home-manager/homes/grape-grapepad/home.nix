@@ -1,14 +1,9 @@
-{inputs,pkgs,...}: {
-  imports = [
-    ../../../modules
-    inputs.nixvim.homeManagerModules.nixvim
-  ];
-
+{pkgs,...}: {
+  imports = [../../modules];
   home = {
     username = "grape";
     homeDirectory = "/home/grape";
   };
-
   home.packages = with pkgs; [
     # desktop
     brave
@@ -20,7 +15,6 @@
     # gaming
     wineWowPackages.staging
   ];
-
   orion.shell = {
     nushell.enable = true;
   };

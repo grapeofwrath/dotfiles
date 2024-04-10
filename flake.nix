@@ -38,6 +38,7 @@
         });
       # Personal
       libgrape = import ./lib/libgrape { inherit lib; };
+      nameFromNixFile = file: lib.strings.removeSuffix ".nix" (baseNameOf file);
     in {
       nixosConfigurations = let
         systemDirs = libgrape.allSubdirs ./nixos/systems;
@@ -55,5 +56,20 @@
           name = builtins.baseNameOf dir;
           value = mkConfig dir;
         }) systemDirs));
+      homeConfigurations = let
+        userDirs = libgrape.allSubdirs ./home-manager/homes;
+        mkConfig = dir:
+          (let
+            userData = import dir;
+            pkgs = mkPkgs userData.system;
+          in home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            modules = [ userData.module ];
+            extraSpecialArgs = { inherit inputs libgrape; };
+          });
+      in (builtins.listToAttrs (map (file: {
+        name = nameFromNixFile file;
+        value = mkConfig file;
+      }) userDirs));
     };
 }
