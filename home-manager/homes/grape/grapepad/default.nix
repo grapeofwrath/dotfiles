@@ -1,5 +1,8 @@
-{pkgs,...}: {
-  imports = [ ../../../modules ];
+{inputs,pkgs,...}: {
+  imports = [
+    ../../../modules
+    inputs.nixvim.homeManagerModules.nixvim
+  ];
 
   home = {
     username = "grape";
