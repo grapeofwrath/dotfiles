@@ -12,7 +12,7 @@ let cfg = config.orion.shell; in {
       nvim = "nix run github:grapeofwrath/nixvim-flake";
       n = "nvim";
       ll = "ls -alF";
-      ".." = "cd ..";
+      #".." = "cd ..";
       tree = "tree --dirsfirst -F";
       mkdir = "mkdir -pv";
       # nix

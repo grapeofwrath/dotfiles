@@ -34,8 +34,8 @@ let cfg = config.orion.shell.nushell; in {
         def "n" [] {
           nix run github:grapeofwrath/nixvim-flake
         }
-        def "flake rebuild" [flag: string = switch] {
-          sudo nixos-rebuild switch --flake .#${osConfig.networking.hostName}
+        def "flake rebuild" [sub: string = switch] {
+          sudo nixos-rebuild $sub --flake .#${osConfig.networking.hostName}
         }
         def "flake update" [] {
           sudo nix flake update
