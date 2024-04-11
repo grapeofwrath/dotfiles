@@ -4,7 +4,10 @@ Organizing my thoughts as I go.
 
 ## NixOS
 
-For each directory in [nixos/systems/](./nixos/systems), a nixos configuration is generated in the flake. The directory name should be the corresponding hostname. Within each system directory, there are three files: `configuration.nix`, `default.nix`, and `hardware-config.nix`. The file that is imported for each system in the flake is `default.nix`, and it has the following structure:
+For each directory in [nixos/systems/](./nixos/systems), a nixos configuration is generated in the flake.
+The directory name should be the corresponding hostname.
+Within each system directory, there are three files: `configuration.nix`, `default.nix`, and `hardware-config.nix`.
+The file that is imported for each system in the flake is `default.nix`, and it has the following structure:
 
 ```nix
 {
@@ -21,7 +24,10 @@ NixOS modules are imported via [modules/default.nix](./nixos/modules/default.nix
 
 ## Home Manager
 
-Home Manager is currently installed as a NixOS module, see [home.nix](./nixos/modules/home.nix) and [users.nix](./nixos/modules/users.nix). Each home manager configuration is located in `./home-manager/homes/$user/$hostName.nix`. This directory structure may need to be changed to accomodate setting up a standalone home manager instance similar to [Evertras](https://github.com/Evertras/nix-systems) / how the system configurations are setup in the flake.
+Home Manager is installed as a NixOS module (see [home.nix](./nixos/modules/home.nix) and [users.nix](./nixos/modules/users.nix)) and as a standalone configuration.
+Similar to the system configs, a home-manager configuration is generated in the flake for each subdirectory in [home-manager/homes/](./home-manager/homes).
+The directory name should be `user-hostname` in order to be imported to the correct system by the nixos home-manager module.
+Each directory contains a `default.nix` and `home.nix` file just like the system directories, defining the system architecture and importing the `home.nix` configuration.
 
 Home manager modules are imported via [modules/default.nix](./home-manager/modules/default.nix).
 
@@ -64,7 +70,7 @@ At the moment, there is only [libgrape](./lib/libgrape/default.nix) which is pri
 - [ ] setup sops-nix again
 - [ ] setup steam to launch independant session [see Jovian NixOS](https://github.com/Jovian-Experiments/Jovian-NixOS)
 - [ ] add configuration for grapelab (homelab server)
-- [ ] setup home manager as a standalone install alongside nixos module [see Evertras' config](https://github.com/Evertras/nix-systems)
+- [x] setup home manager as a standalone install alongside nixos module [see Evertras' config](https://github.com/Evertras/nix-systems)
 
 ## Misc
 

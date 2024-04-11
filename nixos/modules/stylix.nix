@@ -3,8 +3,8 @@
     inputs.stylix.nixosModules.stylix
   ];
   stylix = {
-    image = ./wallpaper.jpg;
-    base16Scheme = ./campfire.yaml;
+    image = ../../assets/stylix/wallpaper.jpg;
+    base16Scheme = ../../assets/stylix/campfire.yaml;
     homeManagerIntegration.autoImport = false;
   };
 }
