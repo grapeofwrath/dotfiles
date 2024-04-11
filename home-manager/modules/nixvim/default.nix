@@ -1,5 +1,8 @@
 {inputs,config,pkgs,lib,...}: {
   imports = [inputs.nixvim.homeManagerModules.nixvim];
+  home.packages = with pkgs; [
+    wl-clipboard
+  ];
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
@@ -16,6 +19,7 @@
     ];
     clipboard = {
       register = "unnamedplus";
+      providers.wl-copy.enable = true;
     };
     opts = {
       autoindent = true;
