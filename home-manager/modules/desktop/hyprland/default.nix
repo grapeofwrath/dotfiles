@@ -20,8 +20,6 @@ let cfg = config.orion.desktop.hyprland; in {
       monitor = [
         ",preferred,auto,1"
       ] ++ (builtins.concatLists cfg.monitors);
-      #] ++ (builtins.concatLists {inherit (cfg) monitors;});
-        #{inherit (cfg) monitors;}];
       general = {
         gaps_in = "6";
         gaps_out = "8";
