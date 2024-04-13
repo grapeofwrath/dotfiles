@@ -4,6 +4,7 @@ let cfg = config.orion.desktop.hyprland; in {
     enable = mkEnableOption "Enable Hyprland";
     monitors = mkOption {
       type = types.listOf types.str;
+      default = [];
     };
   };
   config = mkIf cfg.enable {
@@ -16,9 +17,11 @@ let cfg = config.orion.desktop.hyprland; in {
       #];
     };
     wayland.windowManager.hyprland.settings = {
-      #monitor = [
-      #  ",preferred,auto,1"
-      #] ++ (builtins.concatLists cfg.monitors);
+      monitor = [
+        ",preferred,auto,1"
+      ] ++ (builtins.concatLists cfg.monitors);
+      #] ++ (builtins.concatLists {inherit (cfg) monitors;});
+        #{inherit (cfg) monitors;}];
       general = {
         gaps_in = "6";
         gaps_out = "8";
