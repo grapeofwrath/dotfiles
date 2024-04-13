@@ -31,9 +31,6 @@ let cfg = config.orion.shell.nushell; in {
           prepend /home/myuser/.apps |
           append /usr/bin/env
         )
-        def "n" [] {
-          nix run github:grapeofwrath/nixvim-flake
-        }
         def "flake rebuild" [sub: string = switch] {
           sudo nixos-rebuild $sub --flake .
         }

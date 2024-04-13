@@ -12,6 +12,7 @@ let cfg = config.orion.desktop.plasma; in {
         autoNumlock = true;
         wayland.enable = true;
       };
+      #displayManager.startx.enable = true;
     };
   };
 }

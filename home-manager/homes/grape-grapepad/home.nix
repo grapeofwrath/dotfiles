@@ -12,11 +12,16 @@
     element-desktop
     gnome.gnome-keyring
     kdePackages.qtstyleplugin-kvantum
-    # gaming
-    wineWowPackages.staging
   ];
-  orion.shell = {
-    nushell.enable = true;
+  orion = {
+    desktop = {
+      hyprland = {
+        enable = true;
+      };
+    };
+    shell = {
+      nushell.enable = true;
+    };
   };
 
   # Believe it or not, if you change this? Straight to jail.
