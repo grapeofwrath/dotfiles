@@ -27,6 +27,9 @@
       lsp-lines.enable = true;
       lspsaga = {
         enable = true;
+        lightbulb = {
+          enable = false;
+        };
         symbolInWinbar.enable = false;
         ui.border = "rounded";
       };
