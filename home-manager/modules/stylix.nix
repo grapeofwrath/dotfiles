@@ -5,5 +5,6 @@
   stylix = {
     image = ../../assets/stylix/wallpaper.jpg;
     base16Scheme = ../../assets/stylix/campfire.yaml;
+    targets.kitty.variant256Colors = true;
   };
 }
