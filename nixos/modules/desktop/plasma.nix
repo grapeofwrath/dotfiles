@@ -6,13 +6,11 @@ let cfg = config.orion.desktop.plasma; in {
   config = mkIf cfg.enable {
     services.desktopManager.plasma6.enable = true;
     services.xserver = {
-      enable = true;
       displayManager.sddm = {
         enable = true;
         autoNumlock = true;
         wayland.enable = true;
       };
-      #displayManager.startx.enable = true;
     };
   };
 }

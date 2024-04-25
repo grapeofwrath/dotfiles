@@ -1,6 +1,8 @@
 {config,lib,...}: with lib;
 let cfg = config.orion.hardware; in {
   options.orion.hardware = {
+    # TODO
+    # separate bluetooth into its own module
     bluetooth = mkOption {
       type = types.bool;
       default = false;
