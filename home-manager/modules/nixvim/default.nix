@@ -17,6 +17,7 @@
       {mode = "n"; key = "<C-j>"; action = "<C-w>j";}
       {mode = "n"; key = "<C-k>"; action = "<C-w>k";}
       {mode = "n"; key = "<C-l>"; action = "<C-w>l";}
+      {mode = "n"; key = "<leader>ee"; action = "o<Esc><cmd>norm Oif err != nil {log.Fatal(err)}<CR>"; options.desc = "Go handle err";}
     ];
     clipboard = {
       register = "unnamedplus";
