@@ -22,6 +22,7 @@
     shell = {
       nushell.enable = true;
     };
+    sops.hostName = "grapepad";
   };
 
   # Believe it or not, if you change this? Straight to jail.
