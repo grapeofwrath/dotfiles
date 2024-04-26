@@ -7,6 +7,9 @@
       group = "users";
       extraGroups = [ "wheel" "networkmanager" ];
       shell = pkgs.nushell;
+      openssh.authorizedKeys.keys = [
+        (builtins.readFile ./keys/id_grape-grapepad.pub)
+      ];
     };
   };
 

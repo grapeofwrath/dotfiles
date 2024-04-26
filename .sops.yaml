@@ -1,0 +1,11 @@
+keys:
+  - &users:
+    - &grape age1xjt7jjs0zalr6lwagldpjx07jahjpzaw7h9d46cp338speysa5asm7avgs
+  - &hosts:
+    - &grapepad age1s4marh347tm4aj0kjcmrlyccu4dcpqk28hvarvwy7eauml5ghd7q2fz50x
+creation_rules:
+  - path_regex: secrets.yaml$
+    key_groups:
+      - age:
+        - *grape
+        - *grapepad

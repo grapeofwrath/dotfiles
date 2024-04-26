@@ -10,6 +10,8 @@
     system.latestKernel = true;
     services.tailscale.enable = true;
     tools.appimage.enable = true;
+    # TODO
+    # setup auto login
     desktop.startx = true;
   };
   environment.systemPackages = with pkgs; [
