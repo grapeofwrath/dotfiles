@@ -15,8 +15,8 @@ let cfg = config.orion.sops; in {
       defaultSopsFile = ../../secrets.yaml;
       validateSopsFiles = false;
       secrets = {
-        "private_keys/${cfg.hostName}" = {
-          path = "${config.home.homeDirectory}/.ssh/id_${cfg.hostName}";
+        "private_keys/${config.home.username}-${cfg.hostName}" = {
+          path = "${config.home.homeDirectory}/.ssh/id_${config.home.username}-${cfg.hostName}";
         };
       };
     };
