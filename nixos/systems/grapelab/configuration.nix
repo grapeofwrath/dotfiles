@@ -13,6 +13,7 @@
     # TODO
     # setup auto login
     desktop.startx = true;
+    home-lab.gitea.enable = true;
   };
   environment.systemPackages = with pkgs; [
     vim

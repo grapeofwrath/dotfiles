@@ -9,7 +9,6 @@
       intelCPU = true;
     };
     hardware = {
-      #bluetooth.enable = false;
       hostName = "grapepad";
     };
     system.latestKernel = true;

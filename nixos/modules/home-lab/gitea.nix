@@ -4,15 +4,20 @@ let cfg = config.orion.home-lab.gitea; in {
     enable = mkEnableOption "gitea";
   };
   config = mkIf cfg.enable {
+    #services.caddy = {
+    #  enable = true;
+    #  virtualHosts."git.grapepad.taild778e.ts.net" = {
+    #    extraConfig = "reverse_proxy localhost:3001";
+    #  };
+    #};
     services.postgresql = {
       ensureDatabases = [config.services.gitea.user];
       ensureUsers = [{
         name = config.services.gitea.database.user;
-        ensurePermissions."DATABASE ${config.services.gitea.database.name}" = "ALL PRIVILEGES";
+        #ensurePermissions."DATABASE gitea" = "ALL PRIVILEGES";
       }];
     };
     sops.secrets."gitea_dbpass" = {
-      #sopsFile = ;
       owner = config.services.gitea.user;
     };
     services.gitea = {
@@ -22,9 +27,11 @@ let cfg = config.orion.home-lab.gitea; in {
         type = "postgres";
         passwordFile = config.sops.secrets."gitea_dbpass".path;
       };
-      domain = "git.grapelab";
-      rootUrl = "https://git.grapelab/";
-      httpPort = 3001;
+      settings.server = {
+        DOMAIN = "localhost";
+        ROOT_URL = "http://localhost/";
+        HTTP_PORT = 3001;
+      };
     };
   };
 }

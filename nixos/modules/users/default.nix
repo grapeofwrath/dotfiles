@@ -1,8 +1,10 @@
 {config,pkgs,...}: {
+  sops.secrets.grape-password.neededForUsers = true;
   users = {
-  # mutableUsers = false;
+    mutableUsers = false;
     users.grape = {
       isNormalUser = true;
+      hashedPasswordFile = config.sops.secrets.grape-password.path;
       home = "/home/grape";
       group = "users";
       extraGroups = [ "wheel" "networkmanager" ];
