@@ -1,7 +1,7 @@
 {config,pkgs,...}: {
   sops.secrets.grape-password.neededForUsers = true;
   users = {
-    mutableUsers = false;
+    #mutableUsers = false;
     users.grape = {
       isNormalUser = true;
       hashedPasswordFile = config.sops.secrets.grape-password.path;
