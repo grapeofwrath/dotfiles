@@ -27,6 +27,7 @@
     shell = {
       nushell.enable = true;
     };
+    sops.hostName = "grapestation";
   };
 
 
