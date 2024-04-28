@@ -5,7 +5,7 @@
     (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
     font-awesome
     tree
-    exercism
+    zellij
   ];
   programs = {
     home-manager.enable = true;
