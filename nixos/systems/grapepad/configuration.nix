@@ -25,11 +25,6 @@
     wget
   ];
 
-  #sops.defaultSopsFile = ./../../secrets/secrets.yaml;
-  #sops.defaultSopsFormat = "yaml";
-  #sops.age.keyFile = "/home/grape/.config/sops/age/keys.txt";
-  #sops.secrets.grape = {};
-
   # Believe it or not, if you change this? Straight to jail.
   system.stateVersion = "23.11";
 }

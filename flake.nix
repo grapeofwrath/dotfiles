@@ -14,6 +14,8 @@
         url = "github:nix-community/nixvim";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    jot.url = "github:grapeofwrath/jot";
   };
   outputs = {
     nixpkgs,
@@ -31,6 +33,11 @@
         (import nixpkgs {
           inherit system;
           config.allowUnfree = true;
+          overlays = [
+            (_: _: {
+              jot = inputs.jot.packages.${system}.default;
+            })
+          ];
         });
       # Personal
       libgrape = import ./lib/libgrape { inherit lib; };

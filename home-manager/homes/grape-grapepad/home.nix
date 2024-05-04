@@ -12,6 +12,8 @@
     element-desktop
     gnome.gnome-keyring
     kdePackages.qtstyleplugin-kvantum
+    nh
+    jot
   ];
   orion = {
     desktop = {

@@ -4,8 +4,8 @@ let cfg = config.orion.desktop.plasma; in {
     enable = mkEnableOption "plasma";
   };
   config = mkIf cfg.enable {
-    services.desktopManager.plasma6.enable = true;
-    services.xserver = {
+    services = {
+      desktopManager.plasma6.enable = true;
       displayManager.sddm = {
         enable = true;
         autoNumlock = true;
