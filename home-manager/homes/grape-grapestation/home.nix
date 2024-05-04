@@ -14,6 +14,7 @@
     element-desktop
     gnome.gnome-keyring
     kdePackages.qtstyleplugin-kvantum
+    obs-studio
     # gaming
     wineWowPackages.staging
   ];
