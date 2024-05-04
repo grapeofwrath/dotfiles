@@ -13,6 +13,9 @@
     gnome.gnome-keyring
     kdePackages.qtstyleplugin-kvantum
     nh
+    vhs
+    charm-freeze
+    # custom
     jot
   ];
   orion = {
