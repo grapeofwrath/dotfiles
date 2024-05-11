@@ -4,6 +4,7 @@
     # cli
     (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
     font-awesome
+    polkit
     tree
     zellij
   ];

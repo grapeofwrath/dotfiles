@@ -13,8 +13,10 @@
     gnome.gnome-keyring
     kdePackages.qtstyleplugin-kvantum
     nh
+    # charm
     vhs
     charm-freeze
+    glow
     # custom
     jot
   ];

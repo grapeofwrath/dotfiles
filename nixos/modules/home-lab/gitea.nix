@@ -4,12 +4,6 @@ let cfg = config.orion.home-lab.gitea; in {
     enable = mkEnableOption "gitea";
   };
   config = mkIf cfg.enable {
-    #services.caddy = {
-    #  enable = true;
-    #  virtualHosts."git.grapepad.taild778e.ts.net" = {
-    #    extraConfig = "reverse_proxy localhost:3001";
-    #  };
-    #};
     services.postgresql = {
       ensureDatabases = [config.services.gitea.user];
       ensureUsers = [{

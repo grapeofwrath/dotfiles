@@ -13,7 +13,7 @@
           gopls.enable = true;
           htmx.enable = true;
           html.enable = true;
-          nixd.enable = true;
+          #nixd.enable = true;
           cssls.enable = true;
           ccls.enable = true;
           bashls.enable = true;
@@ -23,6 +23,7 @@
       lspkind = {
         enable = true;
       };
+      nix.enable = true;
       none-ls.enable = true;
       lsp-lines.enable = true;
       lspsaga = {
