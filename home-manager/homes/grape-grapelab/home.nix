@@ -5,6 +5,8 @@
     homeDirectory = "/home/grape";
   };
   home.packages = with pkgs; [
+    brave
+    jot
   ];
   orion = {
     shell = {

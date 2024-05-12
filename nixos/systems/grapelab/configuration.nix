@@ -12,7 +12,8 @@
     tools.appimage.enable = true;
     # TODO
     # setup auto login
-    desktop.startx = true;
+    desktop.startx = false;
+    desktop.plasma.enable = true;
     home-lab.gitea.enable = true;
   };
   environment.systemPackages = with pkgs; [
@@ -20,6 +21,7 @@
     curl
     wget
   ];
+  services.getty.autologinUser = "grape";
 
   # Believe it or not, if you change this? Straight to jail.
   system.stateVersion = "23.11";
