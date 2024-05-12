@@ -1,13 +1,13 @@
-{config,pkgs,lib,...}: with lib;
+{config,pkgs,lib,...}:
 let cfg = config.orion.system; in {
   options.orion.system = {
-    latestKernel = mkOption {
+    latestKernel = lib.mkOption {
       description = "Enable the latest kernel";
-      type = types.bool;
+      type = lib.types.bool;
     };
-    variables = mkOption {
+    variables = lib.mkOption {
       description = "Environment variables to apply to the system";
-      type = types.attrsOf types.str;
+      type = lib.types.attrsOf lib.types.str;
       default = {
         EDITOR = "nvim";
       };
@@ -16,21 +16,21 @@ let cfg = config.orion.system; in {
   config = {
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
-    boot.kernelPackages = mkIf cfg.latestKernel pkgs.linuxPackages_latest;
+    boot.kernelPackages = lib.mkIf cfg.latestKernel pkgs.linuxPackages_latest;
     boot.kernelModules = [ "v4l2loopback" ];
     boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     # https://github.com/NixOS/nixpkgs/blob/c32c39d6f3b1fe6514598fa40ad2cf9ce22c3fb7/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix#L66
     boot.loader.systemd-boot.editor = false;
 
-    i18n.defaultLocale = mkDefault "en_US.UTF-8";
+    i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
 
-    time.timeZone = mkDefault "America/Chicago";
+    time.timeZone = lib.mkDefault "America/Chicago";
 
     environment = {inherit (cfg) variables;};
 
     console.useXkbConfig = true;
     services.xserver = {
-      xkb.layout = mkDefault "us";
+      xkb.layout = lib.mkDefault "us";
       xkb.options = "caps:escape";
     };
   };

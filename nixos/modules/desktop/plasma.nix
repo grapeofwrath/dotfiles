@@ -1,9 +1,9 @@
-{config,lib,...}: with lib;
+{config,lib,...}:
 let cfg = config.orion.desktop.plasma; in {
   options.orion.desktop.plasma = {
-    enable = mkEnableOption "plasma";
+    enable = lib.mkEnableOption "plasma";
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services = {
       desktopManager.plasma6.enable = true;
       displayManager.sddm = {

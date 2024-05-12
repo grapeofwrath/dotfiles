@@ -1,11 +1,11 @@
-{inputs,config,lib,...}: with lib;
+{inputs,config,lib,...}:
 let cfg = config.orion.sops; in {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
   options.orion.sops = {
-    hostName = mkOption {
-      type = types.str;
+    hostName = lib.mkOption {
+      type = lib.types.str;
       default = "nixos";
     };
   };

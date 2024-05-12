@@ -1,7 +1,7 @@
-{config,lib,...}: with lib;
+{config,lib,...}:
 let cfg = config.orion.services; in {
   options.orion.services = {
-    tailscale.enable = mkEnableOption "tailscale";
+    tailscale.enable = lib.mkEnableOption "tailscale";
   };
   config = {
     # TODO find correct way to auto add ssh keys
@@ -13,6 +13,6 @@ let cfg = config.orion.services; in {
         PasswordAuthentication = false;
       };
     };
-    services.tailscale.enable = mkIf cfg.tailscale.enable true;
+    services.tailscale.enable = lib.mkIf cfg.tailscale.enable true;
   };
 }

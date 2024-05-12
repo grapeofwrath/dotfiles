@@ -6,14 +6,14 @@
         servers = {
           lua-ls.enable = true;
           marksman.enable = true;
-          nil_ls.enable = true;
+          #nil_ls.enable = true;
           nushell.enable = true;
           pylsp.enable = true;
           yamlls.enable = true;
           gopls.enable = true;
           htmx.enable = true;
           html.enable = true;
-          #nixd.enable = true;
+          nixd.enable = true;
           cssls.enable = true;
           ccls.enable = true;
           bashls.enable = true;

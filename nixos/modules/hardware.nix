@@ -1,14 +1,14 @@
-{config,lib,...}: with lib;
+{config,lib,...}:
 let cfg = config.orion.hardware; in {
   options.orion.hardware = {
     # TODO
     # separate bluetooth into its own module
-    bluetooth = mkOption {
-      type = types.bool;
+    bluetooth = lib.mkOption {
+      type = lib.types.bool;
       default = false;
     };
-    hostName = mkOption {
-      type = types.str;
+    hostName = lib.mkOption {
+      type = lib.types.str;
       default = "nixos";
     };
   };
@@ -22,7 +22,7 @@ let cfg = config.orion.hardware; in {
       alsa.support32Bit = true;
       pulse.enable = true;
     };
-    hardware.bluetooth = mkIf cfg.bluetooth {
+    hardware.bluetooth = lib.mkIf cfg.bluetooth {
       enable = true;
       powerOnBoot = true;
     };

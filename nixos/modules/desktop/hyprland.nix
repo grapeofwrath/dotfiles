@@ -1,9 +1,9 @@
-{inputs,config,pkgs,lib,...}: with lib;
+{inputs,config,pkgs,lib,...}:
 let cfg = config.orion.desktop.hyprland; in {
   options.orion.desktop.hyprland = {
-    enable = mkEnableOption "hyprland";
+    enable = lib.mkEnableOption "hyprland";
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     nix.settings = {
       substituters = [
         "https://hyprland.cachix.org"

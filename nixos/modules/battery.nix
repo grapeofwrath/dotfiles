@@ -1,15 +1,15 @@
-{config,lib,...}: with lib;
+{config,lib,...}:
 let cfg = config.orion.battery; in {
   options.orion.battery = {
-    enable = mkEnableOption "Enable battery setup for laptops";
-    intelCPU = mkOption {
+    enable = lib.mkEnableOption "Enable battery setup for laptops";
+    intelCPU = lib.mkOption {
       description = "Whether or not the system has an intel cpu";
-      type = types.bool;
+      type = lib.types.bool;
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.system76-scheduler.settings.cfsProfiles.enable = true;
     powerManagement.powertop.enable = true;
-    services.thermald.enable = mkIf cfg.intelCPU true;
+    services.thermald.enable = lib.mkIf cfg.intelCPU true;
   };
 }

@@ -1,8 +1,8 @@
-{config,lib,...}: with lib;
+{config,lib,...}:
 let cfg = config.orion.desktop; in {
   options.orion.desktop = {
-    startx = mkOption {
-      type = types.bool;
+    startx = lib.mkOption {
+      type = lib.types.bool;
       default = false;
     };
   };
@@ -10,7 +10,7 @@ let cfg = config.orion.desktop; in {
     programs.dconf.enable = true;
     services.xserver = {
       enable = true;
-      displayManager.startx.enable = mkIf cfg.startx true;
+      displayManager.startx.enable = lib.mkIf cfg.startx true;
     };
   };
 }

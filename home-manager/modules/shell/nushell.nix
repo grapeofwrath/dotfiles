@@ -1,9 +1,9 @@
-{config,lib,...}: with lib;
+{config,lib,...}:
 let cfg = config.orion.shell.nushell; in {
   options.orion.shell.nushell = {
-    enable = mkEnableOption "Enable nushell";
+    enable = lib.mkEnableOption "Enable nushell";
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.nushell = {
       enable = true;
       extraConfig = ''

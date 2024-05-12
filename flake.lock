@@ -567,11 +567,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1715432500,
-        "narHash": "sha256-oj5QavDHg9jEIOPYC3Qzga3iz+IfjsdJfEAyYzrFpgE=",
+        "lastModified": 1715535382,
+        "narHash": "sha256-eFWcLBv9eljq59mEcI9ELgrvgl3dzOpDDPVXzKaGxVA=",
         "owner": "grapeofwrath",
         "repo": "jot",
-        "rev": "a5c0d2951d6cddc90207b8dc97c90f45c44e731d",
+        "rev": "3311591b089c0a60402dde444523ed1eaaf71e32",
         "type": "github"
       },
       "original": {

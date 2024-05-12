@@ -1,9 +1,9 @@
-{config,pkgs,lib,...}: with lib;
+{config,pkgs,lib,...}:
 let cfg = config.orion.apps.steam; in {
   options.orion.apps.steam = {
-    enable = mkEnableOption "steam";
+    enable = lib.mkEnableOption "steam";
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       protonup-qt
       mesa

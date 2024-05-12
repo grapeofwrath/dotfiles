@@ -1,9 +1,9 @@
-{config,lib,...}: with lib;
+{config,lib,...}:
 let cfg = config.orion.home-lab.gitea; in {
   options.orion.home-lab.gitea = {
-    enable = mkEnableOption "gitea";
+    enable = lib.mkEnableOption "gitea";
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.postgresql = {
       ensureDatabases = [config.services.gitea.user];
       ensureUsers = [{
