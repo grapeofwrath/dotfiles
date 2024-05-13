@@ -12,8 +12,10 @@
     tools.appimage.enable = true;
     # TODO
     # setup auto login
-    desktop.startx = false;
-    desktop.plasma.enable = true;
+    desktop = {
+      startx = true;
+      plasma.enable = false;
+    };
     home-lab.gitea.enable = true;
   };
   environment.systemPackages = with pkgs; [
