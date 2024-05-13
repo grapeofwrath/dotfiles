@@ -10,6 +10,5 @@
   ];
   programs = {
     home-manager.enable = true;
-    ssh.enable = true;
   };
 }
