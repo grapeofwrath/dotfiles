@@ -1,5 +1,8 @@
 {inputs,config,pkgs,lib,...}:
-let cfg = config.orion.sops; in {
+let
+  cfg = config.orion.sops;
+  keyName = "${config.home.username}-${cfg.hostName}";
+in {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
@@ -15,12 +18,19 @@ let cfg = config.orion.sops; in {
       defaultSopsFile = ../../secrets.yaml;
       validateSopsFiles = false;
       secrets = {
-        "private_keys/${config.home.username}-${cfg.hostName}" = {
-          path = "${config.home.homeDirectory}/.ssh/id_${config.home.username}-${cfg.hostName}";
+        "private_keys/${keyName}" = {
+          path = "${config.home.homeDirectory}/.ssh/id_${keyName}";
         };
       };
     };
     programs = {
+      # TODO
+      # make separate module for grapelab
+      # keychain = {
+      #   enable = true;
+      #   enableNushellIntegration = true;
+      #   keys = [ "id_${keyName}" ];
+      # };
       ssh = {
         enable = true;
         addKeysToAgent = "yes";
@@ -36,7 +46,7 @@ let cfg = config.orion.sops; in {
       };
       Install.WantedBy = [ "graphical-session.target" ];
       Service = {
-        ExecStart = "${pkgs.openssh}/bin/ssh-add ${config.home.homeDirectory}/.ssh/id_${config.home.username}-${cfg.hostName}";
+        ExecStart = "${pkgs.openssh}/bin/ssh-add ${config.home.homeDirectory}/.ssh/id_${keyName}";
       };
     };
   };

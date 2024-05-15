@@ -23,7 +23,6 @@
     curl
     wget
   ];
-  services.getty.autologinUser = "grape";
 
   # Believe it or not, if you change this? Straight to jail.
   system.stateVersion = "23.11";

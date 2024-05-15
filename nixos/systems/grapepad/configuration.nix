@@ -16,7 +16,7 @@
     tools.appimage.enable = true;
     desktop = {
       auto-login.enable = false;
-      hyprland.enable = true;
+      hyprland.enable = false;
       plasma.enable = true;
     };
   };

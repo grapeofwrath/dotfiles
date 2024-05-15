@@ -1,4 +1,4 @@
-{pkgs,...}: {
+{config,pkgs,...}: {
   imports = [../../modules];
   home = {
     username = "grape";
@@ -8,6 +8,13 @@
     brave
     jot
   ];
+  programs = {
+    keychain = {
+      enable = true;
+      enableNushellIntegration = true;
+      keys = [ "id_${config.home.username}-${config.orion.sops.hostName}" ];
+    };
+  };
   orion = {
     shell = {
       nushell.enable = true;

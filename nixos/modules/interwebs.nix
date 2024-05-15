@@ -47,8 +47,13 @@ in {
       networkmanager = {
         enable = true;
       };
-      wireless.networks."TheReturnOfThePing" = {
-        psk = "jaggedbanana250"; #config.sops.secrets."wifi-pass".path
+      wireless.networks = {
+        "TheReturnOfThePing" = {
+          psk = "jaggedbanana250"; #config.sops.secrets."wifi-pass".path
+        };
+        "Marcus's Work Phone" = {
+          psk = "Para2021";
+        };
       };
     };
   };

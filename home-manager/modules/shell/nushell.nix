@@ -38,11 +38,6 @@ let cfg = config.orion.shell.nushell; in {
           sudo nix flake update
         }
       '';
-      extraLogin = ''
-        if (tty) == "/dev/tty1" {
-          ${pkgs.openssh}/bin/ssh-add ${config.home.homeDirectory}/.ssh/id_${config.home.username}-${config.orion.sops.hostName}
-        }
-      '';
     };
     programs.carapace = {
       enable = true;
