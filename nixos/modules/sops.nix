@@ -1,4 +1,4 @@
-{inputs,...}: {
+{inputs,config,...}: {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -15,6 +15,12 @@
     # ie /run/secrets/gitea_dbpass
     secrets = {
       gitea_dbpass = {};
+      wifi-ssid = {
+        owner = config.users.users.grape.name;
+      };
+      wifi-pass = {
+        owner = config.users.users.grape.name;
+      };
     };
   };
 }

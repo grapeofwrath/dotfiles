@@ -1,4 +1,4 @@
-{config,lib,...}:
+{config,pkgs,lib,...}:
 let cfg = config.orion.shell.nushell; in {
   options.orion.shell.nushell = {
     enable = lib.mkEnableOption "Enable nushell";
@@ -36,6 +36,11 @@ let cfg = config.orion.shell.nushell; in {
         }
         def "flake update" [] {
           sudo nix flake update
+        }
+      '';
+      extraLogin = ''
+        if (tty) == "/dev/tty1" {
+          ${pkgs.openssh}/bin/ssh-add ${config.home.homeDirectory}/.ssh/id_${config.home.username}-${config.orion.sops.hostName}
         }
       '';
     };

@@ -4,7 +4,7 @@
     ../../modules
   ];
   orion = {
-    hardware = {
+    interwebs = {
       bluetooth = true;
       hostName = "grapestation";
     };
@@ -12,6 +12,7 @@
     services.tailscale.enable = true;
     tools.appimage.enable = true;
     desktop = {
+      autoLogin = true;
       hyprland.enable = true;
       plasma.enable = true;
     };

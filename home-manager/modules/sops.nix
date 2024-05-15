@@ -27,6 +27,8 @@ let cfg = config.orion.sops; in {
       };
     };
     services.ssh-agent.enable = true;
+    # TODO
+    # find a way for this to work on tty for grapelab
     systemd.user.services.add-ssh-keys = {
       Unit = {
         Description = "Add SSH keys";

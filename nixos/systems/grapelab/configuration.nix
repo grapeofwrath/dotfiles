@@ -4,7 +4,7 @@
     ../../modules
   ];
   orion = {
-    hardware = {
+    interwebs = {
       hostName = "grapelab";
     };
     system.latestKernel = true;
@@ -13,7 +13,7 @@
     # TODO
     # setup auto login
     desktop = {
-      startx = true;
+      auto-login.enable = true;
       plasma.enable = false;
     };
     home-lab.gitea.enable = true;

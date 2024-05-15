@@ -3,6 +3,7 @@
   users = {
     #mutableUsers = false;
     users.grape = {
+      name = "grape";
       isNormalUser = true;
       hashedPasswordFile = config.sops.secrets.grape-password.path;
       home = "/home/grape";

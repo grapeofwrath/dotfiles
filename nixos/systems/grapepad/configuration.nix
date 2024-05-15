@@ -8,13 +8,14 @@
       enable = true;
       intelCPU = true;
     };
-    hardware = {
+    interwebs = {
       hostName = "grapepad";
     };
     system.latestKernel = true;
     services.tailscale.enable = true;
     tools.appimage.enable = true;
     desktop = {
+      auto-login.enable = false;
       hyprland.enable = true;
       plasma.enable = true;
     };
