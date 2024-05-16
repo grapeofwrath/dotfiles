@@ -8,7 +8,7 @@
       hostName = "grapelab";
     };
     system.latestKernel = true;
-    services.tailscale.enable = true;
+    tailscale.enable = true;
     tools.appimage.enable = true;
     # TODO
     # setup auto login
@@ -16,7 +16,10 @@
       auto-login.enable = true;
       plasma.enable = false;
     };
-    home-lab.gitea.enable = true;
+    server = {
+      gitea.enable = true;
+      minecraft.enable = true;
+    };
   };
   environment.systemPackages = with pkgs; [
     vim

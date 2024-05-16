@@ -1,6 +1,6 @@
 {config,lib,...}:
-let cfg = config.orion.home-lab.gitea; in {
-  options.orion.home-lab.gitea = {
+let cfg = config.orion.server.gitea; in {
+  options.orion.server.gitea = {
     enable = lib.mkEnableOption "gitea";
   };
   config = lib.mkIf cfg.enable {

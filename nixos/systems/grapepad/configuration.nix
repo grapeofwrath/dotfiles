@@ -12,7 +12,7 @@
       hostName = "grapepad";
     };
     system.latestKernel = true;
-    services.tailscale.enable = true;
+    tailscale.enable = true;
     tools.appimage.enable = true;
     desktop = {
       auto-login.enable = false;

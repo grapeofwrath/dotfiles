@@ -9,7 +9,7 @@
       hostName = "grapestation";
     };
     system.latestKernel = true;
-    services.tailscale.enable = true;
+    tailscale.enable = true;
     tools.appimage.enable = true;
     desktop = {
       autoLogin = true;

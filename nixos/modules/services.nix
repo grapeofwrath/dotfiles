@@ -1,7 +1,6 @@
 {config,lib,...}:
 let cfg = config.orion.services; in {
   options.orion.services = {
-    tailscale.enable = lib.mkEnableOption "tailscale";
   };
   config = {
     services.openssh = {
@@ -11,6 +10,5 @@ let cfg = config.orion.services; in {
         PasswordAuthentication = false;
       };
     };
-    services.tailscale.enable = lib.mkIf cfg.tailscale.enable true;
   };
 }
