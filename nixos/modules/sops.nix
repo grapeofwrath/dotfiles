@@ -21,6 +21,9 @@
       wifi-pass = {
         owner = config.users.users.grape.name;
       };
+      nextcloud_admin = {
+        owner = config.users.users.grape.name;
+      };
     };
   };
 }

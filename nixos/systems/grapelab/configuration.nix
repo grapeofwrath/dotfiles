@@ -19,6 +19,7 @@
     server = {
       gitea.enable = true;
       minecraft.enable = true;
+      nextcloud.enable = true;
     };
   };
   environment.systemPackages = with pkgs; [
