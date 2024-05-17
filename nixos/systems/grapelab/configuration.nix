@@ -20,6 +20,7 @@
       gitea.enable = true;
       minecraft.enable = true;
       nextcloud.enable = true;
+      sunshine.enable = true;
     };
   };
   environment.systemPackages = with pkgs; [
