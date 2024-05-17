@@ -1,6 +1,6 @@
 {config,pkgs,lib,...}:
-let cfg = config.orion.apps.steam; in {
-  options.orion.apps.steam = {
+let cfg = config.orion.gaming.steam; in {
+  options.orion.gaming.steam = {
     enable = lib.mkEnableOption "steam";
   };
   config = lib.mkIf cfg.enable {

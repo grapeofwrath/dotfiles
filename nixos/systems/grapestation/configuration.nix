@@ -16,8 +16,9 @@
       hyprland.enable = true;
       plasma.enable = true;
     };
-    apps = {
+    gaming = {
       steam.enable = true;
+      sunshine.enable = true;
     };
   };
   environment.systemPackages = with pkgs; [

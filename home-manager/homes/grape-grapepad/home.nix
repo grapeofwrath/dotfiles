@@ -17,6 +17,8 @@
     vhs
     charm-freeze
     glow
+    # gaming
+    moonlight-qt
     # custom
     jot
   ];
