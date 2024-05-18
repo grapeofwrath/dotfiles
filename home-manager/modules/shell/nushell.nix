@@ -4,6 +4,9 @@ let cfg = config.orion.shell.nushell; in {
     enable = lib.mkEnableOption "Enable nushell";
   };
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      phortune
+    ];
     programs.nushell = {
       enable = true;
       extraConfig = ''
@@ -37,6 +40,7 @@ let cfg = config.orion.shell.nushell; in {
         def "flake update" [] {
           sudo nix flake update
         }
+        phortune
       '';
     };
     programs.carapace = {

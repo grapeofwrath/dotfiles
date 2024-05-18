@@ -17,6 +17,7 @@
     };
 
     jot.url = "github:grapeofwrath/jot";
+    phortune.url = "github:grapeofwrath/phortune";
   };
   outputs = {
     nixpkgs,
@@ -37,6 +38,7 @@
           overlays = [
             (_: _: {
               jot = inputs.jot.packages.${system}.default;
+              phortune = inputs.phortune.packages.${system}.default;
             })
           ];
         });
