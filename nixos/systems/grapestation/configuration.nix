@@ -20,7 +20,7 @@
     };
     gaming = {
       steam.enable = true;
-      sunshine.enable = true;
+      sunshine.enable = false;
     };
   };
   environment.systemPackages = with pkgs; [
