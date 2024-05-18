@@ -13,6 +13,7 @@
       openssh.authorizedKeys.keys = [
         (builtins.readFile ./keys/id_grape-grapepad.pub)
         (builtins.readFile ./keys/id_grape-grapelab.pub)
+        (builtins.readFile ./keys/id_grape-grapestation.pub)
       ];
     };
   };
