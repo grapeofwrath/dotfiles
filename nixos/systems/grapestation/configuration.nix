@@ -5,14 +5,16 @@
   ];
   orion = {
     interwebs = {
-      bluetooth = true;
       hostName = "grapestation";
+    };
+    hardware = {
+      bluetooth = true;
     };
     system.latestKernel = true;
     tailscale.enable = true;
     tools.appimage.enable = true;
     desktop = {
-      autoLogin = true;
+      auto-login.enable = false;
       hyprland.enable = true;
       plasma.enable = true;
     };
