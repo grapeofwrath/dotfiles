@@ -13,13 +13,16 @@
     # TODO
     # setup auto login
     desktop = {
-      auto-login.enable = true;
-      plasma.enable = false;
+      auto-login.enable = false;
+      plasma = {
+        enable = true;
+        auto-login = true;
+      };
     };
     server = {
       gitea.enable = true;
       minecraft.enable = true;
-      nextcloud.enable = true;
+      nextcloud.enable = false;
     };
   };
   environment.systemPackages = with pkgs; [
