@@ -15,6 +15,7 @@
     gnome.gnome-keyring
     kdePackages.qtstyleplugin-kvantum
     obs-studio
+    filezilla
     # gaming
     wineWowPackages.staging
   ];
