@@ -1,4 +1,4 @@
-{inputs,config,lib,...}: {
+{inputs,...}: {
   imports = [
     inputs.stylix.homeManagerModules.stylix
   ];
@@ -6,5 +6,6 @@
     image = ../../assets/stylix/wallpaper.jpg;
     base16Scheme = ../../assets/stylix/campfire.yaml;
     targets.kitty.variant256Colors = true;
+    #targets.kde.enable = false;
   };
 }

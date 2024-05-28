@@ -13,6 +13,7 @@
     gnome.gnome-keyring
     kdePackages.qtstyleplugin-kvantum
     nh
+    filezilla
     # charm
     vhs
     charm-freeze

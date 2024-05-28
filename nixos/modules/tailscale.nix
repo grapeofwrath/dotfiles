@@ -17,7 +17,7 @@ let cfg = config.orion.tailscale; in {
         if [ $status = "Running" ]; then
           exit 0
         fi
-        ${pkgs.tailscale}/bin/tailscale up -authkey kyRSNo6CNTRL
+        ${pkgs.tailscale}/bin/tailscale up --auth-key file:${config.sops.secrets."tailscale".path}
       '';
     };
   };

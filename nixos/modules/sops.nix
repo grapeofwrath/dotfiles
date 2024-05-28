@@ -24,6 +24,9 @@
       nextcloud_admin = {
         owner = config.users.users.grape.name;
       };
+      tailscale = {
+        owner = config.users.users.grape.name;
+      };
     };
   };
 }
