@@ -4,9 +4,14 @@
     username = "grape";
     homeDirectory = "/home/grape";
   };
-  home.packages = with pkgs; [
-    brave
-    jot
+  home.packages = [
+    pkgs.brave
+    pkgs.jdk21_headless
+    pkgs.tmux
+    # Custom
+    pkgs.jot
+    # Local
+    #(import ../../../pkgs/scripts/purpurmc-server.nix {inherit pkgs;})
   ];
   programs = {
     keychain = {
@@ -14,6 +19,9 @@
       enableNushellIntegration = true;
       keys = [ "id_${config.home.username}-${config.orion.sops.hostName}" ];
     };
+    # nushell.extraLogin = ''
+    #   purpurmc-server
+    # '';
   };
   orion = {
     shell = {

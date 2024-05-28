@@ -21,8 +21,9 @@
     };
     server = {
       gitea.enable = true;
-      minecraft.enable = true;
+      minecraft.enable = false;
       nextcloud.enable = false;
+      purpur.enable = false;
     };
   };
   environment.systemPackages = with pkgs; [
@@ -30,6 +31,7 @@
     curl
     wget
   ];
+  services.flatpak.enable = true;
 
   # Believe it or not, if you change this? Straight to jail.
   system.stateVersion = "23.11";
