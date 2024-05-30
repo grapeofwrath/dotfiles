@@ -5,6 +5,7 @@ let cfg = config.orion.battery; in {
     intelCPU = lib.mkOption {
       description = "Whether or not the system has an intel cpu";
       type = lib.types.bool;
+      default = false;
     };
   };
   config = lib.mkIf cfg.enable {

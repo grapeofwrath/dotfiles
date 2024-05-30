@@ -25,7 +25,8 @@ in {
     };
     programs = {
       # TODO
-      # make separate module for grapelab
+      # make separate module for CLI only servers
+      # currently only setup on grapelab
       # keychain = {
       #   enable = true;
       #   enableNushellIntegration = true;
