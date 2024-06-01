@@ -16,7 +16,10 @@
     desktop = {
       auto-login.enable = false;
       hyprland.enable = true;
-      plasma.enable = true;
+      plasma = {
+        enable = true;
+        auto-login = true;
+      };
     };
     gaming = {
       steam.enable = true;
