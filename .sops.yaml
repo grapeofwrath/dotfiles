@@ -5,6 +5,7 @@ keys:
     - &grapepad age1s4marh347tm4aj0kjcmrlyccu4dcpqk28hvarvwy7eauml5ghd7q2fz50x
     - &grapelab age19zfu320nw9v25gxdgsn7ckpdsu8g99jpuu6yxw4y9ha4n34p24vqw2lvkk
     - &grapestation age19p3mcq9497n4slhzfzx6s3vmkw5n4gv3cdt4swk8zjdpzfzwxsjs9ux2la
+    - &grapetop age1d788cwsjjg2gljqahwlpa20al4hlhssnakxetne429qpp8vdxa9qnqfex5
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
@@ -13,3 +14,4 @@ creation_rules:
         - *grapepad
         - *grapelab
         - *grapestation
+        - *grapetop
