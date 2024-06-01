@@ -11,7 +11,7 @@
     # Custom
     pkgs.jot
     # Local
-    #(import ../../../pkgs/scripts/purpurmc-server.nix {inherit pkgs;})
+    (import ../../../pkgs/scripts/savagecraft.nix {inherit pkgs;})
   ];
   programs = {
     keychain = {
@@ -28,6 +28,7 @@
       nushell.enable = true;
     };
     sops.hostName = "grapelab";
+    server.savagecraft.enable = false;
   };
 
   # Believe it or not, if you change this? Straight to jail.

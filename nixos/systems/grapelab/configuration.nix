@@ -24,6 +24,7 @@
       minecraft.enable = false;
       nextcloud.enable = false;
       purpur.enable = false;
+      savagecraft.enable = true;
     };
   };
   environment.systemPackages = with pkgs; [
