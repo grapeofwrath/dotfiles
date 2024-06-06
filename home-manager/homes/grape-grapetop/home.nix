@@ -19,6 +19,7 @@
     charm-freeze
     glow
     # gaming
+    wineWowPackages.unstableFull
     moonlight-qt
     # custom
     jot
