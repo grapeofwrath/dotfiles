@@ -1,4 +1,4 @@
-{config,lib,...}:
+{config,pkgs,lib,...}:
 let cfg = config.orion.desktop.plasma; in {
   options.orion.desktop.plasma = {
     enable = lib.mkEnableOption "plasma";

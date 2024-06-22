@@ -18,6 +18,8 @@
           ccls.enable = true;
           bashls.enable = true;
           astro.enable = true;
+          tailwindcss.enable = true;
+          templ.enable = true;
         };
       };
       lspkind = {

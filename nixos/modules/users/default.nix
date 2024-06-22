@@ -13,7 +13,6 @@
       # TODO
       # generate auth keys list based off of keys in keys dir with nix lingo
       openssh.authorizedKeys.keys = [
-        (builtins.readFile ./keys/id_grape-grapepad.pub)
         (builtins.readFile ./keys/id_grape-grapelab.pub)
         (builtins.readFile ./keys/id_grape-grapestation.pub)
         (builtins.readFile ./keys/id_grape-grapetop.pub)

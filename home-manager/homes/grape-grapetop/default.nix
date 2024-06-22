@@ -1,1 +1,1 @@
-{ system = "x86_64-linux"; module = ./home.nix; }
+{system = "x86_64-linux"; module = ./home.nix;}

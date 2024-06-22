@@ -25,14 +25,17 @@
     jot
   ];
   orion = {
-    desktop = {
-      hyprland = {
-        enable = true;
-      };
+    zellij.enable = true;
+    nushell.enable = true;
+
+    # ags.enable = true;
+    # hyprland.enable = true;
+    hyprgalactic = {
+      enable = true;
+      ags.enable = true;
+      hyprland.enable = true;
     };
-    shell = {
-      nushell.enable = true;
-    };
+
     sops.hostName = "grapetop";
   };
 

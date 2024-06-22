@@ -8,10 +8,13 @@ let cfg = config.orion.gaming.steam; in {
       protonup-qt
       mesa
     ];
-    programs.steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      gamescopeSession.enable = true;
+    programs = {
+      steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
+        gamescopeSession.enable = true;
+      };
+      gamescope.enable = true;
     };
     programs.gamemode.enable = true;
   };

@@ -1,13 +1,13 @@
-{inputs,config,pkgs,lib,...}: with lib;
-let cfg = config.orion.desktop.hyprland; in {
-  options.orion.desktop.hyprland = {
-    enable = mkEnableOption "Enable Hyprland";
-    monitors = mkOption {
-      type = types.listOf types.str;
+{config,pkgs,lib,...}:
+let cfg = config.orion.hyprgalactic.hyprland; in {
+  options.orion.hyprgalactic.hyprland = {
+    enable = lib.mkEnableOption "Enable Hyprland";
+    monitors = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
       default = [];
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;
@@ -33,6 +33,7 @@ let cfg = config.orion.desktop.hyprland; in {
       };
       input = {
         kb_layout = "us";
+        kb_options = "caps:esc";
         follow_mouse = "1";
         sensitivity = "0";
         accel_profile = "flat";
@@ -90,13 +91,12 @@ let cfg = config.orion.desktop.hyprland; in {
         };
       };
       exec-once = [
-        #"$POLKIT_BIN"
+        "ags"
+        "$POLKIT_BIN"
         "dbus-update-activation-environment --systemd --all"
         #"systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         #"hyprctl setcursor Bibata-Modern-Ice 24"
         #"swww init"
-        #"waybar"
-        #"swaync"
         #"wallpaper"
         #"swayidle -w timeout 900 'swaylock -f'"
       ];
@@ -107,7 +107,8 @@ let cfg = config.orion.desktop.hyprland; in {
       master.new_is_master = true;
       "$mod" = "SUPER";
       bind = [
-        "$mod,Return,exec,${pkgs.kitty}"
+        "$mod,Return,exec,kitty"
+        "$mod,W,exec,brave"
         ", Print, exec, grimblast copy area"
       ] ++ (builtins.concatLists (builtins.genList (
         x: let
@@ -117,6 +118,10 @@ let cfg = config.orion.desktop.hyprland; in {
           "$mod SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
         ]) 10)
       );
+      bindm = [
+        "$mod,mouse:272,movewindow"
+        "$mod,mouse:273,resizewindow"
+      ];
     };
   };
 }

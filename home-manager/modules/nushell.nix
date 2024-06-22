@@ -1,6 +1,6 @@
 {config,pkgs,lib,...}:
-let cfg = config.orion.shell.nushell; in {
-  options.orion.shell.nushell = {
+let cfg = config.orion.nushell; in {
+  options.orion.nushell = {
     enable = lib.mkEnableOption "Enable nushell";
   };
   config = lib.mkIf cfg.enable {

@@ -9,7 +9,16 @@
     };
     hardware.url = "github:nixos/nixos-hardware";
     sops-nix.url = "github:Mic92/sops-nix";
+
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    ags.url = "github:Aylur/ags";
+    # anyrun = {
+    #   url = "github:Kirottu/anyrun";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+
     stylix.url = "github:danth/stylix";
     nixvim = {
         url = "github:nix-community/nixvim";
@@ -22,10 +31,6 @@
   outputs = {
     nixpkgs,
     home-manager,
-    hardware,
-    sops-nix,
-    stylix,
-    nixvim,
     ...
   }@inputs:
     let
