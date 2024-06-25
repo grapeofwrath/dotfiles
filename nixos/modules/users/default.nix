@@ -8,7 +8,7 @@
       hashedPasswordFile = config.sops.secrets.grape-password.path;
       home = "/home/grape";
       group = "users";
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
       shell = pkgs.nushell;
       # TODO
       # generate auth keys list based off of keys in keys dir with nix lingo

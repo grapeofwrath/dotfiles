@@ -1,4 +1,4 @@
-{inputs,...}: {
+{inputs,pkgs,...}: {
   imports = [
     inputs.stylix.homeManagerModules.stylix
   ];
@@ -7,8 +7,13 @@
     base16Scheme = ../../assets/stylix/campfire.yaml;
     targets = {
       kitty.variant256Colors = true;
+      gnome.enable = false;
       zellij.enable = false;
     };
-    #targets.kde.enable = false;
+    cursor = {
+      package = pkgs.apple-cursor;
+      name = "macOS Cursors";
+      size = 32;
+    };
   };
 }

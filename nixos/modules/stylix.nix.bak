@@ -14,5 +14,8 @@
       serif = config.stylix.fonts.monospace;
       sansSerif = config.stylix.fonts.monospace;
     };
+    targets = {
+      gnome.enable = false;
+    };
   };
 }

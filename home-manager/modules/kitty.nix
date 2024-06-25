@@ -1,8 +1,8 @@
 {...}: {
   programs.kitty = {
     enable = true;
-    #font.name = "JetBrainsMono Nerd Font";
-    #font.size = 12;
+    font.name = "CaskaydiaCove Nerd Font";
+    font.size = 12;
     #theme = "Glacier";
     settings = {
       scrollback_lines = 2000;
