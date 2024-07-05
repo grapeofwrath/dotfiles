@@ -1,5 +1,9 @@
-{config,pkgs,lib,...}:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   cfg = config.orion.server.soft-serve;
   keyName = "${config.users.users.grape.name}-${config.networking.hostName}";
 in {
@@ -27,9 +31,9 @@ in {
     };
     systemd.user.services.soft-serve = {
       description = "Soft Serve git server";
-      requires = [ "network-online.target" ];
-      after = [ "network-online.target" ];
-      wantedBy = [ "multi-user.target" ];
+      requires = ["network-online.target"];
+      after = ["network-online.target"];
+      wantedBy = ["multi-user.target"];
       serviceConfig = {
         Type = "simple";
         Restart = "always";

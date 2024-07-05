@@ -1,6 +1,13 @@
-{inputs,config,pkgs,lib,...}:
-let cfg = config.orion.hyprgalactic.ags; in {
-  imports = [ inputs.ags.homeManagerModules.default ];
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.orion.hyprgalactic.ags;
+in {
+  imports = [inputs.ags.homeManagerModules.default];
 
   options.orion.hyprgalactic.ags = {
     enable = lib.mkEnableOption "Enable AGS";
@@ -16,8 +23,11 @@ let cfg = config.orion.hyprgalactic.ags; in {
         accountsservice
       ];
     };
-    # xdg.configFile = {
-    #   "ags".source = ../../assets/ags;
-    # };
+    xdg.configFile = {
+      "ags" = {
+        source = ../../../assets/ags;
+        recursive = true;
+      };
+    };
   };
 }

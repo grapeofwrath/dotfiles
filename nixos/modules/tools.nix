@@ -1,5 +1,11 @@
-{config,pkgs,lib,...}:
-let cfg = config.orion.tools; in {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.orion.tools;
+in {
   options.orion.tools = {
     appimage.enable = lib.mkEnableOption "appimage";
   };

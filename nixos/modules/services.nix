@@ -1,5 +1,10 @@
-{config,lib,...}:
-let cfg = config.orion.services; in {
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.orion.services;
+in {
   options.orion.services = {
   };
   config = {

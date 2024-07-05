@@ -1,4 +1,8 @@
-{pkgs,lib,...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.nixvim = {
     plugins = {
       treesitter = {
@@ -17,7 +21,12 @@
       }
     '';
     keymaps = [
-      {mode = "n"; key = "<leader>tc"; action = "<cmd>TSContextToggle<CR>"; options.desc = "Toggle treesitter context";}
+      {
+        mode = "n";
+        key = "<leader>tc";
+        action = "<cmd>TSContextToggle<CR>";
+        options.desc = "Toggle treesitter context";
+      }
     ];
   };
 }

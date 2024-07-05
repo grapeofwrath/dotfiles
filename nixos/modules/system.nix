@@ -1,5 +1,11 @@
-{config,pkgs,lib,...}:
-let cfg = config.orion.system; in {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.orion.system;
+in {
   options.orion.system = {
     latestKernel = lib.mkOption {
       description = "Enable the latest kernel";
@@ -17,8 +23,8 @@ let cfg = config.orion.system; in {
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     boot.kernelPackages = lib.mkIf cfg.latestKernel pkgs.linuxPackages_latest;
-    boot.kernelModules = [ "v4l2loopback" ];
-    boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+    boot.kernelModules = ["v4l2loopback"];
+    boot.extraModulePackages = [config.boot.kernelPackages.v4l2loopback];
     # https://github.com/NixOS/nixpkgs/blob/c32c39d6f3b1fe6514598fa40ad2cf9ce22c3fb7/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix#L66
     boot.loader.systemd-boot.editor = false;
 
@@ -30,8 +36,10 @@ let cfg = config.orion.system; in {
 
     console.useXkbConfig = true;
     services.xserver = {
-      xkb.layout = lib.mkDefault "us";
-      xkb.options = "caps:escape";
+      xkb = {
+        layout = lib.mkDefault "us";
+        options = "caps:escape";
+      };
     };
   };
 }

@@ -1,4 +1,8 @@
-{config,pkgs,...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [../../modules];
   home = {
     username = "grape";
@@ -17,7 +21,7 @@
     keychain = {
       enable = true;
       enableNushellIntegration = true;
-      keys = [ "id_${config.home.username}-${config.orion.sops.hostName}" ];
+      keys = ["id_${config.home.username}-${config.orion.sops.hostName}"];
     };
     # nushell.extraLogin = ''
     #   purpurmc-server

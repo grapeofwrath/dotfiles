@@ -1,4 +1,4 @@
-{pkgs,...}: {
+{pkgs, ...}: {
   systemd.user.startServices = "sd-switch";
   home.packages = [
     # cli
@@ -14,5 +14,9 @@
   ];
   programs = {
     home-manager.enable = true;
+  };
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = _: true;
   };
 }

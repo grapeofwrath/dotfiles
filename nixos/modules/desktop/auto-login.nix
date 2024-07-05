@@ -1,5 +1,10 @@
-{config,lib,...}:
-let cfg = config.orion.desktop.auto-login; in {
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.orion.desktop.auto-login;
+in {
   options.orion.desktop.auto-login = {
     enable = lib.mkEnableOption "auto-login";
   };

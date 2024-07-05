@@ -1,5 +1,11 @@
-{config,pkgs,lib,...}:
-let cfg = config.orion.desktop.plasma; in {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.orion.desktop.plasma;
+in {
   options.orion.desktop.plasma = {
     enable = lib.mkEnableOption "plasma";
     auto-login = lib.mkOption {

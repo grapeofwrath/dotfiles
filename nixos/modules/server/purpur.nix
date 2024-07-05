@@ -1,14 +1,20 @@
-{config,pkgs,lib,...}:
-let cfg = config.orion.server.purpur; in {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.orion.server.purpur;
+in {
   options.orion.server.purpur = {
     enable = lib.mkEnableOption "PurpurMC";
   };
   config = lib.mkIf cfg.enable {
     systemd.user.services.purpur-savagecraft = {
       description = "Servers for the SavageCraft PurpurMC server";
-      after = [ "network.target" ];
-      wants = [ "network.target" ];
-      wantedBy = [ "default.target" ];
+      after = ["network.target"];
+      wants = ["network.target"];
+      wantedBy = ["default.target"];
       serviceConfig.Type = "simple";
       script = ''
         sleep 2

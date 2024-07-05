@@ -1,5 +1,11 @@
-{config,pkgs,lib,...}:
-let cfg = config.orion.gaming.steam; in {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.orion.gaming.steam;
+in {
   options.orion.gaming.steam = {
     enable = lib.mkEnableOption "steam";
   };

@@ -1,5 +1,12 @@
-{config,pkgs,lib,...}:
-let cfg = config.orion.hyprgalactic.hyprland; in {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.orion.hyprgalactic.hyprland;
+  t = config.colorScheme.palette;
+in {
   options.orion.hyprgalactic.hyprland = {
     enable = lib.mkEnableOption "Enable Hyprland";
     monitors = lib.mkOption {
@@ -17,26 +24,30 @@ let cfg = config.orion.hyprgalactic.hyprland; in {
       #];
     };
     wayland.windowManager.hyprland.settings = {
-      monitor = [
-        ",preferred,auto,1"
-      ] ++ (builtins.concatLists cfg.monitors);
+      monitor =
+        [
+          ",preferred,auto,1"
+          "eDP-1,1920x1080@60.05,auto,1"
+        ]
+        ++ (builtins.concatLists cfg.monitors);
       general = {
         gaps_in = "6";
         gaps_out = "8";
         border_size = "2";
-        #col = {
-        #  active_border = "rgba(${theme.base0C}ff) rgba(${theme.base0D}ff) rgba(${theme.base0B}ff) rgba(${theme.base0E}ff) 45deg";
-        #  inactive_border = "rgba(${theme.base00}cc) rgba(${theme.base01}cc) 45deg";
-        #};
+        "col.active_border" = "rgb(${t.base0C}) rgb(${t.base0D}) rgb(${t.base0B}) rgb(${t.base0E}) 45deg";
+        "col.inactive_border" = "rgb(${t.base00}) rgb(${t.base01}) 45deg";
         layout = "dwindle";
         resize_on_border = true;
       };
       input = {
         kb_layout = "us";
-        kb_options = "caps:esc";
+        kb_options = "caps:escape";
         follow_mouse = "1";
         sensitivity = "0";
         accel_profile = "flat";
+        touchpad = {
+          natural_scroll = true;
+        };
       };
       env = [
         "NIXOS_OZONE_WL, 1"
@@ -91,14 +102,13 @@ let cfg = config.orion.hyprgalactic.hyprland; in {
         };
       };
       exec-once = [
-        "ags"
         "$POLKIT_BIN"
         "dbus-update-activation-environment --systemd --all"
-        #"systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "ags"
         #"hyprctl setcursor Bibata-Modern-Ice 24"
         #"swww init"
         #"wallpaper"
-        #"swayidle -w timeout 900 'swaylock -f'"
       ];
       dwindle = {
         pseudotile = true;
@@ -106,21 +116,38 @@ let cfg = config.orion.hyprgalactic.hyprland; in {
       };
       master.new_is_master = true;
       "$mod" = "SUPER";
-      bind = [
-        "$mod,Return,exec,kitty"
-        "$mod,W,exec,brave"
-        ", Print, exec, grimblast copy area"
-      ] ++ (builtins.concatLists (builtins.genList (
-        x: let
-          ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
-        in [
-          "$mod, ${ws}, workspace, ${toString (x + 1)}"
-          "$mod SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
-        ]) 10)
-      );
+      bind =
+        [
+          "$mod, Q, killactive,"
+          "$modSHIFT, M, exit,"
+          "$mod, Return, exec, kitty"
+          "$mod, W, exec, brave"
+          "$modSHIFT, A, exec, pkill ags && hyprctl dispatch exec ags"
+          ", Print, exec, grimblast copy area"
+          "$mod, h, movefocus, l"
+          "$mod, l, movefocus, r"
+          "$mod, k, movefocus, u"
+          "$mod, j, movefocus, d"
+        ]
+        ++ (
+          builtins.concatLists (builtins.genList (
+              x: let
+                ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
+              in [
+                "$mod, ${ws}, workspace, ${toString (x + 1)}"
+                "$mod SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
+              ]
+            )
+            10)
+        );
       bindm = [
         "$mod,mouse:272,movewindow"
         "$mod,mouse:273,resizewindow"
+      ];
+      bindel = [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ];
     };
   };

@@ -1,5 +1,10 @@
-{config,lib,...}:
-let cfg = config.orion.desktop.gnome; in {
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.orion.desktop.gnome;
+in {
   options.orion.desktop.gnome = {
     enable = lib.mkEnableOption "Enable Gnome";
     auto-login = lib.mkOption {

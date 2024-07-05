@@ -1,5 +1,10 @@
-{inputs,config,pkgs,lib,...}:
-let
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   cfg = config.orion.sops;
   keyName = "${config.home.username}-${cfg.hostName}";
 in {
@@ -43,9 +48,9 @@ in {
     systemd.user.services.add-ssh-keys = {
       Unit = {
         Description = "Add SSH keys";
-        After = [ "plasma-kwallet-pam.service" "sops-nix.service" "plasma-kwin_x11.service" "plasma-kwin_wayland.service" "plasma-polkit-agent.service"];
+        After = ["plasma-kwallet-pam.service" "sops-nix.service" "plasma-kwin_x11.service" "plasma-kwin_wayland.service" "plasma-polkit-agent.service"];
       };
-      Install.WantedBy = [ "graphical-session.target" ];
+      Install.WantedBy = ["graphical-session.target"];
       Service = {
         ExecStart = "${pkgs.openssh}/bin/ssh-add ${config.home.homeDirectory}/.ssh/id_${keyName}";
       };

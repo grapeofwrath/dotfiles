@@ -1,5 +1,11 @@
-{config,pkgs,lib,...}:
-let cfg = config.orion.server.minecraft; in {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.orion.server.minecraft;
+in {
   options.orion.server.minecraft = {
     enable = lib.mkEnableOption "Enable minecraft server";
   };
@@ -37,3 +43,4 @@ let cfg = config.orion.server.minecraft; in {
 #       };
 #     });
 # };
+

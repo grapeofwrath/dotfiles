@@ -1,5 +1,12 @@
-{inputs,config,pkgs,lib,...}:
-let cfg = config.orion.desktop.hyprland; in {
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.orion.desktop.hyprland;
+in {
   options.orion.desktop.hyprland = {
     enable = lib.mkEnableOption "hyprland";
   };

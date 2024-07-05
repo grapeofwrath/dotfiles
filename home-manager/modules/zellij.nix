@@ -1,12 +1,16 @@
-{config,lib,...}:
-let cfg = config.orion.zellij; in {
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.orion.zellij;
+in {
   options.orion.zellij = {
     enable = lib.mkEnableOption "Enable zellij";
   };
   config = lib.mkIf cfg.enable {
     programs.zellij = {
       enable = true;
-      enableBashIntegration = true;
       settings = {
         pane_frames = false;
         theme = "campfire";

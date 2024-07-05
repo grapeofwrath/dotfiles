@@ -1,5 +1,10 @@
-{config,lib,...}:
-let cfg = config.orion.hardware; in {
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.orion.hardware;
+in {
   options.orion.hardware = {
     # TODO
     # separate bluetooth into its own module

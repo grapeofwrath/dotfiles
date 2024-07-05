@@ -1,5 +1,9 @@
-{config,pkgs,lib,...}:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   cfg = config.orion.server.savagecraft;
   dir = "/home/${config.users.users.grape.name}/minecraft-servers/fabric/savagecraft";
 in {
@@ -9,9 +13,9 @@ in {
   config = lib.mkIf cfg.enable {
     systemd.user.services.SavageCraftMC = {
       description = "SavageCraftMC server";
-      after = [ "network.target" ];
-      wants = [ "network.target" ];
-      wantedBy = [ "default.target" ];
+      after = ["network.target"];
+      wants = ["network.target"];
+      wantedBy = ["default.target"];
       serviceConfig = {
         Type = "oneshot";
       };

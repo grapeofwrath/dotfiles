@@ -1,5 +1,11 @@
-{config,pkgs,lib,...}:
-let cfg = config.orion.server.savagecraft; in {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.orion.server.savagecraft;
+in {
   options.orion.server.savagecraft = {
     enable = lib.mkEnableOption "Enable SavageCraft";
   };
@@ -7,8 +13,8 @@ let cfg = config.orion.server.savagecraft; in {
     systemd.user.services.savagecraft = {
       Unit = {
         Description = "SavageCraftMC server";
-        After = [ "network.target" ];
-        Wants = [ "network.target" ];
+        After = ["network.target"];
+        Wants = ["network.target"];
       };
       Service = {
         Type = "forking";
@@ -17,7 +23,7 @@ let cfg = config.orion.server.savagecraft; in {
         WorkingDirectory = "${config.home.homeDirectory}/minecraft-servers/fabric/savagecraft";
       };
       Install = {
-        WantedBy = [ "default.target" ];
+        WantedBy = ["default.target"];
       };
     };
   };

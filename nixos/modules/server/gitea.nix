@@ -1,15 +1,22 @@
-{config,lib,...}:
-let cfg = config.orion.server.gitea; in {
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.orion.server.gitea;
+in {
   options.orion.server.gitea = {
     enable = lib.mkEnableOption "gitea";
   };
   config = lib.mkIf cfg.enable {
     services.postgresql = {
       ensureDatabases = [config.services.gitea.user];
-      ensureUsers = [{
-        name = config.services.gitea.database.user;
-        #ensurePermissions."DATABASE gitea" = "ALL PRIVILEGES";
-      }];
+      ensureUsers = [
+        {
+          name = config.services.gitea.database.user;
+          #ensurePermissions."DATABASE gitea" = "ALL PRIVILEGES";
+        }
+      ];
     };
     sops.secrets."gitea_dbpass" = {
       owner = config.services.gitea.user;

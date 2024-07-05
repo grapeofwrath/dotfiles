@@ -1,5 +1,9 @@
-{pkgs,...}: {
-  imports = [../../modules];
+{
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [../modules];
   home = {
     username = "grape";
     homeDirectory = "/home/grape";
@@ -22,23 +26,31 @@
     wineWowPackages.unstableFull
     moonlight-qt
     # custom
-    jot
+    #jot
   ];
+  programs = {
+    keychain = {
+      enable = true;
+      enableFishIntegration = true;
+      enableNushellIntegration = true;
+      keys = ["id_${config.home.username}-${config.orion.sops.hostName}"];
+    };
+  };
   orion = {
+    dev.enable = true;
+    shell.fish.enable = true;
     zellij.enable = true;
     nushell.enable = true;
 
-    # ags.enable = true;
-    # hyprland.enable = true;
     hyprgalactic = {
-      enable = true;
       ags.enable = true;
       hyprland.enable = true;
+      waybar.enable = true;
     };
 
-    sops.hostName = "grapetop";
+    sops.hostName = "grapespire";
   };
 
   # Believe it or not, if you change this? Straight to jail.
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 }

@@ -1,5 +1,11 @@
-{config,pkgs,lib,...}:
-let cfg = config.orion.tailscale; in {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.orion.tailscale;
+in {
   options.orion.tailscale = {
     enable = lib.mkEnableOption "tailscale";
   };
@@ -7,9 +13,9 @@ let cfg = config.orion.tailscale; in {
     services.tailscale.enable = true;
     systemd.services.tailscale-autoconnect = {
       description = "Automatic connection to Tailscale";
-      after = [ "network-pre.target" "tailscale.service" ];
-      wants = [ "network-pre.target" "tailscale.service" ];
-      wantedBy = [ "multi-user.target" ];
+      after = ["network-pre.target" "tailscale.service"];
+      wants = ["network-pre.target" "tailscale.service"];
+      wantedBy = ["multi-user.target"];
       serviceConfig.Type = "oneshot";
       script = ''
         sleep 2

@@ -1,5 +1,11 @@
-{config,pkgs,lib,...}:
-let cfg = config.orion.server.nextcloud; in {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.orion.server.nextcloud;
+in {
   options.orion.server.nextcloud = {
     enable = lib.mkEnableOption "Enable Nextcloud";
   };

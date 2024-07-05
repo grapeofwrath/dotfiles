@@ -1,5 +1,10 @@
-{config,lib,...}:
-let cfg = config.orion.shell.bash; in {
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.orion.shell.bash;
+in {
   options.orion.shell.bash = {
     #aliases = mkOption {
     #  type = types.attrsOf types.str;
@@ -18,7 +23,7 @@ let cfg = config.orion.shell.bash; in {
           nix flake new --template github:grapeofwrath/dev-templates#"$1" "$2"
         }
       '';
-      historyControl = [ "ignoredups" ];
+      historyControl = ["ignoredups"];
       historyIgnore = [
         "ls"
         "ll"

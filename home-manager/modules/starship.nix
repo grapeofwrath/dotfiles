@@ -2,6 +2,7 @@
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
+    enableFishIntegration = true;
     enableNushellIntegration = true;
     settings = {
       aws.disabled = true;
@@ -13,7 +14,7 @@
         read_only = " 󰌾";
       };
       username = {
-        format = "[$user]($style) at ";
+        format = "[$user]($style)@";
         show_always = true;
       };
       hostname = {

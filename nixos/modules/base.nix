@@ -1,5 +1,10 @@
 # Nix settings that will almost never change for all systems
-{config,inputs,lib,...}: {
+{
+  config,
+  inputs,
+  lib,
+  ...
+}: {
   # nix commands with flakes and such
   nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
   nix.nixPath = ["/etc/nix/path"];
@@ -19,5 +24,9 @@
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 7d";
+  };
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = _: true;
   };
 }

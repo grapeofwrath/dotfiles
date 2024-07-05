@@ -7,7 +7,12 @@
       };
     };
     keymaps = [
-      {mode = "n"; key = "-"; action = "<cmd>Oil<CR>"; options.desc = "Open Parent Directory";}
+      {
+        mode = "n";
+        key = "-";
+        action = "<cmd>Oil<CR>";
+        options.desc = "Open Parent Directory";
+      }
     ];
   };
 }

@@ -1,87 +1,100 @@
 {
   description = "Grapeofwrath's NixOS & Home Manager configurations";
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    #nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-23.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     hardware.url = "github:nixos/nixos-hardware";
     sops-nix.url = "github:Mic92/sops-nix";
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     ags.url = "github:Aylur/ags";
-    # anyrun = {
-    #   url = "github:Kirottu/anyrun";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nix-colors.url = "github:misterio77/nix-colors";
 
-
-    stylix.url = "github:danth/stylix";
     nixvim = {
-        url = "github:nix-community/nixvim";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     jot.url = "github:grapeofwrath/jot";
     phortune.url = "github:grapeofwrath/phortune";
   };
+
   outputs = {
+    self,
     nixpkgs,
     home-manager,
     ...
-  }@inputs:
-    let
-      # Nix
-      lib = nixpkgs.lib;
-      mkPkgs = system:
-        (import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-          overlays = [
-            (_: _: {
-              jot = inputs.jot.packages.${system}.default;
-              phortune = inputs.phortune.packages.${system}.default;
-            })
-          ];
-        });
-      # Personal
-      libgrape = import ./lib/libgrape { inherit lib; };
-      nameFromNixFile = file: lib.strings.removeSuffix ".nix" (baseNameOf file);
-    in {
-      nixosConfigurations = let
-        systemDirs = libgrape.allSubdirs ./nixos/systems;
-        mkConfig = dir:
-          (let
-            userData = import dir;
-            system = userData.system;
-            pkgs = mkPkgs system;
-          in lib.nixosSystem {
-            inherit pkgs system;
-            modules = [ userData.module ];
-            specialArgs = { inherit inputs libgrape; };
-          });
-        in (builtins.listToAttrs (map (dir: {
-          name = builtins.baseNameOf dir;
-          value = mkConfig dir;
-        }) systemDirs));
+  } @ inputs: let
+    inherit (self) outputs;
+    systems = [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+    ];
+    forAllSystems = nixpkgs.lib.genAttrs systems;
 
-      homeConfigurations = let
-        userDirs = libgrape.allSubdirs ./home-manager/homes;
-        mkConfig = dir:
-          (let
-            userData = import dir;
-            pkgs = mkPkgs userData.system;
-          in home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [ userData.module ];
-            extraSpecialArgs = { inherit inputs libgrape; };
-          });
-      in (builtins.listToAttrs (map (file: {
-        name = nameFromNixFile file;
-        value = mkConfig file;
-      }) userDirs));
+    lib = nixpkgs.lib;
+    libgrape = import ./lib/libgrape {inherit lib;};
+  in {
+    # Accessible through 'nix build', 'nix shell', etc
+    #packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+
+    # Formatter for your nix files, available through 'nix fmt'
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    overlays = import ./overlays {inherit inputs;};
+
+    nixosConfigurations = {
+      grapelab = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs libgrape;};
+        modules = [
+          ./nixos/systems/grapelab/configuration.nix
+        ];
+      };
+      grapespire = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs libgrape;};
+        modules = [
+          ./nixos/systems/grapespire/configuration.nix
+        ];
+      };
+      grapestation = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs libgrape;};
+        modules = [
+          ./nixos/systems/grapestation/configuration.nix
+        ];
+      };
     };
+
+    homeConfigurations = {
+      "grape-grapelab" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs libgrape;};
+        modules = [
+          ./home-manager/homes/grape-grapelab/home.nix
+        ];
+      };
+      "grape-grapespire" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs libgrape;};
+        modules = [
+          ./home-manager/homes/grape-grapespire.nix
+        ];
+      };
+      "grape-grapestation" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs libgrape;};
+        modules = [
+          ./home-manager/homes/grape-grapestation/home.nix
+        ];
+      };
+    };
+  };
 }

@@ -1,5 +1,10 @@
-{config,lib,...}:
-let cfg = config.orion.battery; in {
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.orion.battery;
+in {
   options.orion.battery = {
     enable = lib.mkEnableOption "Enable battery setup for laptops";
     intelCPU = lib.mkOption {

@@ -1,7 +1,14 @@
-{config,pkgs,lib,...}:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   cfg = config.orion.interwebs;
-  getFileName = lib.stringAsChars (x: if x == " " then "-" else x);
+  getFileName = lib.stringAsChars (x:
+    if x == " "
+    then "-"
+    else x);
   createWifi = ssid: opt: {
     name = "NetworkManager/system-connections/${getFileName ssid}.nmconnection";
     value = {
@@ -16,8 +23,8 @@ let
 
         [wifi-security]
         ${lib.optionalString (opt.psk != null) ''
-        key-mgmt=wpa-psk
-        psk=${opt.psk}''}
+          key-mgmt=wpa-psk
+          psk=${opt.psk}''}
       '';
     };
   };
