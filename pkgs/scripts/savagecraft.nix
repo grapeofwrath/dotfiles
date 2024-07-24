@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   tm = "${pkgs.tmux}";
-  # dir = "/home/${config.users.users.grape.name}/minecraft-servers/fabric/savagecraft";
+  # dir = "/home/${config.users.users.marcus.name}/minecraft-servers/fabric/savagecraft";
   # dir = config.home.homeDirectory;
 in
   pkgs.writeShellScriptBin "savagecraft" ''

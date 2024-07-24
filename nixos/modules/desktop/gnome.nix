@@ -1,11 +1,12 @@
 {
   config,
   lib,
+  username,
   ...
 }: let
-  cfg = config.orion.desktop.gnome;
+  cfg = config.desktop.gnome;
 in {
-  options.orion.desktop.gnome = {
+  options.desktop.gnome = {
     enable = lib.mkEnableOption "Enable Gnome";
     auto-login = lib.mkOption {
       type = lib.types.bool;
@@ -22,7 +23,7 @@ in {
         };
         autoLogin = lib.mkIf cfg.auto-login {
           enable = true;
-          user = config.users.users.grape.name;
+          user = username;
         };
       };
     };

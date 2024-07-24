@@ -2,12 +2,13 @@
   config,
   pkgs,
   lib,
+  username,
   ...
 }: let
-  cfg = config.orion.server.soft-serve;
-  keyName = "${config.users.users.grape.name}-${config.networking.hostName}";
+  cfg = config.server.soft-serve;
+  keyName = "${username}-${config.networking.hostName}";
 in {
-  options.orion.server.soft-serve = {
+  options.server.soft-serve = {
     enable = lib.mkEnableOption "Enable Soft Serve";
   };
 

@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.orion.server.minecraft;
+  cfg = config.server.minecraft;
 in {
-  options.orion.server.minecraft = {
+  options.server.minecraft = {
     enable = lib.mkEnableOption "Enable minecraft server";
   };
   config = lib.mkIf cfg.enable {

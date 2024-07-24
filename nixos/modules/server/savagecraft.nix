@@ -2,12 +2,13 @@
   config,
   pkgs,
   lib,
+  username,
   ...
 }: let
-  cfg = config.orion.server.savagecraft;
-  dir = "/home/${config.users.users.grape.name}/minecraft-servers/fabric/savagecraft";
+  cfg = config.server.savagecraft;
+  dir = "/home/${username}/minecraft-servers/fabric/savagecraft";
 in {
-  options.orion.server.savagecraft = {
+  options.server.savagecraft = {
     enable = lib.mkEnableOption "Enable SavageCraft";
   };
   config = lib.mkIf cfg.enable {

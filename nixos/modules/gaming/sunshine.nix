@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.orion.gaming.sunshine;
+  cfg = config.gaming.sunshine;
 in {
-  options.orion.gaming.sunshine = {
+  options.gaming.sunshine = {
     enable = lib.mkEnableOption "Enable Sunshine streaming service";
   };
   config = lib.mkIf cfg.enable {

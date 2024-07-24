@@ -39,62 +39,50 @@
       "i686-linux"
       "x86_64-linux"
     ];
+    #lib = nixpkgs.lib;
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    lib = nixpkgs.lib;
-    libgrape = import ./lib/libgrape {inherit lib;};
+    # custom lib
+    glib = import ./lib {inherit (nixpkgs) lib;};
+
+    hostNames = glib.allSubdirs ./nixos/systems;
+    username = "marcus";
   in {
+    # TODO
+    # Add devshell to flake
+
     # Accessible through 'nix build', 'nix shell', etc
     #packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
-    # Formatter for your nix files, available through 'nix fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     overlays = import ./overlays {inherit inputs;};
 
-    nixosConfigurations = {
-      grapelab = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs libgrape;};
-        modules = [
-          ./nixos/systems/grapelab/configuration.nix
-        ];
-      };
-      grapespire = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs libgrape;};
-        modules = [
-          ./nixos/systems/grapespire/configuration.nix
-        ];
-      };
-      grapestation = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs libgrape;};
-        modules = [
-          ./nixos/systems/grapestation/configuration.nix
-        ];
-      };
-    };
+    nixosConfigurations = builtins.listToAttrs (builtins.map (h: let
+        host = builtins.baseNameOf h;
+      in {
+        name = host;
+        value = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs outputs glib username host;};
+          modules = [
+            ./nixos/systems/${host}/configuration.nix
+          ];
+        };
+      })
+      hostNames);
 
-    homeConfigurations = {
-      "grape-grapelab" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs libgrape;};
-        modules = [
-          ./home-manager/homes/grape-grapelab/home.nix
-        ];
-      };
-      "grape-grapespire" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs libgrape;};
-        modules = [
-          ./home-manager/homes/grape-grapespire.nix
-        ];
-      };
-      "grape-grapestation" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs libgrape;};
-        modules = [
-          ./home-manager/homes/grape-grapestation/home.nix
-        ];
-      };
-    };
+    homeConfigurations = builtins.listToAttrs (builtins.map (h: let
+        host = builtins.baseNameOf h;
+      in {
+        name = "${username}-${host}";
+        value = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = {inherit inputs outputs glib username host;};
+          modules = [
+            ./home-manager/homes/${username}-${host}.nix
+          ];
+        };
+      })
+      hostNames);
   };
 }

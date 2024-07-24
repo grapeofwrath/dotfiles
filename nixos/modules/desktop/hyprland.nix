@@ -5,9 +5,9 @@
   lib,
   ...
 }: let
-  cfg = config.orion.desktop.hyprland;
+  cfg = config.desktop.hyprland;
 in {
-  options.orion.desktop.hyprland = {
+  options.desktop.hyprland = {
     enable = lib.mkEnableOption "hyprland";
   };
   config = lib.mkIf cfg.enable {

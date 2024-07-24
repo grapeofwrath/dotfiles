@@ -1,12 +1,12 @@
 {
   config,
-  pkgs,
   lib,
+  username,
   ...
 }: let
-  cfg = config.orion.desktop.plasma;
+  cfg = config.desktop.plasma;
 in {
-  options.orion.desktop.plasma = {
+  options.desktop.plasma = {
     enable = lib.mkEnableOption "plasma";
     auto-login = lib.mkOption {
       type = lib.types.bool;
@@ -24,7 +24,7 @@ in {
         };
         autoLogin = lib.mkIf cfg.auto-login {
           enable = true;
-          user = config.users.users.grape.name;
+          user = username;
         };
       };
     };

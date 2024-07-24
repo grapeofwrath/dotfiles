@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.orion.server.gitea;
+  cfg = config.server.gitea;
 in {
-  options.orion.server.gitea = {
+  options.server.gitea = {
     enable = lib.mkEnableOption "gitea";
   };
   config = lib.mkIf cfg.enable {
