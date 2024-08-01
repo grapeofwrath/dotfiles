@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }: let
@@ -19,9 +18,6 @@ in {
       enable = true;
       systemd.enable = true;
       xwayland.enable = true;
-      #plugins = [
-      #  inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
-      #];
     };
     wayland.windowManager.hyprland.settings = {
       monitor =
@@ -34,11 +30,27 @@ in {
         gaps_in = "6";
         gaps_out = "8";
         border_size = "2";
-        "col.active_border" = "rgb(${t.base0C}) rgb(${t.base0D}) rgb(${t.base0B}) rgb(${t.base0E}) 45deg";
+        "col.active_border" = "rgb(${t.base08}) rgb(${t.base0D}) rgb(${t.base0E}) rgb(${t.base05}) 45deg";
         "col.inactive_border" = "rgb(${t.base00}) rgb(${t.base01}) 45deg";
         layout = "dwindle";
         resize_on_border = true;
       };
+      # base00 = "#14171F";
+      # base01 = "#323848";
+      # base02 = "#3F475A";
+      # base03 = "#6D7A88";
+      # base04 = "#97A4AF";
+      # base05 = "#EFC164";
+      # base06 = "#2A2F3C";
+      # base07 = "#DDD7CA";
+      # base08 = "#A885C1";
+      # base09 = "#F35955";
+      # base0A = "#F3835D";
+      # base0B = "#468966";
+      # base0C = "#3A8098";
+      # base0D = "#70ADC2";
+      # base0E = "#67CC8E";
+      # base0F = "#DDD7CA";
       input = {
         kb_layout = "us";
         kb_options = "caps:escape";

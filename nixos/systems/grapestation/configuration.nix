@@ -1,44 +1,43 @@
-{
-  inputs,
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
-    ./hardware-config.nix
-    ../../modules
-  ];
-  orion = {
-    interwebs = {
-      hostName = "grapestation";
-    };
-    hardware = {
-      bluetooth = true;
-    };
-    system.latestKernel = true;
-    tailscale.enable = true;
-    tools.appimage.enable = true;
-    desktop = {
-      auto-login.enable = false;
-      hyprland.enable = true;
-      plasma = {
-        enable = true;
-        auto-login = true;
-      };
-    };
-    gaming = {
-      steam.enable = true;
-      sunshine.enable = false;
-    };
-  };
-  environment.systemPackages = with pkgs; [
-    vim
-    neovim
-    curl
-    wget
+    ./hardware-configuration.nix
+    ./../../modules/base
+    ./../../modules/desktop
+    ./../../modules/users
+    ./../../modules/gaming
   ];
 
+  virtualisation.libvirtd.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    vim
+    curl
+    wget
+    virt-manager
+    qemu
+    qemu_kvm
+  ];
+
+  # Personal Modules
+  base = {
+    fish.enable = true;
+    system.latestKernel = true;
+    tailscale.enable = true;
+    appimage.enable = true;
+  };
+
+  desktop = {
+    gnome.enable = false;
+    hyprland.enable = true;
+    plasma.enable = true;
+    tty-login.enable = false;
+  };
+
+  gaming = {
+    steam.enable = true;
+    sunshine.enable = false;
+  };
+
   # Believe it or not, if you change this? Straight to jail.
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }

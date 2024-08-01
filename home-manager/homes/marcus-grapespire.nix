@@ -25,6 +25,8 @@
     vhs
     charm-freeze
     glow
+    # design
+    blender
     # gaming
     wineWowPackages.unstableFull
     moonlight-qt

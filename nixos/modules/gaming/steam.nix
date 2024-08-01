@@ -21,7 +21,7 @@ in {
         gamescopeSession.enable = true;
       };
       gamescope.enable = true;
+      gamemode.enable = true;
     };
-    programs.gamemode.enable = true;
   };
 }
