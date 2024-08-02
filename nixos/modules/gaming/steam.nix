@@ -13,6 +13,10 @@ in {
     environment.systemPackages = with pkgs; [
       protonup-qt
       mesa
+      unzip
+      xdotool
+      xorg.xwininfo
+      yad
     ];
     programs = {
       steam = {
