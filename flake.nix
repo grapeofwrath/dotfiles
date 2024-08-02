@@ -39,14 +39,13 @@
       "i686-linux"
       "x86_64-linux"
     ];
-    #lib = nixpkgs.lib;
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
     # custom lib
     glib = import ./lib {inherit (nixpkgs) lib;};
 
-    hostNames = glib.allSubdirs ./nixos/systems;
-    username = "marcus";
+    gvar = import ./var {inherit glib;};
+    username = gvar.username;
   in {
     # TODO
     # Add devshell to flake
@@ -69,7 +68,7 @@
           ];
         };
       })
-      hostNames);
+      gvar.hostNames);
 
     homeConfigurations = builtins.listToAttrs (builtins.map (h: let
         host = builtins.baseNameOf h;
@@ -83,6 +82,6 @@
           ];
         };
       })
-      hostNames);
+      gvar.hostNames);
   };
 }

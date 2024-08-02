@@ -1,3 +1,7 @@
-{...}: {
-  home.file.".config/phortune/phortunes".source = ../../../assets/phortunes;
+{
+  ...
+}: {
+  home.file = {
+    ".config/phortune/phortunes".source = ../../../assets/phortunes;
+  };
 }

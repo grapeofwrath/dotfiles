@@ -12,11 +12,16 @@
       (lib.attrsets.filterAttrs
         (
           path: _type:
-            (_type == "directory") # include dirs
+            (_type == "directory")
             || (
-              (path != "default.nix") # ignore default.nix
-              && (lib.strings.hasSuffix ".nix" path) # include .nix filterAttrs
+              (path != "default.nix")
+              && (lib.strings.hasSuffix ".nix" path)
             )
         )
         (builtins.readDir path)));
+  scanFiles = path:
+    builtins.map
+    (f: (path + "/${f}"))
+    (builtins.attrNames
+      (builtins.readDir path));
 }

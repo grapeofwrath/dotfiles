@@ -39,6 +39,7 @@
       enableFishIntegration = true;
       enableNushellIntegration = true;
       keys = ["id_${username}-${host}"];
+      extraFlags = [ "--quiet" ];
     };
   };
 
