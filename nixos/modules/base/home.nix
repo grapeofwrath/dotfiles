@@ -2,9 +2,9 @@
   inputs,
   outputs,
   pkgs,
-  glib,
+  gLib,
+  gVar,
   host,
-  username,
   ...
 }: {
   imports = [inputs.home-manager.nixosModules.home-manager];
@@ -12,7 +12,7 @@
     inputs.home-manager.packages.${pkgs.system}.default
   ];
   home-manager = {
-    extraSpecialArgs = {inherit inputs outputs glib username host;};
+    extraSpecialArgs = {inherit inputs outputs gLib gVar host;};
     useUserPackages = true;
     useGlobalPkgs = true;
   };

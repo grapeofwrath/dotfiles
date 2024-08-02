@@ -1,16 +1,16 @@
 {
   host,
-  username,
-  glib,
+  gVar,
+  gLib,
   ...
 }: let
-  keyScan = glib.scanFiles ./keys;
+  keyScan = gLib.scanFiles ./keys;
 in {
   users = {
-    users.${username} = {
-      name = "${username}";
+    users.${gVar.username} = {
+      name = "${gVar.username}";
       isNormalUser = true;
-      home = "/home/${username}";
+      home = "/home/${gVar.username}";
       group = "users";
       extraGroups = ["wheel" "networkmanager" "libvirtd"];
       openssh.authorizedKeys.keys = builtins.map (builtins.readFile) keyScan;
@@ -19,5 +19,5 @@ in {
 
   security.sudo.wheelNeedsPassword = false;
 
-  home-manager.users.${username} = import ../../../home-manager/homes/${username}-${host}.nix;
+  home-manager.users.${gVar.username} = import ../../../home-manager/homes/${gVar.username}-${host}.nix;
 }

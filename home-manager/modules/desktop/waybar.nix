@@ -1,10 +1,11 @@
 {
   config,
   lib,
+  gVar,
   ...
 }: let
   cfg = config.desktop.waybar;
-  theme = config.colorScheme.palette;
+  theme = gVar.palette;
 in {
   options.desktop.waybar = {
     enable = lib.mkEnableOption "Enable Waybar";

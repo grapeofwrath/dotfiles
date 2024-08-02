@@ -1,16 +1,18 @@
 {
   pkgs,
   host,
-  username,
+  gVar,
   ...
 }: {
   imports = [
     ../modules/base
     ../modules/desktop
   ];
+  # TODO
+  # move to module
   home = {
-    username = username;
-    homeDirectory = "/home/${username}";
+    username = gVar.username;
+    homeDirectory = "/home/${gVar.username}";
   };
   home.packages = with pkgs; [
     # desktop
@@ -33,13 +35,15 @@
     # custom
     #jot
   ];
+  # TODO
+  # move to module
   programs = {
     keychain = {
       enable = true;
       enableFishIntegration = true;
       enableNushellIntegration = true;
-      keys = ["id_${username}-${host}"];
-      extraFlags = [ "--quiet" ];
+      keys = ["id_${gVar.username}-${host}"];
+      extraFlags = ["--quiet"];
     };
   };
 

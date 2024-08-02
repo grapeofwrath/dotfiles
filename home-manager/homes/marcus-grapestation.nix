@@ -1,7 +1,7 @@
 {
   pkgs,
   host,
-  username,
+  gVar,
   ...
 }: {
   imports = [
@@ -9,8 +9,8 @@
     ../modules/desktop
   ];
   home = {
-    username = username;
-    homeDirectory = "/home/${username}";
+    username = gVar.username;
+    homeDirectory = "/home/${gVar.username}";
   };
   home.packages = with pkgs; [
     # desktop
@@ -38,7 +38,7 @@
       enable = true;
       enableFishIntegration = true;
       enableNushellIntegration = true;
-      keys = ["id_${username}-${host}"];
+      keys = ["id_${gVar.username}-${host}"];
     };
   };
 

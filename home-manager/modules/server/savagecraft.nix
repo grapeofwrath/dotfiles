@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  username,
+  gVar,
   ...
 }: let
   cfg = config.server.savagecraft;
@@ -21,7 +21,7 @@ in {
         Type = "forking";
         ExecStart = "${pkgs.bash} savagecraft start";
         ExecStop = "${pkgs.bash} savagecraft stop";
-        WorkingDirectory = "/home/${username}/minecraft-servers/fabric/savagecraft";
+        WorkingDirectory = "/home/${gVar.username}/minecraft-servers/fabric/savagecraft";
       };
       Install = {
         WantedBy = ["default.target"];

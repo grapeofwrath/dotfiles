@@ -1,9 +1,11 @@
 {
   config,
   lib,
+  gVar,
   ...
 }: let
   cfg = config.base.zellij;
+  theme = gVar.palette;
 in {
   options.base.zellij = {
     enable = lib.mkEnableOption "Enable zellij";
@@ -15,17 +17,17 @@ in {
         pane_frames = false;
         theme = "campfire";
         themes.campfire = {
-          fg = "#EFC164";
-          bg = "#14171F";
-          black = "#2A2F3C";
-          red = "#A885C1";
-          green = "#468966";
-          yellow = "#F3835D";
-          blue = "#70ADC2";
-          magenta = "#67CC8E";
-          cyan = "#3A8098";
-          white = "#DDD7CA";
-          orange = "#F35955";
+          fg = theme.base05;
+          bg = theme.base00;
+          black = theme.base06;
+          red = theme.base08;
+          green = theme.base0B;
+          yellow = theme.base0A;
+          blue = theme.base0D;
+          magenta = theme.base0E;
+          cyan = theme.base0C;
+          white = theme.base07;
+          orange = theme.base09;
         };
       };
     };

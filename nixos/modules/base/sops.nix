@@ -1,6 +1,6 @@
 {
   inputs,
-  username,
+  gVar,
   ...
 }: {
   imports = [
@@ -20,16 +20,16 @@
     secrets = {
       gitea_dbpass = {};
       wifi-ssid = {
-        owner = username;
+        owner = gVar.username;
       };
       wifi-pass = {
-        owner = username;
+        owner = gVar.username;
       };
       nextcloud_admin = {
-        owner = username;
+        owner = gVar.username;
       };
       tailscale = {
-        owner = username;
+        owner = gVar.username;
       };
     };
   };

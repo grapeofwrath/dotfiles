@@ -1,3 +1,3 @@
-{glib, ...}: {
-  imports = glib.scanPaths ./.;
+{gLib, ...}: {
+  imports = gLib.scanPaths ./.;
 }

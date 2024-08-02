@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  username,
+  gVar,
   ...
 }: let
   cfg = config.desktop.tty-login;
@@ -11,7 +11,7 @@ in {
   };
   config = lib.mkIf cfg.enable {
     services = {
-      # getty.autologinUser = "${username}";
+      # getty.autologinUser = gVar.username;
       xserver = {
         displayManager.startx.enable = true;
       };

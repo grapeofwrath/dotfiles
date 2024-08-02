@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  username,
+  gVar,
   ...
 }: let
   cfg = config.desktop.plasma;
@@ -24,7 +24,7 @@ in {
         };
         autoLogin = lib.mkIf cfg.auto-login {
           enable = true;
-          user = username;
+          user = gVar.username;
         };
       };
     };

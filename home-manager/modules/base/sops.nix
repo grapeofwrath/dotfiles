@@ -2,21 +2,21 @@
   inputs,
   pkgs,
   host,
-  username,
+  gVar,
   ...
 }: let
-  keyName = "${username}-${host}";
+  keyName = "${gVar.username}-${host}";
 in {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
   sops = {
-    age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
+    age.keyFile = "/home/${gVar.username}/.config/sops/age/keys.txt";
     defaultSopsFile = ../../../secrets.yaml;
     validateSopsFiles = false;
     secrets = {
       "private_keys/${keyName}" = {
-        path = "/home/${username}/.ssh/id_${keyName}";
+        path = "/home/${gVar.username}/.ssh/id_${keyName}";
       };
     };
   };
@@ -44,7 +44,7 @@ in {
     };
     Install.WantedBy = ["graphical-session.target"];
     Service = {
-      ExecStart = "${pkgs.openssh}/bin/ssh-add /home/${username}/.ssh/id_${keyName}";
+      ExecStart = "${pkgs.openssh}/bin/ssh-add /home/${gVar.username}/.ssh/id_${keyName}";
     };
   };
 }

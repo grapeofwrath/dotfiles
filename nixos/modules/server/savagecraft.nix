@@ -2,11 +2,11 @@
   config,
   pkgs,
   lib,
-  username,
+  gVar,
   ...
 }: let
   cfg = config.server.savagecraft;
-  dir = "/home/${username}/minecraft-servers/fabric/savagecraft";
+  dir = "/home/${gVar.username}/minecraft-servers/fabric/savagecraft";
 in {
   options.server.savagecraft = {
     enable = lib.mkEnableOption "Enable SavageCraft";

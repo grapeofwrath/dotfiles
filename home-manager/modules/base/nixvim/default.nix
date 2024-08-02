@@ -1,13 +1,13 @@
 {
   inputs,
-  config,
   pkgs,
-  glib,
+  gLib,
+  gVar,
   ...
 }: let
-  theme = config.colorScheme.palette;
+  theme = gVar.palette;
 in {
-  imports = (glib.scanPaths ./.) ++ [inputs.nixvim.homeManagerModules.nixvim];
+  imports = (gLib.scanPaths ./.) ++ [inputs.nixvim.homeManagerModules.nixvim];
 
   home.packages = with pkgs; [
     wl-clipboard
@@ -101,22 +101,22 @@ in {
     colorschemes.base16 = {
       enable = true;
       colorscheme = {
-        base00 = "#14171F";
-        base01 = "#323848";
-        base02 = "#3F475A";
-        base03 = "#6D7A88";
-        base04 = "#97A4AF";
-        base05 = "#EFC164";
-        base06 = "#2A2F3C";
-        base07 = "#DDD7CA";
-        base08 = "#A885C1";
-        base09 = "#F35955";
-        base0A = "#F3835D";
-        base0B = "#468966";
-        base0C = "#3A8098";
-        base0D = "#70ADC2";
-        base0E = "#67CC8E";
-        base0F = "#DDD7CA";
+        base00 = theme.base00;
+        base01 = theme.base01;
+        base02 = theme.base02;
+        base03 = theme.base03;
+        base04 = theme.base04;
+        base05 = theme.base05;
+        base06 = theme.base06;
+        base07 = theme.base07;
+        base08 = theme.base08;
+        base09 = theme.base09;
+        base0A = theme.base0A;
+        base0B = theme.base0B;
+        base0C = theme.base0C;
+        base0D = theme.base0D;
+        base0E = theme.base0E;
+        base0F = theme.base0F;
       };
     };
   };

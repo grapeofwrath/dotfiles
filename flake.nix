@@ -16,7 +16,6 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     ags.url = "github:Aylur/ags";
-    nix-colors.url = "github:misterio77/nix-colors";
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -41,11 +40,9 @@
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    # custom lib
-    glib = import ./lib {inherit (nixpkgs) lib;};
-
-    gvar = import ./var {inherit glib;};
-    username = gvar.username;
+    # custom
+    gLib = import ./lib {inherit (nixpkgs) lib;};
+    gVar = import ./var {inherit gLib;};
   in {
     # TODO
     # Add devshell to flake
@@ -57,31 +54,27 @@
 
     overlays = import ./overlays {inherit inputs;};
 
-    nixosConfigurations = builtins.listToAttrs (builtins.map (h: let
-        host = builtins.baseNameOf h;
-      in {
+    nixosConfigurations = builtins.listToAttrs (builtins.map (host: {
         name = host;
         value = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs glib username host;};
+          specialArgs = {inherit inputs outputs gLib gVar host;};
           modules = [
             ./nixos/systems/${host}/configuration.nix
           ];
         };
       })
-      gvar.hostNames);
+      gVar.hostNames);
 
-    homeConfigurations = builtins.listToAttrs (builtins.map (h: let
-        host = builtins.baseNameOf h;
-      in {
-        name = "${username}-${host}";
+    homeConfigurations = builtins.listToAttrs (builtins.map (host: {
+        name = "${gVar.username}-${host}";
         value = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = {inherit inputs outputs glib username host;};
+          extraSpecialArgs = {inherit inputs outputs gLib gVar host;};
           modules = [
-            ./home-manager/homes/${username}-${host}.nix
+            ./home-manager/homes/${gVar.username}-${host}.nix
           ];
         };
       })
-      gvar.hostNames);
+      gVar.hostNames);
   };
 }

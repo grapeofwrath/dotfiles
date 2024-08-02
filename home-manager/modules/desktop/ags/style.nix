@@ -1,10 +1,11 @@
 {
   config,
   lib,
+  gVar,
   ...
 }: let
   cfg = config.desktop.ags;
-  theme = config.colorScheme.palette;
+  theme = gVar.palette;
 in {
   config = lib.mkIf cfg.enable {
     home.file."style.css" = {

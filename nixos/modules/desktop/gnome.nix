@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  username,
+  gVar,
   ...
 }: let
   cfg = config.desktop.gnome;
@@ -23,7 +23,7 @@ in {
         };
         autoLogin = lib.mkIf cfg.auto-login {
           enable = true;
-          user = username;
+          user = gVar.username;
         };
       };
     };
