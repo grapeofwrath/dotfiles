@@ -1,5 +1,4 @@
-{gVar, ...}:
-let
+{gVar, ...}: let
   theme = gVar.palette;
 in {
   programs.kitty = {

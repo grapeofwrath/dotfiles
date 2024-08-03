@@ -65,16 +65,19 @@
       })
       gVar.hostNames);
 
-    homeConfigurations = builtins.listToAttrs (builtins.map (host: {
-        name = "${gVar.username}-${host}";
+      homeConfigurations = builtins.listToAttrs (builtins.map (homeFile: let
+        homeName = nixpkgs.lib.strings.removeSuffix ".nix" (baseNameOf homeFile);
+        host = nixpkgs.lib.strings.removePrefix "*-" homeName;
+      in {
+        name = homeName;
         value = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = {inherit inputs outputs gLib gVar host;};
           modules = [
-            ./home-manager/homes/${gVar.username}-${host}.nix
+            ./home-manager/homes/${homeFile}
           ];
         };
       })
-      gVar.hostNames);
+      gVar.homeNames);
   };
 }
