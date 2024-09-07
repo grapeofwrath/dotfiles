@@ -30,6 +30,7 @@
     # gaming
     wineWowPackages.unstableFull
     moonlight-qt
+    lutris
     # custom
     #jot
   ];

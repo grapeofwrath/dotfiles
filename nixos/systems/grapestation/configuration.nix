@@ -20,10 +20,11 @@
 
   # Personal Modules
   base = {
+    appimage.enable = true;
+    bluetooth.enable = true;
     fish.enable = true;
     system.latestKernel = true;
     tailscale.enable = true;
-    appimage.enable = true;
   };
 
   desktop = {
