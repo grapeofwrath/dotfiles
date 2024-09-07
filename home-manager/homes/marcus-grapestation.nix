@@ -15,7 +15,8 @@
   home.packages = with pkgs; [
     # desktop
     brave
-    discord
+    # discord
+    vesktop
     spotify
     element-desktop
     gnome-keyring
