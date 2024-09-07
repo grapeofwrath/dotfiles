@@ -134,10 +134,10 @@ in {
               font-weight: bold;
         }
         window#waybar {
-              background-color: #${theme.base00};
-              border-bottom: 1px solid #${theme.base00};
+              background-color: ${theme.base00};
+              border-bottom: 1px solid ${theme.base00};
               border-radius: 0px;
-              color: #${theme.base0F};
+              color: ${theme.base0F};
         }
         #workspaces {
               padding: 0px;
@@ -148,92 +148,92 @@ in {
               min-width: 9px;
               border: 0px;
               border-radius: 100%;
-              background-color: #${theme.base05};
+              background-color: ${theme.base05};
               background-size: 9px 9px;
               opacity: 0.5;
               transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
         }
         #workspaces button.empty {
-              background-color: #${theme.base04};
+              background-color: ${theme.base04};
         }
         #workspaces button.active {
               min-width: 27px;
               transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-              background-color: #${theme.base05};
+              background-color: ${theme.base05};
               opacity: 1.0;
         }
         #workspaces button:hover {
               opacity: 0.8;
         }
         tooltip {
-            background: #${theme.base00};
-            border: 1px solid #${theme.base04};
+            background: ${theme.base00};
+            border: 1px solid ${theme.base04};
             border-radius: 10px;
         }
         tooltip label {
-            color: #${theme.base05};
+            color: ${theme.base05};
         }
         #window {
-              color: #${theme.base04};
+              color: ${theme.base04};
               margin: 4px;
               padding: 2px 10px;
         }
         #memory {
-              color: #${theme.base03};
+              color: ${theme.base03};
               margin: 4px;
               padding: 2px 10px;
         }
         #clock {
-              color: #${theme.base05};
+              color: ${theme.base05};
               margin: 4px;
               padding: 2px 10px;
         }
         #idle_inhibitor {
-              color: #${theme.base0A};
+              color: ${theme.base0A};
               margin: 4px;
               padding: 2px 10px;
         }
         #cpu {
-              color: #${theme.base03};
+              color: ${theme.base03};
               margin: 4px;
               padding: 2px 10px;
         }
         #disk {
-              color: #${theme.base03};
+              color: ${theme.base03};
               margin: 4px;
               padding: 2px 10px;
         }
         #battery {
-              color: #${theme.base0B};
+              color: ${theme.base0B};
               margin: 4px;
               padding: 2px 10px;
         }
         #network {
-              color: #${theme.base0C};
+              color: ${theme.base0C};
               margin: 4px;
               padding: 2px 10px;
         }
         #tray {
-              color: #${theme.base05};
-              background: #${theme.base01};
+              color: ${theme.base05};
+              background: ${theme.base01};
               border-radius: 10px;
               margin: 4px;
               padding: 2px 10px;
         }
         #pulseaudio {
-              color: #${theme.base0D};
+              color: ${theme.base0D};
               margin: 4px;
               padding: 2px 10px;
         }
         #custom-notification {
-              color: #${theme.base0C};
-              background: #${theme.base01};
+              color: ${theme.base0C};
+              background: ${theme.base01};
               border-radius: 10px;
               margin: 4px;
               padding: 2px 10px;
         }
         #idle_inhibitor {
-              color: #${theme.base0A};
+              color: ${theme.base0A};
               border-radius: 10px;
               margin: 4px;
               padding: 2px 10px 2px 13px;

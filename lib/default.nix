@@ -1,4 +1,5 @@
 {lib, ...}: {
+  # paths
   allSubdirs = rootPath: let
     readset = builtins.readDir rootPath;
     dirset = lib.filterAttrs (_: type: type == "directory") readset;
@@ -24,4 +25,7 @@
     (f: (path + "/${f}"))
     (builtins.attrNames
       (builtins.readDir path));
+
+  # colors
+  noHashHexes = palette: builtins.mapAttrs (name: value: lib.strings.removePrefix "#" value) palette;
 }

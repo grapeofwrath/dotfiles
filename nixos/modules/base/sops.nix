@@ -18,18 +18,17 @@
     # secrets are output to /run/secrets
     # ie /run/secrets/gitea_dbpass
     secrets = {
-      gitea_dbpass = {};
       wifi-ssid = {
-        owner = gVar.username;
+        group = "users";
       };
       wifi-pass = {
-        owner = gVar.username;
+        group = "users";
       };
       nextcloud_admin = {
-        owner = gVar.username;
+        group = "users";
       };
       tailscale = {
-        owner = gVar.username;
+        group = "users";
       };
     };
   };

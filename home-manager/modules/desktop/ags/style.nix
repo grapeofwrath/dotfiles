@@ -12,8 +12,8 @@ in {
       target = ".config/ags/style.css";
       text = ''
         window.bar {
-            background-color: #${theme.base00};
-            color: #${theme.base05};
+            background-color: ${theme.base00};
+            color: ${theme.base05};
         }
         button {
             min-width: 0;
@@ -22,19 +22,19 @@ in {
             background-color: transparent;
         }
         button:active {
-            background-color: #${theme.base04};
+            background-color: ${theme.base04};
         }
         button:hover {
-            border-bottom: 3px solid #${theme.base05};
+            border-bottom: 3px solid ${theme.base05};
         }
         label {
             font-weight: bold;
         }
         .workspaces button.focused {
-            border-bottom: 3px solid #${theme.base04};
+            border-bottom: 3px solid ${theme.base04};
         }
         .client-title {
-            color: #${theme.base04};
+            color: ${theme.base04};
         }
         .notification {
             color: yellow;

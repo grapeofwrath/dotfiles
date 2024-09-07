@@ -1,17 +1,23 @@
-{pkgs, ...}: {
+{pkgs,username, ...}: {
   systemd.user.startServices = "sd-switch";
-  home.packages = [
-    # cli
-    (pkgs.nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-        "CascadiaCode"
-      ];
-    })
-    pkgs.font-awesome
-    pkgs.polkit
-    pkgs.tree
-  ];
+  home = {
+    inherit username;
+    homeDirectory = "/home/${username}";
+    packages = [
+      # cli
+      (pkgs.nerdfonts.override {
+        fonts = [
+          "JetBrainsMono"
+          "CascadiaCode"
+        ];
+      })
+      pkgs.font-awesome
+      pkgs.polkit
+      pkgs.tree
+    ];
+    # Believe it or not, if you change this? Straight to jail.
+    stateVersion = "24.05";
+  };
   programs = {
     home-manager.enable = true;
   };

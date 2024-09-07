@@ -16,6 +16,7 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     ags.url = "github:Aylur/ags";
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -34,8 +35,6 @@
   } @ inputs: let
     inherit (self) outputs;
     systems = [
-      "aarch64-linux"
-      "i686-linux"
       "x86_64-linux"
     ];
     forAllSystems = nixpkgs.lib.genAttrs systems;
@@ -48,13 +47,13 @@
     # Add devshell to flake
 
     # Accessible through 'nix build', 'nix shell', etc
-    #packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+    # packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     overlays = import ./overlays {inherit inputs;};
 
-    nixosConfigurations = builtins.listToAttrs (builtins.map (host: {
+    nixosConfigurations = builtins.listToAttrs (map (host: {
         name = host;
         value = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs outputs gLib gVar host;};
@@ -65,14 +64,17 @@
       })
       gVar.hostNames);
 
-      homeConfigurations = builtins.listToAttrs (builtins.map (homeFile: let
-        homeName = nixpkgs.lib.strings.removeSuffix ".nix" (baseNameOf homeFile);
-        host = nixpkgs.lib.strings.removePrefix "*-" homeName;
+    homeConfigurations = builtins.listToAttrs (map (homeFile: let
+        splitName = nixpkgs.lib.strings.splitString "-" homeFile;
+        host = nixpkgs.lib.strings.removeSuffix ".nix" (nixpkgs.lib.lists.last splitName);
+        username = builtins.head splitName;
+        # homeName = "${username}-${host}";
+        # homePath = "${homeName}.nix";
       in {
-        name = homeName;
+        name = "${username}-${host}";
         value = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = {inherit inputs outputs gLib gVar host;};
+          extraSpecialArgs = {inherit inputs outputs gLib gVar host username;};
           modules = [
             ./home-manager/homes/${homeFile}
           ];

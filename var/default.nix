@@ -1,11 +1,8 @@
-{
-  gLib,
-  ...
-}: {
-  homeNames = builtins.map (builtins.baseNameOf) (gLib.scanFiles ./../home-manager/homes);
-  hostNames = builtins.map (builtins.baseNameOf) (gLib.allSubdirs ./../nixos/systems);
-  username = "marcus";
-  users = [ "marcus" ];
+{gLib, ...}: {
+  homeNames = map (builtins.baseNameOf) (gLib.scanPaths ./../home-manager/homes);
+  hostNames = map (builtins.baseNameOf) (gLib.allSubdirs ./../nixos/systems);
+  serverUser = "marcus";
+  users = ["marcus"];
   palette = {
     base00 = "#14171F";
     base01 = "#323848";

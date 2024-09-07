@@ -2,33 +2,32 @@
   inputs,
   pkgs,
   host,
-  gVar,
+  username,
   ...
 }: let
-  keyName = "${gVar.username}-${host}";
+  keyName = "${username}-${host}";
 in {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
   sops = {
-    age.keyFile = "/home/${gVar.username}/.config/sops/age/keys.txt";
+    age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
     defaultSopsFile = ../../../secrets.yaml;
     validateSopsFiles = false;
     secrets = {
       "private_keys/${keyName}" = {
-        path = "/home/${gVar.username}/.ssh/id_${keyName}";
+        path = "/home/${username}/.ssh/id_${keyName}";
       };
     };
   };
   programs = {
-    # TODO
-    # make separate module for CLI only servers
-    # currently only setup on grapelab
-    # keychain = {
-    #   enable = true;
-    #   enableNushellIntegration = true;
-    #   keys = [ "id_${keyName}" ];
-    # };
+    keychain = {
+      enable = true;
+      enableFishIntegration = true;
+      enableNushellIntegration = true;
+      keys = ["id_${keyName}"];
+      extraFlags = ["--quiet"];
+    };
     ssh = {
       enable = true;
       addKeysToAgent = "yes";
@@ -44,7 +43,7 @@ in {
     };
     Install.WantedBy = ["graphical-session.target"];
     Service = {
-      ExecStart = "${pkgs.openssh}/bin/ssh-add /home/${gVar.username}/.ssh/id_${keyName}";
+      ExecStart = "${pkgs.openssh}/bin/ssh-add /home/${username}/.ssh/id_${keyName}";
     };
   };
 }

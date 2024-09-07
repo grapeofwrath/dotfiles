@@ -1,11 +1,13 @@
 {
   config,
+  pkgs,
   lib,
+  gLib,
   gVar,
   ...
 }: let
   cfg = config.desktop.hyprland;
-  theme = gVar.palette;
+  theme = gLib.noHashHexes gVar.palette;
 in {
   options.desktop.hyprland = {
     enable = lib.mkEnableOption "Enable Hyprland";
@@ -15,6 +17,9 @@ in {
     };
   };
   config = lib.mkIf cfg.enable {
+    # home.packages = with pkgs; [
+    #   hyprpanel
+    # ];
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;
@@ -102,8 +107,9 @@ in {
         "$POLKIT_BIN"
         "dbus-update-activation-environment --systemd --all"
         "systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        # "waybar"
-        "ags"
+        "waybar"
+        # "${pkgs.hyprpanel}/bin/hyprpanel"
+        # "ags"
         #"hyprctl setcursor Bibata-Modern-Ice 24"
         #"swww init"
         #"wallpaper"
