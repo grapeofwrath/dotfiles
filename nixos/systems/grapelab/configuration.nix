@@ -1,39 +1,44 @@
 {pkgs, ...}: {
   imports = [
-    ./hardware-config.nix
-    ../../modules
+    ./hardware-configuration.nix
+    ./../../modules/base
+    ./../../modules/desktop
+    ./../../modules/users
+    ./../../modules/gaming
   ];
-  orion = {
-    interwebs = {
-      hostName = "grapelab";
-    };
-    system.latestKernel = true;
-    tailscale.enable = true;
-    tools.appimage.enable = true;
-    # TODO
-    # setup auto login
-    desktop = {
-      auto-login.enable = false;
-      plasma = {
-        enable = true;
-        auto-login = true;
-      };
-    };
-    server = {
-      gitea.enable = true;
-      minecraft.enable = false;
-      nextcloud.enable = false;
-      purpur.enable = false;
-      savagecraft.enable = true;
-    };
-  };
+
+  virtualisation.libvirtd.enable = true;
+
   environment.systemPackages = with pkgs; [
     vim
     curl
     wget
+    virt-manager
+    qemu
+    qemu_kvm
   ];
-  services.flatpak.enable = true;
+
+  # Personal Modules
+  base = {
+    appimage.enable = true;
+    bluetooth.enable = true;
+    fish.enable = true;
+    system.latestKernel = true;
+    tailscale.enable = true;
+  };
+
+  desktop = {
+    gnome.enable = false;
+    hyprland.enable = false;
+    plasma.enable = true;
+    tty-login.enable = false;
+  };
+
+  gaming = {
+    steam.enable = false;
+    sunshine.enable = false;
+  };
 
   # Believe it or not, if you change this? Straight to jail.
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }

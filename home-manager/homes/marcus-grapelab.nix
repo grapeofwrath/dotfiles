@@ -1,41 +1,39 @@
 {
-  config,
   pkgs,
-  host,
-  username,
   ...
 }: {
-  imports = [../modules];
-  home = {
-    username = username;
-    homeDirectory = "/home/${username}";
-  };
-  home.packages = [
-    pkgs.brave
-    pkgs.jdk21_headless
-    pkgs.tmux
-    # Custom
-    pkgs.jot
-    # Local
-    (import ../../../pkgs/scripts/savagecraft.nix {inherit pkgs;})
+  imports = [
+    ../modules/base
+    ../modules/desktop
   ];
-  programs = {
-    keychain = {
-      enable = true;
-      enableNushellIntegration = true;
-      keys = ["id_${username}-${host}"];
-    };
-    # nushell.extraLogin = ''
-    #   purpurmc-server
-    # '';
-  };
-  orion = {
-    shell = {
-      nushell.enable = true;
-    };
-    server.savagecraft.enable = false;
+  home.packages = with pkgs; [
+    # desktop
+    brave
+    # discord
+    vesktop
+    spotify
+    gnome-keyring
+    kdePackages.qtstyleplugin-kvantum
+    # charm
+    vhs
+    charm-freeze
+    glow
+    # gaming
+    wineWowPackages.unstableFull
+    moonlight-qt
+  ];
+
+  # Personal modules
+  base = {
+    dev.enable = true;
+    fish.enable = true;
+    nushell.enable = true;
+    zellij.enable = true;
   };
 
-  # Believe it or not, if you change this? Straight to jail.
-  home.stateVersion = "23.11";
+  desktop = {
+    ags.enable = false;
+    hyprland.enable = false;
+    waybar.enable = false;
+  };
 }
