@@ -36,7 +36,7 @@
 
   gaming = {
     steam.enable = true;
-    sunshine.enable = false;
+    sunshine.enable = true;
   };
 
   # Believe it or not, if you change this? Straight to jail.

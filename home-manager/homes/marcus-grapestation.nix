@@ -8,10 +8,6 @@
     ../modules/base
     ../modules/desktop
   ];
-  home = {
-    username = gVar.username;
-    homeDirectory = "/home/${gVar.username}";
-  };
   home.packages = with pkgs; [
     # desktop
     brave
@@ -35,14 +31,6 @@
     # custom
     #jot
   ];
-  programs = {
-    keychain = {
-      enable = true;
-      enableFishIntegration = true;
-      enableNushellIntegration = true;
-      keys = ["id_${gVar.username}-${host}"];
-    };
-  };
 
   # Personal modules
   base = {
@@ -57,7 +45,4 @@
     hyprland.enable = true;
     waybar.enable = true;
   };
-
-  # Believe it or not, if you change this? Straight to jail.
-  home.stateVersion = "24.05";
 }
