@@ -75,7 +75,7 @@
             inherit inputs outputs system pkgs stable gLib gVar hostName;
           };
           modules = [
-            ./nixos/systems/grapelab/configuration.nix
+            ./nixos/grapelab/configuration.nix
           ];
         };
 
@@ -88,7 +88,7 @@
             inherit inputs outputs system pkgs stable gLib gVar hostName;
           };
           modules = [
-            ./nixos/systems/grapespire/configuration.nix
+            ./nixos/grapespire/configuration.nix
           ];
         };
 
@@ -101,7 +101,7 @@
             inherit inputs outputs system pkgs stable gLib gVar hostName;
           };
           modules = [
-            ./nixos/systems/grapestation/configuration.nix
+            ./nixos/grapestation/configuration.nix
           ];
         };
     };
@@ -117,7 +117,7 @@
             inherit inputs outputs system gLib gVar hostName username;
           };
           modules = [
-            ./home-manager/homes/marcus-grapelab.nix
+            ./home-manager/marcus-grapelab.nix
           ];
         };
 
@@ -131,7 +131,7 @@
             inherit inputs outputs system gLib gVar hostName username;
           };
           modules = [
-            ./home-manager/homes/marcus-grapespire.nix
+            ./home-manager/marcus-grapespire.nix
           ];
         };
 
@@ -145,7 +145,7 @@
             inherit inputs outputs system gLib gVar hostName username;
           };
           modules = [
-            ./home-manager/homes/paramount-grapespire.nix
+            ./home-manager/paramount-grapespire.nix
           ];
         };
 
@@ -159,7 +159,7 @@
             inherit inputs outputs system gLib gVar hostName username;
           };
           modules = [
-            ./home-manager/homes/marcus-grapestation.nix
+            ./home-manager/marcus-grapestation.nix
           ];
         };
     };

@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    ./../../modules/base
-    ./../../modules/desktop
-    ./../../modules/users
-    ./../../modules/gaming
+    ./../modules/base
+    ./../modules/desktop
+    ./../modules/users
+    ./../modules/gaming
   ];
 
   virtualisation.libvirtd.enable = true;
@@ -28,14 +28,14 @@
   };
 
   desktop = {
-    hyprland.enable = true;
+    hyprland.enable = false;
     plasma.enable = true;
     tty-login.enable = false;
   };
 
   gaming = {
-    steam.enable = true;
-    sunshine.enable = true;
+    steam.enable = false;
+    sunshine.enable = false;
   };
 
   # Believe it or not, if you change this? Straight to jail.

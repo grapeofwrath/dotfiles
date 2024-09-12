@@ -1,10 +1,9 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    ./../../modules/base
-    ./../../modules/desktop
-    ./../../modules/users
-    ./../../modules/gaming
+    ./../modules/base
+    ./../modules/desktop
+    ./../modules/users
   ];
 
   virtualisation.libvirtd.enable = true;
@@ -19,23 +18,20 @@
   ];
 
   # Personal Modules
+  users.additionalUsers = ["paramount"];
+
   base = {
-    appimage.enable = true;
-    bluetooth.enable = true;
     fish.enable = true;
+    battery.enable = true;
     system.latestKernel = true;
     tailscale.enable = true;
+    appimage.enable = true;
   };
 
   desktop = {
-    hyprland.enable = false;
-    plasma.enable = true;
-    tty-login.enable = false;
-  };
-
-  gaming = {
-    steam.enable = false;
-    sunshine.enable = false;
+    hyprland.enable = true;
+    plasma.enable = false;
+    tty-login.enable = true;
   };
 
   # Believe it or not, if you change this? Straight to jail.

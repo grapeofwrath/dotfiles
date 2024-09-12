@@ -1,14 +1,18 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  ...
+}: {
   imports = [
-    ../modules/base
-    ../modules/desktop
+    ./modules/base
+    ./modules/desktop
   ];
   home = {
     username = "marcus";
     packages = with pkgs; [
       # desktop
       brave
-      discord
+      # discord
+      vesktop
       spotify
       element-desktop
       gnome-keyring
@@ -23,6 +27,7 @@
       # gaming
       wineWowPackages.unstableFull
       moonlight-qt
+      lutris
       # custom
       #jot
     ];
@@ -35,8 +40,10 @@
     nushell.enable = true;
     zellij.enable = true;
   };
+
   desktop = {
     ags.enable = true;
     hyprland.enable = true;
+    steam.enable = true;
   };
 }

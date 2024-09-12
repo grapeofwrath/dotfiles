@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
-    ../modules/base
-    ../modules/desktop
+    ./modules/base
+    ./modules/desktop
   ];
   home = {
     username = "paramount";

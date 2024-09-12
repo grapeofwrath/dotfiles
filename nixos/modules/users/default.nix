@@ -62,11 +62,11 @@ in {
 
       users =
         {
-          marcus = import ./../../../home-manager/homes/marcus-${hostName}.nix;
+          marcus = import ./../../../home-manager/marcus-${hostName}.nix;
         }
         // builtins.listToAttrs (map (username: {
             name = username;
-            value = import ./../../../home-manager/homes/${username}-${hostName}.nix;
+            value = import ./../../../home-manager/${username}-${hostName}.nix;
           })
           cfg.additionalUsers);
     };
