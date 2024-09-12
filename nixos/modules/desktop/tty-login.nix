@@ -1,15 +1,14 @@
 {
   config,
   lib,
-  gVar,
   ...
-}: let
+}: with lib; let
   cfg = config.desktop.tty-login;
 in {
   options.desktop.tty-login = {
-    enable = lib.mkEnableOption "tty-login";
+    enable = mkEnableOption "tty-login";
   };
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services = {
       # getty.autologinUser = gVar.username;
       xserver = {

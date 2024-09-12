@@ -3,17 +3,18 @@
   pkgs,
   lib,
   ...
-}: let
+}: with lib; let
   cfg = config.gaming.sunshine;
-  configFile = pkgs.writeTextDir "config/sunshine.conf"
+  configFile =
+    pkgs.writeTextDir "config/sunshine.conf"
     ''
       origin_web_ui_allowed=wan
     '';
 in {
   options.gaming.sunshine = {
-    enable = lib.mkEnableOption "Enable Sunshine streaming service";
+    enable = mkEnableOption "Enable Sunshine streaming service";
   };
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       sunshine
       xorg.xrandr
@@ -26,12 +27,12 @@ in {
     };
     systemd.user.services.sunshine = {
       description = "Sunshine server";
-      wantedBy = [ "graphical-session.target" ];
+      wantedBy = ["graphical-session.target"];
       startLimitIntervalSec = 500;
       startLimitBurst = 5;
-      partOf = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
+      partOf = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
 
       serviceConfig = {
         ExecStart = "${config.security.wrapperDir}/sunshine ${configFile}/config/sunshine.conf";
@@ -49,7 +50,7 @@ in {
       #   capSysAdmin = true;
       # };
     };
-    boot.kernelModules = [ "uinput" ];
+    boot.kernelModules = ["uinput"];
     hardware.graphics = {
       enable = true;
       enable32Bit = true;

@@ -3,11 +3,11 @@
   pkgs,
   lib,
   gVar,
-  host,
+  hostName,
   ...
 }: let
   cfg = config.server.soft-serve;
-  keyName = "${gVar.serverUser}-${host}";
+  keyName = "${gVar.serverUser}-${hostName}";
 in {
   options.server.soft-serve = {
     enable = lib.mkEnableOption "Enable Soft Serve";
@@ -21,7 +21,7 @@ in {
         log_format = "text";
         ssh = {
           listen_addr = ":22";
-          public_url = "ssh://git.${host}";
+          public_url = "ssh://git.${hostName}";
           max_timeout = 0;
           idle_timeout = 0;
         };

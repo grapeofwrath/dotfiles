@@ -4,7 +4,7 @@
     ../modules/desktop
   ];
   home = {
-    username = "marcus";
+    username = "paramount";
     packages = with pkgs; [
       # desktop
       brave

@@ -2,13 +2,13 @@
   config,
   lib,
   ...
-}: let
+}: with lib; let
   cfg = config.base.bluetooth;
 in {
   options.base.bluetooth = {
-    enable = lib.mkEnableOption "Enable Bluetooth";
+    enable = mkEnableOption "Enable Bluetooth";
   };
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;

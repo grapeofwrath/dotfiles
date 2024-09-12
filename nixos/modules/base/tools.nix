@@ -3,13 +3,13 @@
   pkgs,
   lib,
   ...
-}: let
+}: with lib; let
   cfg = config.base.appimage;
 in {
   options.base.appimage = {
-    enable = lib.mkEnableOption "appimage";
+    enable = mkEnableOption "appimage";
   };
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     boot.binfmt.registrations.appimage = {
       wrapInterpreterInShell = false;
       interpreter = "${pkgs.appimage-run}/bin/appimage-run";

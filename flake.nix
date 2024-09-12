@@ -16,7 +16,10 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     ags.url = "github:Aylur/ags";
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    hyprpanel = {
+      url = "github:Jas-SinghFSU/HyprPanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -30,56 +33,135 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-stable,
     home-manager,
     ...
   } @ inputs: let
     inherit (self) outputs;
-    systems = [
-      "x86_64-linux"
-    ];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
+    system = "x86_64-linux";
+
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = _: true;
+      };
+      overlays = [
+        inputs.hyprpanel.overlay
+      ];
+    };
+
+    stable = import nixpkgs-stable {
+      inherit system;
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = _: true;
+      };
+    };
 
     # custom
     gLib = import ./lib {inherit (nixpkgs) lib;};
-    gVar = import ./var {inherit gLib;};
+    gVar = import ./var;
   in {
-    # TODO
-    # Add devshell to flake
+    formatter.${system} = pkgs.alejandra;
 
-    # Accessible through 'nix build', 'nix shell', etc
-    # packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-
-    overlays = import ./overlays {inherit inputs;};
-
-    nixosConfigurations = builtins.listToAttrs (map (host: {
-        name = host;
-        value = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs outputs gLib gVar host;};
+    nixosConfigurations = {
+      grapelab = let
+        hostName = "grapelab";
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs outputs system pkgs stable gLib gVar hostName;
+          };
           modules = [
-            ./nixos/systems/${host}/configuration.nix
+            ./nixos/systems/grapelab/configuration.nix
           ];
         };
-      })
-      gVar.hostNames);
 
-    homeConfigurations = builtins.listToAttrs (map (homeFile: let
-        splitName = nixpkgs.lib.strings.splitString "-" homeFile;
-        host = nixpkgs.lib.strings.removeSuffix ".nix" (nixpkgs.lib.lists.last splitName);
-        username = builtins.head splitName;
-        # homeName = "${username}-${host}";
-        # homePath = "${homeName}.nix";
-      in {
-        name = "${username}-${host}";
-        value = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = {inherit inputs outputs gLib gVar host username;};
+      grapespire = let
+        hostName = "grapespire";
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs outputs system pkgs stable gLib gVar hostName;
+          };
           modules = [
-            ./home-manager/homes/${homeFile}
+            ./nixos/systems/grapespire/configuration.nix
           ];
         };
-      })
-      gVar.homeNames);
+
+      grapestation = let
+        hostName = "grapestation";
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs outputs system pkgs stable gLib gVar hostName;
+          };
+          modules = [
+            ./nixos/systems/grapestation/configuration.nix
+          ];
+        };
+    };
+
+    homeConfigurations = {
+      "marcus-grapelab" = let
+        hostName = "grapelab";
+        username = "marcus";
+      in
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs outputs system gLib gVar hostName username;
+          };
+          modules = [
+            ./home-manager/homes/marcus-grapelab.nix
+          ];
+        };
+
+      "marcus-grapespire" = let
+        hostName = "grapespire";
+        username = "marcus";
+      in
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs outputs system gLib gVar hostName username;
+          };
+          modules = [
+            ./home-manager/homes/marcus-grapespire.nix
+          ];
+        };
+
+      "paramount-grapespire" = let
+        hostName = "grapespire";
+        username = "paramount";
+      in
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs outputs system gLib gVar hostName username;
+          };
+          modules = [
+            ./home-manager/homes/paramount-grapespire.nix
+          ];
+        };
+
+      "marcus-grapestation" = let
+        hostName = "grapestation";
+        username = "marcus";
+      in
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs outputs system gLib gVar hostName username;
+          };
+          modules = [
+            ./home-manager/homes/marcus-grapestation.nix
+          ];
+        };
+    };
   };
 }

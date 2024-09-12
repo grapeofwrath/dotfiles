@@ -4,13 +4,13 @@
   pkgs,
   lib,
   ...
-}: let
+}: with lib; let
   cfg = config.desktop.hyprland;
 in {
   options.desktop.hyprland = {
-    enable = lib.mkEnableOption "hyprland";
+    enable = mkEnableOption "hyprland";
   };
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     nix.settings = {
       substituters = [
         "https://hyprland.cachix.org"

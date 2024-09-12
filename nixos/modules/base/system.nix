@@ -4,13 +4,14 @@
   lib,
   gVar,
   ...
-}: let
+}: with lib; let
   cfg = config.base.system;
 in {
   options.base.system = {
-    latestKernel = lib.mkOption {
+    latestKernel = mkOption {
       description = "Enable the latest kernel";
-      type = lib.types.bool;
+      type = types.bool;
+      default = true;
     };
   };
   config = {
@@ -22,14 +23,14 @@ in {
         };
         efi.canTouchEfiVariables = true;
       };
-      kernelPackages = lib.mkIf cfg.latestKernel pkgs.linuxPackages_latest;
+      kernelPackages = mkIf cfg.latestKernel pkgs.linuxPackages_latest;
       kernelModules = ["v4l2loopback"];
       extraModulePackages = [config.boot.kernelPackages.v4l2loopback];
     };
 
-    i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
+    i18n.defaultLocale = mkDefault "en_US.UTF-8";
 
-    time.timeZone = lib.mkDefault "America/Chicago";
+    time.timeZone = mkDefault "America/Chicago";
 
     environment.variables = {
       EDITOR = "nvim";
@@ -38,13 +39,13 @@ in {
     console = let
       theme = builtins.attrValues gVar.palette;
     in {
-      colors = builtins.map (v: lib.strings.removePrefix "#" v) theme;
+      colors = map (v: strings.removePrefix "#" v) theme;
       useXkbConfig = true;
     };
 
     services.xserver = {
       xkb = {
-        layout = lib.mkDefault "us";
+        layout = mkDefault "us";
         options = "caps:escape";
       };
     };

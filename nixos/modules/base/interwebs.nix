@@ -2,11 +2,10 @@
   config,
   pkgs,
   lib,
-  host,
+  hostName,
   ...
-}: let
-  cfg = config.base.interwebs;
-  getFileName = lib.stringAsChars (x:
+}: with lib; let
+  getFileName = stringAsChars (x:
     if x == " "
     then "-"
     else x);
@@ -23,45 +22,42 @@
         ssid=${ssid}
 
         [wifi-security]
-        ${lib.optionalString (opt.psk != null) ''
+        ${optionalString (opt.psk != null) ''
           key-mgmt=wpa-psk
           psk=${opt.psk}''}
       '';
     };
   };
-  keyFiles = lib.mapAttrs' createWifi config.networking.wireless.networks;
+  keyFiles = mapAttrs' createWifi config.networking.wireless.networks;
 in {
-  options.base.interwebs = {
-    hostName = lib.mkOption {
-      type = lib.types.str;
-      default = host;
+  environment.etc = keyFiles;
+
+  systemd.services.NetworkManager-predifined-connections = {
+    restartTriggers = mapAttrsToList (name: value: value.source) keyFiles;
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.coreutils}/bin/true";
+      ExecReload = "${pkgs.networkmanager}/bin/nmcli connection reload";
     };
+    reloadIfChanged = true;
+    wantedBy = ["multi-user.target"];
   };
-  config = {
-    environment.etc = keyFiles;
-    systemd.services.NetworkManager-predifined-connections = {
-      restartTriggers = lib.mapAttrsToList (name: value: value.source) keyFiles;
-      serviceConfig = {
-        Type = "oneshot";
-        RemainAfterExit = true;
-        ExecStart = "${pkgs.coreutils}/bin/true";
-        ExecReload = "${pkgs.networkmanager}/bin/nmcli connection reload";
-      };
-      reloadIfChanged = true;
-      wantedBy = ["multi-user.target"];
+
+  networking = {
+    inherit hostName;
+    networkmanager = {
+      enable = true;
     };
-    networking = {
-      inherit (cfg) hostName;
-      networkmanager = {
-        enable = true;
+    firewall = {
+      enable = true;
+    };
+    wireless.networks = {
+      "TheReturnOfThePing" = {
+        psk = "jaggedbanana250"; #config.sops.secrets."wifi-pass".path
       };
-      wireless.networks = {
-        "TheReturnOfThePing" = {
-          psk = "jaggedbanana250"; #config.sops.secrets."wifi-pass".path
-        };
-        "Marcus's Work Phone" = {
-          psk = "Para2021";
-        };
+      "Marcus's Work Phone" = {
+        psk = "Para2021";
       };
     };
   };

@@ -28,7 +28,6 @@
   };
 
   desktop = {
-    gnome.enable = false;
     hyprland.enable = true;
     plasma.enable = true;
     tty-login.enable = false;

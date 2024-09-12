@@ -18,12 +18,7 @@
   ];
 
   # Personal Modules
-  desktop = {
-    gnome.enable = false;
-    hyprland.enable = true;
-    plasma.enable = false;
-    tty-login.enable = true;
-  };
+  users.additionalUsers = ["paramount"];
 
   base = {
     fish.enable = true;
@@ -31,6 +26,12 @@
     system.latestKernel = true;
     tailscale.enable = true;
     appimage.enable = true;
+  };
+
+  desktop = {
+    hyprland.enable = true;
+    plasma.enable = false;
+    tty-login.enable = true;
   };
 
   # Believe it or not, if you change this? Straight to jail.

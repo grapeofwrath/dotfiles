@@ -1,4 +1,9 @@
-{inputs, ...}: {
+{
+  inputs,
+  nixpkgs,
+  system,
+  ...
+}: {
   # This one brings our custom packages from the 'pkgs' directory
   #additions = final: _prev: import ../pkgs final.pkgs;
 
@@ -14,6 +19,13 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+  };
+
+  pkgs = import nixpkgs {
+    inherit system;
+    overlays = [
+      inputs.hyprpanel.overlay.${system}
+    ];
   };
 
   # When applied, the stable nixpkgs set (declared in the flake inputs) will

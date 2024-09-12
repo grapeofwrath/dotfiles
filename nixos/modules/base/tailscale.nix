@@ -3,13 +3,13 @@
   pkgs,
   lib,
   ...
-}: let
+}: with lib; let
   cfg = config.base.tailscale;
 in {
   options.base.tailscale = {
-    enable = lib.mkEnableOption "tailscale";
+    enable = mkEnableOption "tailscale";
   };
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services.tailscale.enable = true;
     systemd.services.tailscale-autoconnect = {
       description = "Automatic connection to Tailscale";

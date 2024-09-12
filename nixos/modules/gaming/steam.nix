@@ -3,13 +3,13 @@
   pkgs,
   lib,
   ...
-}: let
+}: with lib; let
   cfg = config.gaming.steam;
 in {
   options.gaming.steam = {
-    enable = lib.mkEnableOption "steam";
+    enable = mkEnableOption "steam";
   };
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       protonup-qt
       mesa
