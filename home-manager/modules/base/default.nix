@@ -20,6 +20,7 @@
       font-awesome
       polkit
       tree
+      imagemagick
     ];
 
     file = {

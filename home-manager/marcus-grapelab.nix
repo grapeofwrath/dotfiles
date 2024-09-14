@@ -29,8 +29,6 @@
   };
 
   desktop = {
-    ags.enable = false;
     hyprland.enable = false;
-    waybar.enable = false;
   };
 }

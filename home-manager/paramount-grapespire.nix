@@ -36,7 +36,6 @@
     zellij.enable = true;
   };
   desktop = {
-    ags.enable = true;
     hyprland.enable = true;
   };
 }

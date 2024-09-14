@@ -20,6 +20,7 @@
       url = "github:Jas-SinghFSU/HyprPanel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    walker.url = "github:abenz1267/walker";
 
     nixvim = {
       url = "github:nix-community/nixvim";
