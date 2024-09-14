@@ -45,10 +45,38 @@ in {
       udev.extraRules = ''
         KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
       '';
-      # sunshine = {
-      #   enable = true;
-      #   capSysAdmin = true;
-      # };
+      sunshine = {
+        # enable = true;
+        # capSysAdmin = true;
+        applications = {
+          env = {
+            PATH = "$(PATH):$(HOME)/.local/bin";
+          };
+          apps = [
+            {
+              name = "Desktop";
+              image-path = "desktop.png";
+            }
+            {
+              name = "Low Res Desktop";
+              image-path = "desktop.png";
+              prep-cmd = [
+                {
+                  do = "xrandr --output HDMI-1 --mode 1920x1080";
+                  undo = "xrandr --output HDMI-1 --mode 1920x1200";
+                }
+              ];
+            }
+            {
+              name = "Steam Big Picture";
+              detached = [
+                "steam steam://open/bigpicture"
+              ];
+              image-path = "steam.png";
+            }
+          ];
+        };
+      };
     };
     boot.kernelModules = ["uinput"];
     hardware.graphics = {
