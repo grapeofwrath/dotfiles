@@ -7,7 +7,7 @@
   ...
 }: let
   cfg = config.server.soft-serve;
-  keyName = "${gVar.serverUser}-${hostName}";
+  keyName = "${gVar.defaultUser}-${hostName}";
 in {
   options.server.soft-serve = {
     enable = lib.mkEnableOption "Enable Soft Serve";

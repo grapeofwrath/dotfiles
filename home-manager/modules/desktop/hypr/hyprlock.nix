@@ -13,7 +13,7 @@ in lib.mkIf cfg.enable {
       background = [
         {
           monitor = "";
-          path = "";# only png supported for now
+          path = "~/Pictures/lockscreen.png";# only png supported for now
         }
       ];
 
@@ -26,9 +26,9 @@ in lib.mkIf cfg.enable {
           dots_spacing = "0.15"; # Scale of dots' absolute size, 0.0 - 1.0
           dots_center = true;
           dots_rounding = "-1"; # -1 default circle, -2 follow input-field rounding
-          outer_color = "rgb(151515)";
-          inner_color = "rgb(FFFFFF)";
-          font_color = "rgb(10, 10, 10)";
+          outer_color = "rgb(${theme.base02})";
+          inner_color = "rgb(${theme.base00})";
+          font_color = "rgb(${theme.base05})";
           fade_on_empty = true;
           fade_timeout = 1000; # Milliseconds before fade_on_empty is triggered.
           placeholder_text = "<i>Input Password...</i>"; # Text rendered in the input box when it's empty.
@@ -81,7 +81,7 @@ in lib.mkIf cfg.enable {
       image = [
         {
           monitor = "";
-          path = "";
+          path = "~/Pictures/profile.png";
           size = 280; # lesser side if not 1:1 ratio
           rounding = "-1"; # negative values mean circle
           border_size = 4;

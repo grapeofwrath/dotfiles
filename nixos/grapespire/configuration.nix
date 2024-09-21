@@ -11,7 +11,6 @@
   environment.systemPackages = with pkgs; [
     vim
     curl
-    wget
     virt-manager
     qemu
     qemu_kvm

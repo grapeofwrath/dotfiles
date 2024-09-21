@@ -1,5 +1,5 @@
 {
-  serverUser = "marcus";
+  defaultUser = "marcus";
   palette = {
     base00 = "14171F"; #14171F
     base01 = "323848"; #323848

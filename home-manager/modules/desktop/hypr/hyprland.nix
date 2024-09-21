@@ -13,6 +13,8 @@ in {
   };
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      brightnessctl
+      grimblast
       hyprpanel
     ];
     wayland.windowManager.hyprland = {
@@ -120,11 +122,14 @@ in {
             ", Print, exec, grimblast copy area"
             "$mod, L, exec, pgrep hyprlock || hyprlock"
             "$mod, D, exec, walker"
+            "$mod, F, exec, nautilus"
 
             "$mod, h, movefocus, l"
             "$mod, l, movefocus, r"
             "$mod, k, movefocus, u"
             "$mod, j, movefocus, d"
+            ", XF86MonBrightnessUp, exec, brightnessctl -q s +10%"
+            ", XF86MonBrightnessDown, exec, brightnessctl -q s 10%-"
           ]
           ++ (
           builtins.concatLists (builtins.genList (i:
@@ -144,10 +149,6 @@ in {
           ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          # ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl} -q s +10%"
-          # ", XF86MonBrightnessDown, exec, ${pkgs.brightnessctl} -q s 10%-"
-          ", XF86MonBrightnessUp, exec, ${pkgs.brillo} -q -u 300000 -A 5"
-          ", XF86MonBrightnessDown, exec, ${pkgs.brillo} -q -u 300000 -U 5"
         ];
       };
     };

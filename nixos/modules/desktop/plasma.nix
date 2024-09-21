@@ -12,6 +12,14 @@ in {
       type = types.bool;
       default = false;
     };
+    #TODO
+    # make as submodule
+    # https://nixos.org/manual/nixos/stable/#section-option-types-submodule
+    #
+    # user = mkOption {
+    #   type = types.str;
+    #   default = "marcus";
+    # };
   };
   config = mkIf cfg.enable {
     services = {
@@ -24,7 +32,7 @@ in {
         };
         autoLogin = mkIf cfg.auto-login {
           enable = true;
-          user = gVar.username;
+          user = gVar.defaultUser;
         };
       };
     };

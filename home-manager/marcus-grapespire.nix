@@ -7,24 +7,13 @@
     username = "marcus";
     packages = with pkgs; [
       # desktop
-      brave
-      discord
-      spotify
       element-desktop
-      gnome-keyring
       kdePackages.qtstyleplugin-kvantum
-      filezilla
-      # charm
-      vhs
-      charm-freeze
-      glow
       # design
       blender
       # gaming
       wineWowPackages.unstableFull
       moonlight-qt
-      # custom
-      #jot
     ];
   };
 

@@ -12,6 +12,18 @@
 }: with lib; let
   cfg = config.users;
   keyScan = gLib.scanFiles ./keys;
+  # TODO
+  # make submodule
+  mkUser = {
+    username = mkOption {
+      type = types.str;
+      default = "";
+    };
+    packages = mkOption {
+      type = types.listOf types.pkgs;
+      default = [];
+    };
+  };
 in {
   imports = [inputs.home-manager.nixosModules.home-manager];
 
@@ -25,15 +37,31 @@ in {
 
   config = {
     users = {
+      mutableUsers = true;
       users =
         {
-          marcus = {
-            name = "marcus";
+          ${gVar.defaultUser} = {
+            name = "${gVar.defaultUser}";
             isNormalUser = true;
-            home = "/home/marcus";
+            home = "/home/${gVar.defaultUser}";
             group = "users";
             extraGroups = ["wheel" "networkmanager" "libvirtd"];
             openssh.authorizedKeys.keys = builtins.map (builtins.readFile) keyScan;
+            # hashedPasswordFile = config.sops.secrets."user-passwords"."marcus".path;
+            packages = with pkgs; [
+              # desktop
+              brave
+              discord
+              spotify
+              gnome-keyring
+              filezilla
+              # charm
+              vhs
+              charm-freeze
+              glow
+              # custom
+              #jot
+            ];
           };
         }
         // builtins.listToAttrs (map (username: {
@@ -45,6 +73,8 @@ in {
               group = "users";
               extraGroups = ["wheel" "networkmanager" "libvirtd"];
               openssh.authorizedKeys.keys = builtins.map (builtins.readFile) keyScan;
+              # hashedPasswordFile = config.sops.secrets."user-passwords"."${username}".path;
+              # packages = with pkgs; [ ];
             };
           })
           cfg.additionalUsers);
@@ -62,7 +92,7 @@ in {
 
       users =
         {
-          marcus = import ./../../../home-manager/marcus-${hostName}.nix;
+          ${gVar.defaultUser} = import ./../../../home-manager/${gVar.defaultUser}-${hostName}.nix;
         }
         // builtins.listToAttrs (map (username: {
             name = username;
