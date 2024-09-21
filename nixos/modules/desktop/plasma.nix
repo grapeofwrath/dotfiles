@@ -30,7 +30,7 @@ in {
           autoNumlock = true;
           wayland.enable = true;
         };
-        autoLogin = mkIf cfg.auto-login {
+        autoLogin = mkIf cfg.autoLogin {
           enable = true;
           user = gVar.defaultUser;
         };

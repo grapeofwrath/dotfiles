@@ -44,5 +44,6 @@
   desktop = {
     hyprland.enable = false;
     steam.enable = true;
+    terminal.fontSize = 16;
   };
 }

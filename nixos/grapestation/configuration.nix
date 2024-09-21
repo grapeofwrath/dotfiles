@@ -31,7 +31,10 @@
 
   desktop = {
     hyprland.enable = false;
-    plasma.enable = true;
+    plasma = {
+      enable = true;
+      autoLogin = false;
+    };
     tty-login.enable = false;
   };
 
