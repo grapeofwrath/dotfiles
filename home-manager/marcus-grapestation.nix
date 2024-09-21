@@ -42,7 +42,7 @@
   };
 
   desktop = {
-    hyprland.enable = true;
+    hyprland.enable = false;
     steam.enable = true;
   };
 }

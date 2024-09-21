@@ -8,7 +8,7 @@
 in {
   options.desktop.plasma = {
     enable = mkEnableOption "plasma";
-    auto-login = mkOption {
+    autologin = mkOption {
       type = types.bool;
       default = false;
     };

@@ -16,6 +16,7 @@
     virt-manager
     qemu
     qemu_kvm
+    bottles
   ];
 
   # Personal Modules
@@ -25,17 +26,18 @@
     fish.enable = true;
     system.latestKernel = true;
     tailscale.enable = true;
+    vmware.enable = false;
   };
 
   desktop = {
-    hyprland.enable = true;
+    hyprland.enable = false;
     plasma.enable = true;
     tty-login.enable = false;
   };
 
   gaming = {
     steam.enable = true;
-    sunshine.enable = true;
+    sunshine.enable = false;
   };
 
   # Believe it or not, if you change this? Straight to jail.
