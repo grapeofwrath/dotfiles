@@ -21,9 +21,8 @@
   users.additionalUsers = ["paramount"];
 
   base = {
-    fish.enable = true;
     battery.enable = true;
-    system.latestKernel = true;
+    latestKernel.enable = true;
     tailscale.enable = true;
     appimage.enable = true;
   };
