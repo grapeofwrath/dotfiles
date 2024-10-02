@@ -19,7 +19,7 @@
           astro.enable = true;
           tailwindcss.enable = true;
           templ.enable = true;
-          tsserver.enable = true;
+          ts-ls.enable = true;
         };
       };
       lspkind = {
