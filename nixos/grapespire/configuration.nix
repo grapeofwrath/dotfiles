@@ -4,6 +4,7 @@
     ./../modules/base
     ./../modules/desktop
     ./../modules/users
+    ./../modules/gaming
   ];
 
   virtualisation.libvirtd.enable = true;
@@ -31,6 +32,10 @@
     hyprland.enable = true;
     plasma.enable = false;
     tty-login.enable = true;
+  };
+
+  gaming = {
+    steam.enable = true;
   };
 
   # Believe it or not, if you change this? Straight to jail.

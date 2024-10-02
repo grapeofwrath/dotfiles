@@ -51,7 +51,8 @@ in {
             packages = with pkgs; [
               # desktop
               brave
-              discord
+              # discord
+              vesktop
               spotify
               gnome-keyring
               filezilla

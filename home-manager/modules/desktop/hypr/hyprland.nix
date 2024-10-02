@@ -62,6 +62,13 @@ in {
           "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
           "MOZ_ENABLE_WAYLAND, 1"
         ];
+        windowrule = [
+          "center,^(steam)$"
+        ];
+        windowrulev2 = [
+          "stayfocused, title:^()$,class:^(steam)$"
+          "minsize 1 1, title:^()$,class:^(steam)$"
+        ];
         misc = {
           mouse_move_enables_dpms = true;
           key_press_enables_dpms = false;
@@ -111,45 +118,6 @@ in {
           pseudotile = true;
           preserve_split = true;
         };
-        "$mod" = "SUPER";
-        bind =
-          [
-            "$mod, Q, killactive,"
-            "$modSHIFT, M, exit,"
-            "$mod, Return, exec, kitty"
-            "$mod, W, exec, brave"
-            "$modSHIFT, A, exec, pkill hyprpanel && hyprctl dispatch exec hyprpanel"
-            ", Print, exec, grimblast copy area"
-            "$mod, L, exec, pgrep hyprlock || hyprlock"
-            "$mod, D, exec, walker"
-            "$mod, F, exec, nautilus"
-
-            "$mod, h, movefocus, l"
-            "$mod, l, movefocus, r"
-            "$mod, k, movefocus, u"
-            "$mod, j, movefocus, d"
-            ", XF86MonBrightnessUp, exec, brightnessctl -q s +10%"
-            ", XF86MonBrightnessDown, exec, brightnessctl -q s 10%-"
-          ]
-          ++ (
-          builtins.concatLists (builtins.genList (i:
-              let ws = i + 1;
-              in [
-                "$mod, code:1${toString i}, workspace, ${toString ws}"
-                "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-              ]
-            )
-            10)
-        );
-        bindm = [
-          "$mod,mouse:272,movewindow"
-          "$mod,mouse:273,resizewindow"
-        ];
-        bindel = [
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ];
       };
     };
   };
