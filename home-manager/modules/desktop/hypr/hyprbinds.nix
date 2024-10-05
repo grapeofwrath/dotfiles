@@ -23,6 +23,7 @@ in lib.mkIf cfg.enable {
           "$mod, D, exec, walker"
           "$mod, F, exec, nautilus"
 
+          "$modSHIFT, S, togglesplit,"
           "$mod, h, movefocus, l"
           "$mod, l, movefocus, r"
           "$mod, k, movefocus, u"
