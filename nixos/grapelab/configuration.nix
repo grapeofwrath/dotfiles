@@ -22,8 +22,7 @@
   base = {
     appimage.enable = true;
     bluetooth.enable = true;
-    fish.enable = true;
-    system.latestKernel = true;
+    latestKernel.enable = true;
     tailscale.enable = true;
   };
 

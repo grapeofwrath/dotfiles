@@ -5,6 +5,7 @@
     ./../modules/desktop
     ./../modules/users
     ./../modules/gaming
+    ./../modules/server
   ];
 
   virtualisation.libvirtd.enable = true;
@@ -35,6 +36,10 @@
 
   gaming = {
     steam.enable = true;
+  };
+
+  server = {
+    podman.enable = true;
   };
 
   # Believe it or not, if you change this? Straight to jail.

@@ -45,7 +45,7 @@ in {
             isNormalUser = true;
             home = "/home/${gVar.defaultUser}";
             group = "users";
-            extraGroups = ["wheel" "networkmanager" "libvirtd"];
+            extraGroups = ["wheel" "networkmanager" "libvirtd" "docker" "podman"];
             openssh.authorizedKeys.keys = builtins.map (builtins.readFile) keyScan;
             # hashedPasswordFile = config.sops.secrets."user-passwords"."marcus".path;
             packages = with pkgs; [

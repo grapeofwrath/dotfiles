@@ -75,6 +75,9 @@ in {
           force_default_wallpaper = "0";
           disable_splash_rendering = true;
         };
+        gestures = {
+          workspace_swipe = true;
+        };
         animations = {
           enabled = "yes";
           bezier = [
