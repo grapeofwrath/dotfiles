@@ -50,6 +50,7 @@
   };
 
   gnome.enable = true;
+  hyprland.enable = true;
 
   # Believe it or not, if you change this? Straight to jail.
   system.stateVersion = "24.11";

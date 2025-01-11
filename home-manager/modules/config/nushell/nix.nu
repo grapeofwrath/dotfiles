@@ -46,7 +46,7 @@ def nx-completions [] {
 def nx-config [] {
     let original_dir = $env.PWD
     cd /home/marcus/dotfiles
-    nvim flake.nix
+    nvim
     cd $original_dir
 }
 
@@ -71,8 +71,8 @@ def nx-deploy [] {
 def nx-up [] {
     print "\n-> Updating nix..."
     let current_hostname = (hostname | str trim)
-    sudo nix flake update --flake $"/home/mead/nix"
-    sudo nixos-rebuild switch --flake $"/home/mead/nix#($current_hostname)"
+    sudo nix flake update --flake $"/home/marcus/dotfiles"
+    sudo nixos-rebuild switch --flake $"/home/marcus/dotfiles#($current_hostname)"
 }
 
 def nx-clean [] {

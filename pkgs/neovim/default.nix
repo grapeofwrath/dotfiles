@@ -190,7 +190,6 @@ in {
         };
       };
     };
-    undoFile.enable = true;
     useSystemClipboard = true;
     visuals.nvim-web-devicons.enable = true;
   };
