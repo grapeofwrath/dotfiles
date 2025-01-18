@@ -3,12 +3,15 @@
   config,
   pkgs,
   lib,
+  gLib,
   campfire,
   ...
 }: let
   cfg = config.hyprland;
   h-RGB = h: lib.strings.removePrefix "#" h;
 in {
+  imports = gLib.scanPaths ./.;
+
   options.hyprland = with lib; {
     enable = mkEnableOption "Enable hyprland";
 
@@ -23,14 +26,29 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      extraConfig = builtins.readFile ./../config/hypr/hyprland.conf;
+      extraConfig = builtins.readFile ./../../config/hypr/hyprland.conf;
       settings = let
         c = campfire;
       in {
+        exec-once = [
+          "systemctl --user start ${lib.getExe pkgs.hyprpolkitagent}"
+          "hyprpanel"
+          "walker --gapplication-service"
+        ];
+
+        env = [
+          "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        ];
+
         general = {
-          "col.inactive_border" = "rgb(${h-RGB c.shore})";
-          "col.active_border" = "rgb(${h-RGB c.foam}) rgb(${h-RGB c.fern}) 45deg";
+          "col.inactive_border" = "rgb(${h-RGB c.subtle})";
+          "col.active_border" = builtins.concatStringsSep " " [
+            "rgb(${h-RGB c.ember})"
+            "rgb(${h-RGB c.text})"
+            "45deg"
+          ];
         };
+
         monitor = cfg.monitors;
 
         "$mod" = "SUPER";
@@ -38,10 +56,12 @@ in {
           [
             "$mod, RETURN, exec, ghostty"
             "$mod, W, exec, brave"
+            "$mod, A, exec, walker"
 
             "$mod, Q, killactive"
             "$modSHIFT, M, exit"
             "$mod, S, togglesplit, # dwindle"
+            "$mod, L, exec, hyprlock"
           ]
           ++ (
             builtins.concatLists (builtins.genList (i: let
@@ -50,7 +70,7 @@ in {
                 "$mod, code:1${toString i}, workspace, ${toString ws}"
                 "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
               ])
-              9)
+              10)
           );
 
         # Laptop multimedia keys for volume and LCD brightness

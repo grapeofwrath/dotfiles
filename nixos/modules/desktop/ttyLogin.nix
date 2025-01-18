@@ -1,20 +1,21 @@
 {
-    config,
-    lib,
-    ...
+  config,
+  lib,
+  defaultUser,
+  ...
 }:
 with lib; let
-    cfg = config.ttyLogin;
+  cfg = config.ttyLogin;
 in {
-    options.ttyLogin = {
-        enable = mkEnableOption "Enable TTY login";
+  options.ttyLogin = {
+    enable = mkEnableOption "Enable TTY login";
+  };
+  config = mkIf cfg.enable {
+    services = {
+      # getty.autologinUser = defaultUser;
+      xserver = {
+        displayManager.startx.enable = true;
+      };
     };
-    config = mkIf cfg.enable {
-        services = {
-            # getty.autologinUser = gVar.username;
-            xserver = {
-                displayManager.startx.enable = true;
-            };
-        };
-    };
+  };
 }

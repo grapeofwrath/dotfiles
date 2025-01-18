@@ -63,6 +63,10 @@ in {
         n = "nvim";
         ".." = "cd ..";
       };
+      extraLogin = ''
+         # uwsm start hyprland-uwsm.desktop
+        Hyprland
+      '';
     };
 
     carapace = {

@@ -14,14 +14,6 @@ in {
       default = false;
       description = "Whether or not to enable auto login with defaultUser";
     };
-    #TODO
-    # make as submodule
-    # https://nixos.org/manual/nixos/stable/#section-option-types-submodule
-    #
-    # user = mkOption {
-    #   type = types.str;
-    #   default = "marcus";
-    # };
   };
   config = mkIf cfg.enable {
     services = {

@@ -35,6 +35,7 @@
       vhs
       charm-freeze
       glow
+      gnome-software
       # custom
       #jot
     ];
@@ -49,8 +50,9 @@
     loginServer = "https://login.tailscale.com";
   };
 
-  gnome.enable = true;
+  gnome.enable = false;
   hyprland.enable = true;
+  ttyLogin.enable = true;
 
   # Believe it or not, if you change this? Straight to jail.
   system.stateVersion = "24.11";

@@ -1,21 +1,20 @@
 {pkgs, ...}: let
-  # gVar = import ./../../var;
   c = {
-    base = "#14171F";
-    surface = "#2A2F3C";
+    base = "#14171f";
+    surface = "#2a2f3c";
     overlay = "#323848";
-    muted = "#3F475A";
-    subtle = "#6D7A88";
-    highlight = "#97A4AF";
-    moon = "#DDD7CA";
-    text = "#EFC164";
-    ember = "#F3835D";
-    dawn = "#F35955";
-    dusk = "#A885C1";
-    shore = "#3A8098";
-    foam = "#70ADC2";
+    muted = "#3f475a";
+    subtle = "#6d7a88";
+    highlight = "#97a4af";
+    moon = "#ddd7ca";
+    text = "#efc164";
+    ember = "#f3835d";
+    dawn = "#f35955";
+    dusk = "#a885c1";
+    shore = "#3a8098";
+    foam = "#70adc2";
     evergreen = "#468966";
-    fern = "#67CC8E";
+    fern = "#67cc8e";
   };
 in {
   config.vim = {
@@ -91,6 +90,30 @@ in {
       lspkind.enable = true;
       lsplines.enable = true;
     };
+    luaConfigPre = ''
+      require("rose-pine").setup({
+          styles = {
+              bold = true,
+              italic = true,
+          },
+          palette = {
+              main = {
+                  base = '${c.base}',
+                  surface = '${c.surface}',
+                  overlay = '${c.overlay}',
+                  muted = '${c.muted}',
+                  subtle = '${c.subtle}',
+                  text = '${c.text}',
+                  love = '${c.dawn}',
+                  gold = '${c.fern}',
+                  rose = '${c.ember}',
+                  pine = '${c.dusk}',
+                  foam = '${c.foam}',
+                  iris = '${c.evergreen}',
+              },
+          },
+      })
+    '';
     notes = {
       todo-comments.enable = true;
     };
@@ -100,6 +123,7 @@ in {
       shiftwidth = 4;
       tabstop = 4;
     };
+    preventJunkFiles = true;
     snippets.luasnip.enable = true;
     syntaxHighlighting = true;
     telescope = {
@@ -119,28 +143,6 @@ in {
       enable = true;
       name = "rose-pine";
       style = "main";
-      # TODO
-      # fork nvf to add setupOpts to theme module
-      # extraConfig = ''
-      #   require("rose-pine").setup({
-      #     palette = {
-      #       main = {
-      #         base = ${c.base};
-      #         surface = ${c.surface};
-      #         overlay = ${c.overlay};
-      #         muted = ${c.muted};
-      #         subtle = ${c.subtle};
-      #         text = ${c.text};
-      #         love = ${c.ember};
-      #         gold = ${c.evergreen};
-      #         rose = ${c.dawn};
-      #         pine = ${c.dusk};
-      #         foam = ${c.foam};
-      #         iris = ${c.fern};
-      #       }
-      #     }
-      #   })
-      # '';
     };
     treesitter = {
       enable = true;

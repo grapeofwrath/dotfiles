@@ -13,6 +13,11 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprpanel = {
+      url = "github:Jas-SinghFSU/HyprPanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    walker.url = "github:abenz1267/walker";
 
     nvf.url = "github:notashelf/nvf";
 
@@ -25,6 +30,7 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
+    nvf,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -36,7 +42,7 @@
         allowUnfree = true;
         allowUnfreePredicate = _: true;
       };
-      # overlays = [];
+      overlays = [inputs.hyprpanel.overlay];
     };
 
     stable = import nixpkgs-stable {
@@ -47,8 +53,8 @@
       };
     };
 
-    gVimConfig = inputs.nvf.lib.neovimConfiguration {
-      inherit pkgs;
+    gMakeNeovim = nvf.lib.neovimConfiguration {
+      inherit (nixpkgs.legacyPackages.${system}) pkgs;
       modules = [./pkgs/neovim];
     };
 
@@ -96,7 +102,9 @@
   in {
     formatter.${system} = pkgs.alejandra;
 
-    packages.${system}.gVim = gVimConfig.neovim;
+    packages.${system} = {
+      gVim = gMakeNeovim.neovim;
+    };
 
     nixosConfigurations = builtins.listToAttrs (map (hostName: {
         name = hostName;
@@ -104,10 +112,10 @@
           inherit system;
           specialArgs = {
             inherit inputs outputs system pkgs stable;
-            inherit gLib gVimConfig defaultUser hostName campfire;
+            inherit gLib defaultUser hostName campfire;
           };
           modules = [
-            ./nixos/${hostName}/configuration.nix
+            ./nixos/${hostName}
           ];
         };
       })

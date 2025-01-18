@@ -6,7 +6,6 @@
   lib,
   system,
   gLib,
-  gVimConfig,
   defaultUser,
   hostName,
   campfire,
@@ -62,7 +61,11 @@ in {
 
     environment.systemPackages = [
       inputs.home-manager.packages.${pkgs.system}.default
-      gVimConfig.neovim
+      # gVimConfig.neovim
+      outputs.packages.${system}.gVim
+      # outputs.packages.${system}.gVim
+      # pkgs.wl-clipboard
+      # pkgs.ripgrep
     ];
     home-manager = {
       useUserPackages = true;

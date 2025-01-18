@@ -10,6 +10,7 @@ def nx [
         print "\nNixOS management commands:"
         print "  nx config   - Edit NixOS configuration"
         print "  nx deploy   - Deploy current NixOS configuration"
+        print "  nx rebuild  - Rebuild current NixOS configuration"
         print "  nx up       - Update NixOS flake"
         print "  nx clean    - Remove old generations"
         print "  nx gc       - Run garbage collection"
@@ -21,6 +22,7 @@ def nx [
     match $sub {
     "config" => { nx-config }
     "deploy" => { nx-deploy }
+    "rebuild" => { nx-rebuild }
     "up" => { nx-up }
     "clean" => { nx-clean }
     "gc" => { nx-gc }
@@ -35,6 +37,7 @@ def nx-completions [] {
     [
         "config",  # Edit NixOS configuration
         "deploy",  # Deploy current NixOS configuration
+        "rebuild", # Rebuild current NixOS configuration
         "up",      # Update NixOS flake
         "clean",   # Remove old generations
         "gc",      # Run garbage collection
@@ -64,6 +67,22 @@ def nx-deploy [] {
 
     let gen = (nixos-rebuild list-generations | lines | find current | first)
     git commit -am $gen
+    cd $original_dir
+    print "\n-> NixOS rebuild completed successfully."
+}
+
+def nx-rebuild [] {
+    let current_hostname = (hostname | str trim)
+    let original_dir = $env.PWD
+    cd /home/marcus/dotfiles
+    let view_diff = ([ Yes No ] | input list "Show changes?")
+    if $view_diff == 0 {
+        git diff -U0 **.nix
+    }
+    print $"\n-> Rebuilding NixOS for ($current_hostname)..."
+
+    sudo nixos-rebuild switch --flake $"./#($current_hostname)"
+
     cd $original_dir
     print "\n-> NixOS rebuild completed successfully."
 }

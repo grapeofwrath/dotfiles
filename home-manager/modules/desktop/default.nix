@@ -6,10 +6,10 @@
   imports = gLib.scanPaths ./.;
   home = {
     file = {
-      ".config/phortune/phortunes".source = ./../../../assets/phortunes;
-      "Pictures/wallpaper.png".source = ./../../../assets/wallpaper.png;
-      "Pictures/profile.png".source = ./../../../assets/profile.png;
-      "Pictures/lockscreen.png".source = ./../../../assets/lockscreen.png;
+      ".config/phortune/phortunes".source = ./../config/phortunes;
+      "Pictures/wallpaper.png".source = ./../config/wallpaper.png;
+      "Pictures/profile.png".source = ./../config/profile.png;
+      "Pictures/lockscreen.png".source = ./../config/lockscreen.png;
     };
     packages = with pkgs; [
       nautilus

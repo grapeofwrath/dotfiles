@@ -1,6 +1,6 @@
-# dotfiles
+<h1 align="center">dotfiles</h1>
 
-_Keep It Simple Stupid_
+_<p align="center">Keep It Simple Stupid</p>_
 
 ### NixOS
 
@@ -91,6 +91,11 @@ in {
     openssh.authorizedKeys.keys = map (builtins.readFile) keyScan;
     ...
 ```
+
+### TODO
+
+- setup devenv
+- find a more centralized solution for installed packages (system and user)
 
 ## Adding a new system
 
