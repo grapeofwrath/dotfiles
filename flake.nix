@@ -82,6 +82,12 @@
       "grapespire"
       "grapestation"
     ];
+    homes = [
+      "marcus-grapecontrol"
+      "marcus-grapelab"
+      "marcus-grapespire"
+      "marcus-grapestation"
+    ];
     campfire = {
       base = "#14171F";
       surface = "#2A2F3C";
@@ -112,7 +118,7 @@
           inherit system;
           specialArgs = {
             inherit inputs outputs system pkgs stable;
-            inherit gLib defaultUser hostName campfire;
+            inherit gLib defaultUser homes hostName campfire;
           };
           modules = [
             ./nixos/${hostName}
@@ -121,19 +127,21 @@
       })
       systems);
 
-    homeConfigurations = builtins.listToAttrs (map (hostName: {
-        name = "${defaultUser}-${hostName}";
+    homeConfigurations = builtins.listToAttrs (map (home: let
+        hostName = builtins.toString (builtins.elemAt (builtins.split "-" home) 1);
+      in {
+        name = "${home}";
         value = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
             inherit inputs outputs system;
-            inherit gLib defaultUser hostName campfire;
+            inherit gLib hostName campfire;
           };
           modules = [
-            ./home-manager/${defaultUser}-${hostName}.nix
+            ./home-manager/${home}.nix
           ];
         };
       })
-      systems);
+      homes);
   };
 }

@@ -20,25 +20,27 @@
     qemu_kvm
   ];
 
-  users.users.${defaultUser} = {
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "libvirtd"
-      "docker"
-      "podman"
-      "nextcloud"
-    ];
-    packages = with pkgs; [
-      blender
-      gnome-keyring
-      vhs
-      charm-freeze
-      glow
-      gnome-software
-      # custom
-      #jot
-    ];
+  users.users = {
+    ${defaultUser} = {
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "libvirtd"
+        "docker"
+        "podman"
+        "nextcloud"
+      ];
+      packages = with pkgs; [
+        blender
+        gnome-keyring
+        vhs
+        charm-freeze
+        glow
+        gnome-software
+        # custom
+        #jot
+      ];
+    };
   };
 
   # Personal Modules

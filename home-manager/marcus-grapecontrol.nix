@@ -1,5 +1,7 @@
 {...}: {
-    imports = [
-        ./modules/base
-    ];
+  imports = [
+    ./modules/base
+  ];
+
+  home.username = "marcus";
 }

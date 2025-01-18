@@ -20,10 +20,11 @@ options to choose from for each configuration.
 
 Home Manager is installed as a NixOS module (see
 [users/default.nix](./nixos/modules/users/default.nix)) and as standalone
-configurations in the flake. Each configuration added to the flake has a file
-located in [home-manager/](./home-manager/). The filename is the user followed
-by the hostname (ie. user-host.nix). Inside the flake, the hostname and username
-are passed through **extraSpecialArgs** to the configurations.
+configurations in the flake. Each configuration name added to the **homes** list
+in the flake has a file located in [home-manager/](./home-manager/). The
+filename is the user followed by the hostname (ie. user-host.nix). Inside the
+flake, the **hostName** is passed through **extraSpecialArgs** to the
+configurations. The username needs to be set by **home.username**.
 
 Home manager modules are located in
 [home-manager/modules/](./home-manager/modules/). They are sorted between base,
@@ -32,34 +33,15 @@ directories if they are meant to be used across multiple configurations. Modules
 are also separated into files if they are opt-in or they have different custom
 options to choose from for each configuration.
 
-### [Users](./nixos/modules/users/default.nix)
+### Users
 
-Technically, I can add more users to a system from the users module using
-**users.additionalUsers**. This currently works as a list of usernames. Each
-user in the list is then assigned a configuration that looks like so:
+I can add more users to a system via the default **users.users** options. If the
+user will also include a Home Manager setup, that needs to be added to the
+**homes** list in the flake. The corresponding configuration file must also be
+correctly named (user-host.nix) and placed in [home-manager/](.home-manager/).
 
 ```nix
-username = {
-    name = username;
-    isNormalUser = true;
-    home = "/home/${username}";
-    group = "users";
-    extraGroups = [
-        "wheel"
-        "networkmanager"
-        "libvirtd"
-    ];
-    openssh.authorizedKeys.keys = map (builtins.readFile) keyScan;
-};
-
-home-manager.users = {
-    username = import ./../../../home-manager/${username}-${hostName}.nix;
-};
 ```
-
-This works well enough, but it's not very flexible. I'm going to expand on it at
-some point with submodules and such; I just don't have any multi-user systems
-right now.
 
 ### gLib
 

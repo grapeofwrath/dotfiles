@@ -1,8 +1,10 @@
 {...}: {
-    imports = [
-        ./modules/base
-        ./modules/desktop
-    ];
+  imports = [
+    ./modules/base
+    ./modules/desktop
+  ];
 
-    devUtils.enable = true;
+  home.username = "marcus";
+
+  devUtils.enable = true;
 }
