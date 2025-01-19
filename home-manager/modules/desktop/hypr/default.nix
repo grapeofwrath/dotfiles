@@ -57,11 +57,22 @@ in {
             "$mod, RETURN, exec, ghostty"
             "$mod, W, exec, brave"
             "$mod, A, exec, walker"
+            "$mod, F, exec, nautilus"
+            "$modSHIFT, S, exec, ${lib.getExe pkgs.grim}"
 
             "$mod, Q, killactive"
             "$modSHIFT, M, exit"
-            "$mod, S, togglesplit, # dwindle"
-            "$mod, L, exec, hyprlock"
+            "$mod, S, togglesplit"
+            "$modSHIFT, F, togglefloating"
+            "$modSHIFT, L, exec, hyprlock"
+            "$mod, H, movefocus, l"
+            "$mod, L, movefocus, r"
+            "$mod, K, movefocus, u"
+            "$mod, J, movefocus, d"
+            "$modSHIFT, right, resizeactive, 100 0" # Increase width
+            "$modSHIFT, left, resizeactive, -100 0" # Reduce width
+            "$modSHIFT, J, resizeactive, 0 100" # Increase height
+            "$modSHIFT, K, resizeactive, 0 -100" # Reduce height
           ]
           ++ (
             builtins.concatLists (builtins.genList (i: let
@@ -85,6 +96,12 @@ in {
           ", XF86AudioPause, exec, ${lib.getExe pkgs.playerctl} play-pause"
           ", XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
           ", XF86AudioPrev, exec, ${lib.getExe pkgs.playerctl} previous"
+        ];
+        bindm = [
+          "$mod, mouse:272, movewindow"
+          "$mod, Control_L, movewindow"
+          "$mod, mouse:273, resizewindow"
+          "$mod, ALT_L, resizewindow"
         ];
       };
     };

@@ -20,6 +20,7 @@
       spotify
       filezilla
       foliate
+      grim
     ];
     pointerCursor = {
       gtk.enable = true;

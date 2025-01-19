@@ -5,7 +5,10 @@
 }: {
   imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
 
-  home.packages = with pkgs; [hyprpanel];
+  home.packages = with pkgs; [
+    hyprpanel
+    cava
+  ];
   programs.hyprpanel = {
     enable = false;
     systemd.enable = true;

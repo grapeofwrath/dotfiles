@@ -2,6 +2,11 @@
 
 _<p align="center">Keep It Simple Stupid</p>_
 
+![Hyprland with HyprPanel](./assets/preview-widgets.png)
+
+![Desktop preview](./assets/preview-bar.png =50%x) ![Windows
+preview](./assets/preview-windows.png =50%x)
+
 ### NixOS
 
 Each system added to the flake has a corresponding directory in
