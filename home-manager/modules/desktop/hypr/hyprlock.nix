@@ -10,6 +10,7 @@ in {
     settings = {
       general = {
         ignore_empty_input = true;
+        hide_cursor = true;
       };
       background = [
         {
@@ -21,14 +22,14 @@ in {
         {
           monitor = "";
           size = "200, 50";
-          outline_thickness = 3;
+          outline_thickness = 2;
           dots_size = "0.33";
           dots_spacing = "0.15";
           dots_center = true;
           dots_rounding = "-1";
-          outer_color = "rgb(${h-RGB campfire.subtle})";
+          outer_color = "rgba(${h-RGB campfire.surface}ee)";
           inner_color = "rgb(${h-RGB campfire.base})";
-          font_color = "rgb(${h-RGB campfire.text})";
+          font_color = "rgb(${h-RGB campfire.subtle})";
           fade_on_empty = true;
           fade_timeout = 1000;
           placeholder_text = ''<i>Input Password...</i>'';

@@ -75,8 +75,13 @@ in {
     ...
 ```
 
-![Desktop preview](./assets/preview-bar.png)
+---
+
+![Hyprlock](./assets/preview-hyprlock.png)
+
 ![Windows preview](./assets/preview-windows.png)
+
+---
 
 ### TODO
 

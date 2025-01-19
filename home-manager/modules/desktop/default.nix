@@ -21,6 +21,8 @@
       filezilla
       foliate
       grim
+      slurp
+      grimblast
     ];
     pointerCursor = {
       gtk.enable = true;
