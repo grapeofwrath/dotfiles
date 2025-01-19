@@ -2,7 +2,7 @@
 
 _<p align="center">Keep It Simple Stupid</p>_
 
-![Hyprland with HyprPanel](./assets/preview-widgets.png)
+![Hyprland with HyprPanel](./assets/preview-hyprpanel.jpg)
 
 > _Hyprland with HyprPanel_
 
@@ -77,9 +77,9 @@ in {
 
 ---
 
-![Hyprlock](./assets/preview-hyprlock.png)
+![Hyprlock](./assets/preview-hyprlock.jpg)
 
-![Windows preview](./assets/preview-windows.png)
+![Windows preview](./assets/preview-windows.jpg)
 
 ---
 
