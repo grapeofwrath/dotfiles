@@ -40,9 +40,6 @@ user will also include a Home Manager setup, that needs to be added to the
 **homes** list in the flake. The corresponding configuration file must also be
 correctly named (user-host.nix) and placed in [home-manager/](.home-manager/).
 
-```nix
-```
-
 ### gLib
 
 This contains two helper functions: **scanPaths** and **scanFIles**.
@@ -78,6 +75,9 @@ in {
 
 - setup devenv
 - find a more centralized solution for installed packages (system and user)
+- finalize Hyprpanel settings/theme and add to HM module
+- adjust nushell nx helper more to my liking (maybe create a lil go cli
+  instead?)
 
 ## Adding a new system
 

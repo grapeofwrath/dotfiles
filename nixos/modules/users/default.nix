@@ -37,10 +37,11 @@ in {
     extraSpecialArgs = {
       inherit inputs outputs system gLib hostName campfire;
     };
-    # I'm pretty positive this works how I want it to...
-    users = builtins.listToAttrs (map (home: {
-        name = builtins.head (builtins.split "-" home);
-        value = import ./../../../home-manager/${home}.nix;
+    users = builtins.listToAttrs (map (home: let
+        userName = builtins.toString (builtins.elemAt (builtins.split "-" home) 0);
+      in {
+        name = userName;
+        value = import ./../../../home-manager/${userName}-${hostName}.nix;
       })
       homes);
   };

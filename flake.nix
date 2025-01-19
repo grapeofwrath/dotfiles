@@ -77,10 +77,10 @@
     # vars
     defaultUser = "marcus";
     systems = [
-      "grapecontrol"
-      "grapelab"
-      "grapespire"
-      "grapestation"
+      "grapecontrol" # vps reverse proxy with caddy and tailscale
+      "grapelab" # homelab
+      "grapespire" # laptop
+      "grapestation" # couch gaming pc
     ];
     homes = [
       "marcus-grapecontrol"

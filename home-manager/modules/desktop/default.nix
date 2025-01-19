@@ -10,6 +10,7 @@
       "Pictures/wallpaper.png".source = ./../config/wallpaper.png;
       "Pictures/profile.png".source = ./../config/profile.png;
       "Pictures/lockscreen.png".source = ./../config/lockscreen.png;
+      "Pictures/dhc-2-beaver.jpg".source = ./../config/dhc-2-beaver.jpg;
     };
     packages = with pkgs; [
       nautilus
