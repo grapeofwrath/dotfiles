@@ -4,8 +4,7 @@ _<p align="center">Keep It Simple Stupid</p>_
 
 ![Hyprland with HyprPanel](./assets/preview-widgets.png)
 
-![Desktop preview](./assets/preview-bar.png =50%x) ![Windows
-preview](./assets/preview-windows.png =50%x)
+> _Hyprland with HyprPanel_
 
 ### NixOS
 
@@ -75,6 +74,9 @@ in {
     openssh.authorizedKeys.keys = map (builtins.readFile) keyScan;
     ...
 ```
+
+![Desktop preview](./assets/preview-bar.png)
+![Windows preview](./assets/preview-windows.png)
 
 ### TODO
 
