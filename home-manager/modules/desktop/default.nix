@@ -7,10 +7,11 @@
   home = {
     file = {
       ".config/phortune/phortunes".source = ./../config/phortunes;
-      "Pictures/wallpaper.png".source = ./../config/wallpaper.png;
       "Pictures/profile.png".source = ./../config/profile.png;
-      "Pictures/lockscreen.png".source = ./../config/lockscreen.png;
-      "Pictures/dhc-2-beaver.jpg".source = ./../config/dhc-2-beaver.jpg;
+      "Pictures/wallpapers/" = {
+        source = ./../config/wallpapers;
+        recursive = true;
+      };
     };
     packages = with pkgs; [
       nautilus

@@ -14,7 +14,7 @@ in {
       background = [
         {
           monitor = "";
-          path = "$HOME/Pictures/lockscreen.png";
+          path = "$HOME/Pictures/wallpapers/lockscreen.png";
         }
       ];
       input-field = [
