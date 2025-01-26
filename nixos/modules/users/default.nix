@@ -30,6 +30,7 @@ in {
   environment.systemPackages = [
     inputs.home-manager.packages.${pkgs.system}.default
     outputs.packages.${system}.gVim
+    inputs.no.packages.${system}.default
   ];
   home-manager = {
     useUserPackages = true;
@@ -46,5 +47,5 @@ in {
       homes);
   };
 
-  security.sudo.wheelNeedsPassword = false;
+  security.sudo.wheelNeedsPassword = true;
 }

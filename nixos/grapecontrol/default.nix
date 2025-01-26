@@ -37,7 +37,7 @@
     authkeyFile = config.sops.secrets.tailscale_key.path;
     loginServer = "https://login.tailscale.com";
     advertiseExitNode = true;
-    exitNodeAllowLanAccess = true;
+    exitNodeAllowLanAccess = false;
   };
 
   # auto-generated for DigitalOcean

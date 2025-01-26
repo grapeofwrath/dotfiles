@@ -58,7 +58,7 @@ in {
             "$mod, W, exec, brave"
             "$mod, A, exec, walker"
             "$mod, F, exec, nautilus"
-            "$modSHIFT, S, exec, ${lib.getExe pkgs.grimblast}"
+            "$modSHIFT, S, exec, ${lib.getExe pkgs.grim}"
 
             "$mod, Q, killactive"
             "$modSHIFT, M, exit"

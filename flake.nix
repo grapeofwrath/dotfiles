@@ -21,8 +21,12 @@
 
     nvf.url = "github:notashelf/nvf";
 
-    jot.url = "github:grapeofwrath/jot";
-    phortune.url = "github:grapeofwrath/phortune";
+    no = {
+      url = "github:grapeofwrath/no";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # jot.url = "github:grapeofwrath/jot";
+    # phortune.url = "github:grapeofwrath/phortune";
   };
 
   outputs = {
@@ -130,7 +134,7 @@
     homeConfigurations = builtins.listToAttrs (map (home: let
         hostName = builtins.toString (builtins.elemAt (builtins.split "-" home) 1);
       in {
-        name = "${home}";
+        name = home;
         value = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
