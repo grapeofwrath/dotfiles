@@ -38,11 +38,9 @@ in {
     extraSpecialArgs = {
       inherit inputs outputs system gLib hostName campfire;
     };
-    users = builtins.listToAttrs (map (home: let
-        userName = builtins.toString (builtins.elemAt (builtins.split "-" home) 0);
-      in {
-        name = userName;
-        value = import ./../../../home-manager/${userName}-${hostName}.nix;
+    users = builtins.listToAttrs (map (home: {
+        name = home.user;
+        value = import ./../../../home-manager/${hostName}/${home.user}.nix;
       })
       homes);
   };

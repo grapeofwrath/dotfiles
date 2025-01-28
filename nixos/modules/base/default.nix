@@ -10,6 +10,13 @@
 }: {
   imports = (gLib.scanPaths ./.) ++ [inputs.sops-nix.nixosModules.sops];
 
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+    };
+  };
+
   nix = {
     registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
     nixPath = ["/etc/nix/path"];
@@ -95,9 +102,27 @@
   };
 
   console = let
-    theme = builtins.attrValues campfire;
+    c = campfire;
+    nh = h: lib.strings.removePrefix "#" h;
   in {
-    colors = map (v: lib.strings.removePrefix "#" v) theme;
+    colors = [
+      (nh c.base)
+      (nh c.dusk)
+      (nh c.evergreen)
+      (nh c.ember)
+      (nh c.foam)
+      (nh c.fern)
+      (nh c.shore)
+      (nh c.text)
+      (nh c.subtle)
+      (nh c.dusk)
+      (nh c.evergreen)
+      (nh c.ember)
+      (nh c.foam)
+      (nh c.fern)
+      (nh c.shore)
+      (nh c.moon)
+    ];
     useXkbConfig = true;
   };
 

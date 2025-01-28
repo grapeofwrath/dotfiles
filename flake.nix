@@ -40,6 +40,7 @@
     inherit (self) outputs;
     system = "x86_64-linux";
 
+    # this pkgs is specifically for standalone HM
     pkgs = import nixpkgs {
       inherit system;
       config = {
@@ -87,10 +88,22 @@
       "grapestation" # couch gaming pc
     ];
     homes = [
-      "marcus-grapecontrol"
-      "marcus-grapelab"
-      "marcus-grapespire"
-      "marcus-grapestation"
+      {
+        user = "marcus";
+        host = "grapecontrol";
+      }
+      {
+        user = "marcus";
+        host = "grapelab";
+      }
+      {
+        user = "marcus";
+        host = "grapespire";
+      }
+      {
+        user = "marcus";
+        host = "grapestation";
+      }
     ];
     campfire = {
       base = "#14171F";
@@ -110,7 +123,7 @@
       fern = "#67CC8E";
     };
   in {
-    formatter.${system} = pkgs.alejandra;
+    formatter.${system} = nixpkgs.legacyPackages.${system}.pkgs.alejandra;
 
     packages.${system} = {
       gVim = gMakeNeovim.neovim;
@@ -121,7 +134,7 @@
         value = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit inputs outputs system pkgs stable;
+            inherit inputs outputs system stable;
             inherit gLib defaultUser homes hostName campfire;
           };
           modules = [
@@ -132,9 +145,9 @@
       systems);
 
     homeConfigurations = builtins.listToAttrs (map (home: let
-        hostName = builtins.toString (builtins.elemAt (builtins.split "-" home) 1);
+        hostName = home.host;
       in {
-        name = home;
+        name = "${home.user}@${home.host}";
         value = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
@@ -142,7 +155,7 @@
             inherit gLib hostName campfire;
           };
           modules = [
-            ./home-manager/${home}.nix
+            ./home-manager/${home.host}/${home.user}.nix
           ];
         };
       })

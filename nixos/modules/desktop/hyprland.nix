@@ -12,6 +12,10 @@ in {
     enable = mkEnableOption "Enable Hyprland";
   };
   config = mkIf cfg.enable {
+    nixpkgs = {
+      overlays = [inputs.hyprpanel.overlay];
+    };
+
     programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;

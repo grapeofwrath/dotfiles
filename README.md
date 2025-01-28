@@ -20,15 +20,45 @@ directories if they are meant to be used across multiple configurations. Modules
 are separated into files if they are opt-in or they have different custom
 options to choose from for each configuration.
 
+```nix
+...
+
+let
+  systems = [
+    "grapecontrol"
+    "grapelab"
+    "grapespire"
+    "grapestation"
+  ];
+in {
+  nixosConfigurations = builtins.listToAttrs (map (hostName: {
+    name = hostName;
+    value = nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit inputs outputs system stable;
+        inherit gLib defaultUser homes hostName campfire;
+      };
+      modules = [
+        ./nixos/${hostName}
+      ];
+    };
+  })
+  systems);
+};
+
+...
+```
+
 ### Home Manager
 
 Home Manager is installed as a NixOS module (see
 [users/default.nix](./nixos/modules/users/default.nix)) and as standalone
-configurations in the flake. Each configuration name added to the **homes** list
-in the flake has a file located in [home-manager/](./home-manager/). The
-filename is the user followed by the hostname (ie. user-host.nix). Inside the
-flake, the **hostName** is passed through **extraSpecialArgs** to the
-configurations. The username needs to be set by **home.username**.
+configurations in the flake. Each configuration added to the **homes** list in
+the flake has a file located in [home-manager/](./home-manager/) within its
+respective hosts directory. Inside the flake, the **hostName** is passed through
+**extraSpecialArgs** to the configurations. The username needs to be set by
+**home.username**.
 
 Home manager modules are located in
 [home-manager/modules/](./home-manager/modules/). They are sorted between base,
@@ -37,12 +67,59 @@ directories if they are meant to be used across multiple configurations. Modules
 are also separated into files if they are opt-in or they have different custom
 options to choose from for each configuration.
 
+```nix
+# flake.nix
+...
+
+let
+  homes = [
+    { user = "marcus"; host = "grapecontrol"; }
+    { user = "marcus"; host = "grapelab"; }
+    { user = "marcus"; host = "grapespire"; }
+    { user = "marcus"; host = "grapestation"; }
+  ];
+in {
+  homeConfigurations = builtins.listToAttrs (map (home: let
+      hostName = home.host;
+    in {
+      name = "${home.user}@${home.host}";
+      value = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {
+          inherit inputs outputs system;
+          inherit gLib hostName campfire;
+        };
+        modules = [
+          ./home-manager/${home.host}/${home.user}.nix
+        ];
+      };
+    })
+    homes);
+  };
+
+# nixos/modules/users/default.nix
+
+home-manager = {
+  useUserPackages = true;
+  useGlobalPkgs = true;
+  extraSpecialArgs = {
+    inherit inputs outputs system gLib hostName campfire;
+  };
+  users = builtins.listToAttrs (map (home: {
+    name = home.user;
+    value = import ./../../../home-manager/${hostName}/${home.user}.nix;
+  })
+  homes);
+};
+```
+
 ### Users
 
 I can add more users to a system via the default **users.users** options. If the
 user will also include a Home Manager setup, that needs to be added to the
 **homes** list in the flake. The corresponding configuration file must also be
-correctly named (user-host.nix) and placed in [home-manager/](.home-manager/).
+correctly named (user.nix) and placed in it hosts directory in
+[home-manager/](.home-manager/).
 
 ### gLib
 
@@ -87,9 +164,7 @@ in {
 
 - setup devenv
 - find a more centralized solution for installed packages (system and user)
-- finalize Hyprpanel settings/theme and add to HM module
-- adjust nushell nx helper more to my liking (maybe create a lil go cli
-  instead?)
+- finalize Hyprpanel settings/theme and add to HM module instead?)
 
 ## Adding a new system
 

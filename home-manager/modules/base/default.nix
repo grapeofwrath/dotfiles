@@ -58,7 +58,6 @@ in {
     nushell = {
       enable = true;
       configFile.source = ./../config/nushell/config.nu;
-      extraConfig = builtins.readFile ./../config/nushell/nix.nu;
       shellAliases = {
         n = "nvim";
         ".." = "cd ..";

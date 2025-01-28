@@ -1,30 +1,30 @@
 {
-    config,
-    pkgs,
-    lib,
-    ...
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 with lib; let
-    cfg = config.gnome;
+  cfg = config.gnome;
 in {
-    options.gnome = {
-        enable = mkEnableOption "Enable Gnome Desktop Environment";
-        # autoLogin = mkOption {
-        #   type = types.bool;
-        #   default = false;
-        # };
-    };
-    config = mkIf cfg.enable {
-        environment.systemPackages = with pkgs; [
-            gnome-tweaks
-        ];
-        services.xserver = {
-            desktopManager.gnome.enable = true;
-            displayManager = {
-                gdm = {
-                    enable = true;
-                };
-            };
+  options.gnome = {
+    enable = mkEnableOption "Enable Gnome Desktop Environment";
+    # autoLogin = mkOption {
+    #   type = types.bool;
+    #   default = false;
+    # };
+  };
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      gnome-tweaks
+    ];
+    services.xserver = {
+      desktopManager.gnome.enable = true;
+      displayManager = {
+        gdm = {
+          enable = true;
         };
+      };
     };
+  };
 }
