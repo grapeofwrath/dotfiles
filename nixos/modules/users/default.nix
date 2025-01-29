@@ -40,7 +40,9 @@ in {
     };
     users = builtins.listToAttrs (map (home: {
         name = home.user;
-        value = import ./../../../home-manager/${hostName}/${home.user}.nix;
+        value = import ./../../../home-manager/${hostName}/${home.user}.nix {
+          home.username = home.user;
+        };
       })
       homes);
   };

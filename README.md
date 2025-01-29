@@ -57,8 +57,7 @@ Home Manager is installed as a NixOS module (see
 configurations in the flake. Each configuration added to the **homes** list in
 the flake has a file located in [home-manager/](./home-manager/) within its
 respective hosts directory. Inside the flake, the **hostName** is passed through
-**extraSpecialArgs** to the configurations. The username needs to be set by
-**home.username**.
+**extraSpecialArgs** to the configurations.
 
 Home manager modules are located in
 [home-manager/modules/](./home-manager/modules/). They are sorted between base,
@@ -79,6 +78,9 @@ let
     { user = "marcus"; host = "grapestation"; }
   ];
 in {
+
+  ...
+
   homeConfigurations = builtins.listToAttrs (map (home: let
       hostName = home.host;
     in {
@@ -98,6 +100,7 @@ in {
   };
 
 # nixos/modules/users/default.nix
+...
 
 home-manager = {
   useUserPackages = true;
@@ -107,7 +110,9 @@ home-manager = {
   };
   users = builtins.listToAttrs (map (home: {
     name = home.user;
-    value = import ./../../../home-manager/${hostName}/${home.user}.nix;
+    value = import ./../../../home-manager/${hostName}/${home.user}.nix {
+      home.username = home.user;
+    };
   })
   homes);
 };
@@ -164,7 +169,9 @@ in {
 
 - setup devenv
 - find a more centralized solution for installed packages (system and user)
-- finalize Hyprpanel settings/theme and add to HM module instead?)
+- finalize Hyprpanel settings/theme and add to HM module instead?
+- setup a more vanilla style neovim config
+- setup obsidian
 
 ## Adding a new system
 

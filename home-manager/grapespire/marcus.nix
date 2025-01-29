@@ -4,8 +4,6 @@
     ./../modules/desktop
   ];
 
-  home.username = "marcus";
-
   devUtils.enable = true;
   hyprland = {
     enable = true;
