@@ -216,3 +216,12 @@ sops secrets.yaml
 rm id_<user>-<host>
 mv id_<user>-<host>.pub nixos/modules/users/keys/
 ```
+
+---
+
+<h2 align="center">:snowflake: Special Thanks :snowflake:</h2>
+
+_<p align="center">I've stumbled upon many great resources that have helped me
+in one way or another. I don't remember them all, but here are a few.</p>_
+
+<h3 align="center"><a href="https://github.com/Evertras/nix-systems">Evertras</a> | <a href="https://github.com/Misterio77/nix-starter-configs">Misterio77</a> | <a href="https://github.com/EmergentMind/nix-config">EmergentMind</a> | <a href="https://www.youtube.com/@vimjoyer">Vimjoyer</a> | <a href="https://www.youtube.com/@IogaMaster">IogaMaster</a> | <a href="https://nixos-and-flakes.thiscute.world/">NixOS & Flakes Book</a> | <a href="https://www.youtube.com/@ZaneyOG">Zaney</a> | <a href="https://www.youtube.com/@mylinuxforwork">MLFW</a></h3>
