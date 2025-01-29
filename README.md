@@ -93,6 +93,7 @@ in {
         };
         modules = [
           ./home-manager/${home.host}/${home.user}.nix
+          {home.username = home.user;}
         ];
       };
     })
