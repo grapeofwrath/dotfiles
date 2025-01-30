@@ -3,3 +3,4 @@ result-*
 .direnv
 err
 nixos-switch.log
+assets/docker-compose

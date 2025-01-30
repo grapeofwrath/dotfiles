@@ -22,7 +22,7 @@
         git
         vim
         cachix
-        # compose2nix
+        compose2nix
         nixd
         age
         ssh-to-age

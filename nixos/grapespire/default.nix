@@ -9,7 +9,7 @@
     ./../modules/base
     ./../modules/desktop
     ./../modules/users
-    # ./../modules/server
+    ./../modules/server
   ];
 
   virtualisation.libvirtd.enable = true;
@@ -29,6 +29,7 @@
         "docker"
         "podman"
         "nextcloud"
+        "couchdb"
       ];
       packages = with pkgs; [
         blender
