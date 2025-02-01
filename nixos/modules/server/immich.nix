@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.immmich;
+  cfg = config.immich;
 in {
-  options.immmich = {
+  options.immich = {
     enable = mkEnableOption "Enable Immich";
   };
 
