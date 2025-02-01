@@ -37,7 +37,6 @@
         vhs
         charm-freeze
         glow
-        gnome-software
         # custom
         #jot
       ];

@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   defaultUser,
   ...
@@ -16,6 +17,9 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      kdePackages.discover
+    ];
     services = {
       desktopManager.plasma6.enable = true;
       displayManager = {

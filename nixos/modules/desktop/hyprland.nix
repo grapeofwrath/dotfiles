@@ -12,6 +12,9 @@ in {
     enable = mkEnableOption "Enable Hyprland";
   };
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      gnome-software
+    ];
     nixpkgs = {
       overlays = [inputs.hyprpanel.overlay];
     };

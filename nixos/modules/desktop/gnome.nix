@@ -17,6 +17,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       gnome-tweaks
+      gnome-software
     ];
     services.xserver = {
       desktopManager.gnome.enable = true;

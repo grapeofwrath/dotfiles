@@ -20,7 +20,6 @@
     xdotool
     xorg.xwininfo
     yad
-    kdePackages.discover
     # gaming specific
     steam-run
     protonup-qt
@@ -50,8 +49,6 @@
     # Which is why i don't use pkgs.amdvlk and pkgs.driversi686Linux like the NixOS wiki suggests.
     enable32Bit = true;
   };
-
-  services.flatpak.enable = true;
 
   # Personal Modules
   plasma = {

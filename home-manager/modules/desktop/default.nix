@@ -16,7 +16,6 @@
     packages = with pkgs; [
       nautilus
       brave
-      discord
       spotify
       filezilla
       foliate
