@@ -47,7 +47,7 @@
     autoLogin = true;
   };
 
-  enteServer.enable = true;
+  enteServer.enable = false;
   foundryVTT.enable = true;
   hoarder.enable = true;
   nextcloud.enable = false;
