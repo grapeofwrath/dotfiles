@@ -42,10 +42,8 @@
     exitNodeAllowLanAccess = true;
   };
 
-  plasma = {
-    enable = true;
-    autoLogin = true;
-  };
+  hyprland.enable = true;
+  ttyLogin.enable = true;
 
   enteServer.enable = false;
   foundryVTT.enable = true;
