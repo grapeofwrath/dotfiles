@@ -1,9 +1,9 @@
 {...}: {
   imports = [
-    ./modules/base
-    ./modules/desktop
+    ./../modules/base
+    ./../modules/desktop
   ];
   home = {
-    file.".steam/steam/steam_dev.cfg".source = ./modules/config/steam_dev.cfg;
+    file.".steam/steam/steam_dev.cfg".source = ./../modules/config/steam_dev.cfg;
   };
 }
