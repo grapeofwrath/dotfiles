@@ -51,6 +51,7 @@
   foundryVTT.enable = true;
   hoarder.enable = true;
   nextcloud.enable = false;
+  immich.enable = true;
 
   # Believe it or not, if you change this? Straight to jail.
   system.stateVersion = "24.11";
