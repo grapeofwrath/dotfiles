@@ -14,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     services.couchdb = {
       enable = true;
-      adminPass = "taco";
+      bindAddress = "100.64.183.76";
     };
   };
 }
