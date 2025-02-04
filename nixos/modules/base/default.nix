@@ -71,6 +71,7 @@
       curl
       wget
       unzip
+      lazygit
     ];
   };
 

@@ -119,9 +119,9 @@ in {
     };
     options = {
       autoindent = true;
-      cursorlineopt = "both";
-      shiftwidth = 4;
-      tabstop = 4;
+      cursorlineopt = "line";
+      shiftwidth = 2;
+      tabstop = 2;
     };
     preventJunkFiles = true;
     snippets.luasnip.enable = true;

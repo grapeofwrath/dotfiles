@@ -28,6 +28,7 @@
       "docker"
       "podman"
       "nextcloud"
+      "couchdb"
     ];
     # packages = with pkgs; [
     # ];
@@ -45,11 +46,11 @@
   hyprland.enable = true;
   ttyLogin.enable = true;
 
-  enteServer.enable = false;
   foundryVTT.enable = true;
   hoarder.enable = true;
   nextcloud.enable = false;
   immich.enable = true;
+  couchdb.enable = true;
 
   # Believe it or not, if you change this? Straight to jail.
   system.stateVersion = "24.11";
