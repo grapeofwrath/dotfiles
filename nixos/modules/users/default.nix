@@ -23,6 +23,9 @@ in {
         home = "/home/${defaultUser}";
         group = "users";
         openssh.authorizedKeys.keys = map (builtins.readFile) keyScan;
+        packages = [
+          pkgs.obsidian
+        ];
       };
     };
   };
