@@ -34,6 +34,10 @@
     # ];
   };
 
+  services = {
+    getty.autologinUser = defaultUser;
+  };
+
   # Personal Modules
   tailscaleAutoConnect = {
     enable = true;
