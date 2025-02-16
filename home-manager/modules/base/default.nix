@@ -4,7 +4,6 @@
   inputs,
   hostName,
   gLib,
-  campfire,
   ...
 }: let
   keyName = "${config.home.username}-${hostName}";
@@ -26,10 +25,13 @@ in {
   systemd.user.startServices = "sd-switch";
 
   sops = {
+    # duplicate of NixOS module but necessary for standalone HM
     age.keyFile = "/home/${config.home.username}/.config/sops/age/keys.txt";
     defaultSopsFile = ../../../secrets.yaml;
     validateSopsFiles = false;
-    secrets = {
+    secrets = let
+      keyName = "${config.home.username}-${hostName}";
+    in {
       "private_keys/${keyName}" = {
         path = "/home/${config.home.username}/.ssh/id_${keyName}";
       };
@@ -47,30 +49,20 @@ in {
     bash = {
       enable = true;
       initExtra = ''
-        if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "nu" && -z ''${BASH_EXECUTION_STRING} ]]
-            then
-                shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-                exec ${pkgs.nushell}/bin/nu $LOGIN_OPTION
-                fi
+        if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+        then
+          shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+          exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+        fi
       '';
     };
 
-    nushell = {
+    fish = {
       enable = true;
-      configFile.source = ./../config/nushell/config.nu;
-      shellAliases = {
-        n = "nvim";
-        ".." = "cd ..";
-      };
-      extraLogin = ''
-         # uwsm start hyprland-uwsm.desktop
-        Hyprland
+      interactiveShellInit = ''
+        set fish_greeting
       '';
-    };
-
-    carapace = {
-      enable = true;
-      enableNushellIntegration = true;
+      loginShellInit = "Hyprland";
     };
 
     git = {
@@ -88,7 +80,6 @@ in {
     keychain = {
       enable = true;
       enableFishIntegration = true;
-      enableNushellIntegration = true;
       keys = ["id_${keyName}"];
       extraFlags = ["--quiet"];
     };
@@ -102,13 +93,12 @@ in {
       enable = true;
       enableBashIntegration = true;
       enableFishIntegration = true;
-      enableNushellIntegration = true;
     };
 
     direnv = {
       enable = true;
       enableBashIntegration = true;
-      enableNushellIntegration = true;
+      # enableFishIntegration = true;
       nix-direnv.enable = true;
     };
 
@@ -116,7 +106,6 @@ in {
       enable = true;
       enableBashIntegration = true;
       enableFishIntegration = true;
-      enableNushellIntegration = true;
       settings = {
         aws.disabled = true;
         gcloud.disabled = true;
@@ -164,29 +153,6 @@ in {
           Ubuntu = " ";
           Unknown = " ";
           Windows = "󰍲 ";
-        };
-      };
-    };
-
-    zellij = {
-      enable = true;
-      settings = {
-        pane_frames = false;
-        theme = "campfire";
-        themes.campfire = let
-          c = campfire;
-        in {
-          fg = c.text;
-          bg = c.base;
-          black = c.surface;
-          red = c.dusk;
-          green = c.evergreen;
-          yellow = c.ember;
-          blue = c.foam;
-          magenta = c.fern;
-          cyan = c.shore;
-          white = c.moon;
-          orange = c.dawn;
         };
       };
     };

@@ -32,7 +32,7 @@
         "couchdb"
       ];
       packages = with pkgs; [
-        blender
+        # blender
         gnome-keyring
         vhs
         charm-freeze
@@ -55,6 +55,11 @@
   gnome.enable = false;
   hyprland.enable = true;
   ttyLogin.enable = true;
+
+  purpurMC = {
+    enable = true;
+    ram = "2048";
+  };
 
   # Believe it or not, if you change this? Straight to jail.
   system.stateVersion = "24.11";

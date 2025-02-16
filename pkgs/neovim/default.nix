@@ -20,12 +20,6 @@ in {
   config.vim = {
     autocomplete.nvim-cmp = {
       enable = true;
-      sourcePlugins = [
-        "lspkind"
-        "luasnip"
-        "none-ls"
-        "nvim-lspconfig"
-      ];
       sources = {
         buffer = "[Buffer]";
       };
@@ -33,7 +27,7 @@ in {
     autopairs.nvim-autopairs.enable = true;
     binds.whichKey.enable = true;
     comments.comment-nvim.enable = true;
-    dashboard.alpha.enable = true;
+    dashboard.alpha.enable = false;
     extraPlugins = with pkgs.vimPlugins; {
       "oil.nvim" = {
         package = oil-nvim;

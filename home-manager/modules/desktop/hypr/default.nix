@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   pkgs,
   lib,
@@ -25,7 +24,7 @@ in {
   config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      package = pkgs.hyprland;
       extraConfig = builtins.readFile ./../../config/hypr/hyprland.conf;
       settings = let
         c = campfire;

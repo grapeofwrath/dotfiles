@@ -12,7 +12,6 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
 
-    hyprland.url = "github:hyprwm/Hyprland";
     hyprpanel = {
       url = "github:Jas-SinghFSU/HyprPanel";
       inputs.nixpkgs.follows = "nixpkgs";

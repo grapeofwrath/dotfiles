@@ -3,6 +3,7 @@
   inputs,
   pkgs,
   lib,
+  defaultUser,
   hostName,
   gLib,
   campfire,
@@ -38,8 +39,9 @@
     age = {
       # auto imports host SSH keys as age keys
       sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-      keyFile = "/var/lib/sops-nix/key.txt";
-      generateKey = true;
+      # keyFile = "/var/lib/sops-nix/key.txt";
+      keyFile = "/home/marcus/.config/sops/age/keys.txt";
+      generateKey = false;
     };
     # secrets are output to /run/secrets
     # ie /run/secrets/gitea_dbpass
@@ -130,6 +132,8 @@
   fonts.packages = with pkgs; [
     nerd-fonts.caskaydia-cove
   ];
+
+  programs.fish.enable = true;
 
   services = {
     openssh = {
