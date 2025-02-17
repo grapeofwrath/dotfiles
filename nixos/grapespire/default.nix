@@ -57,7 +57,7 @@
   ttyLogin.enable = true;
 
   purpurMC = {
-    enable = true;
+    enable = false;
     ram = "2048";
   };
 
