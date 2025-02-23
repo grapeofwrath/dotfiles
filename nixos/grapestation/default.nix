@@ -24,7 +24,6 @@
     steam-run
     protonup-qt
     wineWowPackages.unstableFull
-    modrinth-app
   ];
 
   users.users.${defaultUser} = {
