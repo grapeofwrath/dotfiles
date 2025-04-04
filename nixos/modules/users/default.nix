@@ -33,7 +33,7 @@ in {
 
   environment.systemPackages = [
     inputs.home-manager.packages.${pkgs.system}.default
-    outputs.packages.${system}.gVim
+    inputs.nixhusky.packages.${system}.default
     inputs.no.packages.${system}.default
   ];
   home-manager = {

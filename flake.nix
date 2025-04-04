@@ -18,8 +18,7 @@
     };
     walker.url = "github:abenz1267/walker";
 
-    nvf.url = "github:notashelf/nvf";
-
+    nixhusky.url = "github:grapeofwrath/nixhusky";
     no = {
       url = "github:grapeofwrath/no";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +32,6 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
-    nvf,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -55,11 +53,6 @@
         allowUnfree = true;
         allowUnfreePredicate = _: true;
       };
-    };
-
-    gMakeNeovim = nvf.lib.neovimConfiguration {
-      inherit (nixpkgs.legacyPackages.${system}) pkgs;
-      modules = [./pkgs/neovim];
     };
 
     gLib = {
@@ -123,10 +116,6 @@
     };
   in {
     formatter.${system} = nixpkgs.legacyPackages.${system}.pkgs.alejandra;
-
-    packages.${system} = {
-      gVim = gMakeNeovim.neovim;
-    };
 
     nixosConfigurations = builtins.listToAttrs (map (hostName: {
         name = hostName;

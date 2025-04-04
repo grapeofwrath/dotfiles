@@ -3,7 +3,6 @@
   inputs,
   pkgs,
   lib,
-  defaultUser,
   hostName,
   gLib,
   campfire,
@@ -57,7 +56,14 @@
 
   environment = {
     etc =
-      lib.mapAttrs' (name: value: {
+      {
+        # TODO
+        # builtins.readFile ./issue-${hostName}
+        issue = {
+          text = builtins.readFile ./../config/issue-files/issue-${hostName};
+        };
+      }
+      // lib.mapAttrs' (name: value: {
         name = "nix/path/${name}";
         value.source = value.flake;
       })
