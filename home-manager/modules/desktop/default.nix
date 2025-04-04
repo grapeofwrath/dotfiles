@@ -22,7 +22,7 @@
       grim
       slurp
       grimblast
-      hyprpanel
+      # hyprpanel
     ];
     pointerCursor = {
       gtk.enable = true;
