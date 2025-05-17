@@ -22,6 +22,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      hyprpanel
+    ];
+
     wayland.windowManager.hyprland = {
       enable = true;
       package = pkgs.hyprland;

@@ -35,6 +35,7 @@ in {
     inputs.home-manager.packages.${pkgs.system}.default
     inputs.nixhusky.packages.${system}.default
     inputs.no.packages.${system}.default
+    pkgs.gnome-disk-utility
   ];
   home-manager = {
     useUserPackages = true;
