@@ -12,11 +12,11 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
 
-    hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    walker.url = "github:abenz1267/walker";
+    # hyprpanel = {
+    #   url = "github:Jas-SinghFSU/HyprPanel";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # walker.url = "github:abenz1267/walker";
 
     nixhusky.url = "github:grapeofwrath/nixhusky";
     no = {
@@ -44,7 +44,7 @@
         allowUnfree = true;
         allowUnfreePredicate = _: true;
       };
-      overlays = [inputs.hyprpanel.overlay];
+      # overlays = [inputs.hyprpanel.overlay];
     };
 
     stable = import nixpkgs-stable {

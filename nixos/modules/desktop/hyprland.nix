@@ -14,10 +14,11 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       gnome-software
+      hyprpanel
     ];
-    nixpkgs = {
-      overlays = [inputs.hyprpanel.overlay];
-    };
+    # nixpkgs = {
+    #   overlays = [inputs.hyprpanel.overlay];
+    # };
 
     programs.hyprland = {
       enable = true;

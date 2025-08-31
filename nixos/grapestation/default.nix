@@ -47,13 +47,21 @@
   hardware.graphics = {
     # I'm pretty positive that this is the same RADV package as vulkan-radeon on Arch.
     # Which is why i don't use pkgs.amdvlk and pkgs.driversi686Linux like the NixOS wiki suggests.
+    # AMD
     enable32Bit = true;
+    # NVIDIA
+    enable = true;
   };
 
+  # NVIDIA
+  # services.xserver.videoDrivers = ["nvidia"];
+  # hardware.nvidia.open = false;
+
   # Personal Modules
+  hyprland.enable = true;
   plasma = {
     enable = true;
-    autoLogin = true;
+    autoLogin = false;
   };
 
   tailscaleAutoConnect = {
