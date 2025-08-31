@@ -25,6 +25,7 @@ in {
         openssh.authorizedKeys.keys = map (builtins.readFile) keyScan;
         packages = [
           pkgs.obsidian
+          pkgs.anytype
           pkgs.gum
         ];
       };
