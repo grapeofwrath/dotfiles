@@ -2,7 +2,7 @@
 # waybar utility script
 
 # shellcheck disable=SC1091
-source "$HOME/.config/waybar/scripts/theme-switcher.sh" 'fzf'
+# source "$HOME/.config/waybar/scripts/theme-switcher.sh" 'fzf'
 
 list=$(printf '%s\n' 'Lock' 'Shutdown' 'Reboot' 'Logout' 'Hibernate' 'Suspend')
 

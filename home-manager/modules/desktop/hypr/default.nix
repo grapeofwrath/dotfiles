@@ -35,7 +35,6 @@ in {
       in {
         exec-once = [
           "systemctl --user start ${lib.getExe pkgs.hyprpolkitagent}"
-          "waybar"
           "walker --gapplication-service"
         ];
 

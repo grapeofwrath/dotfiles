@@ -1,8 +1,0 @@
-{...}: {
-  "custom/power_menu" = {
-    format = "󰤄";
-    on-click = "kitty ~/.config/waybar/scripts/power-menu.sh";
-    tooltip = false;
-  };
-}
-

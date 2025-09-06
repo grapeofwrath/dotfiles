@@ -1,31 +1,31 @@
 {campfire, ...}: {
   programs.waybar = {
     style = ''
-      @define-color main-br ${campfire.subtle};
-      @define-color main-bg ${campfire.surface};
-      @define-color main-fg	${campfire.text};
-      @define-color accent	${campfire.moon};
-      @define-color hover-bg	${campfire.base};
-      @define-color hover-fg	alpha(${campfire.text}, 0.75);
-      @define-color outline	shade(${campfire.text}, 0.5);
+      @define-color main-br       ${campfire.subtle};
+      @define-color main-bg       ${campfire.base};
+      @define-color main-fg       ${campfire.text};
+      @define-color accent        ${campfire.text};
+      @define-color hover-bg      ${campfire.base};
+      @define-color hover-fg      alpha(${campfire.text}, 0.75);
+      @define-color outline       ${campfire.base};
 
-      @define-color workspaces	${campfire.text};
-      @define-color temperature	${campfire.text};
-      @define-color memory	${campfire.text};
-      @define-color cpu		${campfire.text};
-      @define-color time	${campfire.text};
-      @define-color date	${campfire.text};
-      @define-color tray	${campfire.text};
-      @define-color wireplumber	${campfire.text};
-      @define-color backlight	${campfire.text};
-      @define-color battery	${campfire.text};
+      @define-color workspaces    ${campfire.surface};
+      @define-color ip            ${campfire.surface};
+      @define-color memory        ${campfire.overlay};
+      @define-color cpu           ${campfire.muted};
+      @define-color time          ${campfire.muted};
+      @define-color date          ${campfire.overlay};
+      @define-color tray          ${campfire.surface};
+      @define-color wireplumber   ${campfire.surface};
+      @define-color backlight     ${campfire.overlay};
+      @define-color battery       ${campfire.muted};
 
-      @define-color warning	${campfire.ember};
-      @define-color critical	${campfire.dawn};
-      @define-color charging	${campfire.fern};
+      @define-color warning       ${campfire.ember};
+      @define-color critical      ${campfire.dawn};
+      @define-color charging      ${campfire.fern};
 
       * {
-        font-family: "0xProto Nerd Font";
+        font-family: "Jetbrains Mono Nerd Font";
         font-weight: bold;
         font-size: 16px;
         color: @main-fg;
@@ -69,19 +69,19 @@
         color: @hover-fg;
       }
 
-      /* temperature */
+      /* ip */
 
       #custom-left_div.2 {
-        color: @temperature;
+        color: @ip;
       }
-      #temperature {
-        background-color: @temperature;
+      #network.ip {
+        background-color: @ip;
       }
 
       /* memory */
 
       #custom-left_div.3 {
-        background-color: @temperature;
+        background-color: @ip;
         color: @memory;
       }
       #memory {
@@ -108,7 +108,7 @@
         color: @accent;
       }
       #custom-distro {
-        padding: 0 10px 0 5px;
+        padding: 0 15px 0 5px;
         font-size: 23px;
         background-color: @accent;
         color: @main-bg;
@@ -120,7 +120,7 @@
         color: @time;
       }
       #idle_inhibitor {
-        background-color: @time;
+        background-color: @tray;
       }
       #clock.time {
         padding-right: 6px;
@@ -151,10 +151,6 @@
       #bluetooth {
         background-color: @tray;
         padding: 0 5px;
-      }
-      #custom-system_update {
-        background-color: @tray;
-        padding: 0 8px 0 2px;
       }
       #custom-right_div.5 {
         color: @tray;
@@ -215,6 +211,10 @@
         general styling
         ---------------------*/
 
+      #custom-spacer {
+        background-color: @main-bg;
+      }
+
       #custom-theme_switcher:hover,
       #idle_inhibitor:hover,
       #clock.date:hover,
@@ -235,7 +235,7 @@
       #custom-left_inv,
       #custom-right_div,
       #custom-right_inv {
-        font-size: 23.1px;
+        font-size: 26px;
       }
 
       /* outline */
@@ -245,7 +245,7 @@
 
       /* background */
       window#waybar > box {
-        margin: 4px;
+        margin: 0px 0px 4px 0px;
         background-color: @main-bg;
       }
 
