@@ -13,5 +13,6 @@
   hyprlock.enable = true;
   hyprpaper.enable = true;
   # hyprpanel.enable = true;
+  waybar.enable = true;
   walker.enable = true;
 }
