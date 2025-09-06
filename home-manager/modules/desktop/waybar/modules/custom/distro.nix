@@ -1,0 +1,7 @@
+{...}: {
+  "custom/distro" = {
+    format = "";
+    tooltip = false;
+  };
+}
+

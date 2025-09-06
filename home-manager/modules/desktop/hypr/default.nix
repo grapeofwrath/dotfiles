@@ -22,9 +22,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      hyprpanel
-    ];
+    # home.packages = with pkgs; [
+    #   hyprpanel
+    # ];
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -35,7 +35,7 @@ in {
       in {
         exec-once = [
           "systemctl --user start ${lib.getExe pkgs.hyprpolkitagent}"
-          "hyprpanel"
+          "waybar"
           "walker --gapplication-service"
         ];
 
