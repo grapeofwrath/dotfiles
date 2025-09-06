@@ -1,5 +1,6 @@
-
 #!/usr/bin/env bash
+# waybar utility script
+
 #
 # Connect to a Wi-Fi network using nmcli and fzf
 #

@@ -1,5 +1,5 @@
-
 #!/usr/bin/env bash
+# waybar utility script
 
 # shellcheck disable=SC1091
 source "$HOME/.config/waybar/scripts/theme-switcher.sh" 'fzf'

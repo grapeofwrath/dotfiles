@@ -20,5 +20,5 @@
 in
   scripts
   // {
-    home.packages = scriptNames;
+    environment.systemPackages = scriptNames;
   }

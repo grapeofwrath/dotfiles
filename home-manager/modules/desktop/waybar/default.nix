@@ -7,7 +7,6 @@ with lib; let
   cfg = config.waybar;
 in {
   imports = [
-    ./scripts
     ./style.nix
   ];
 

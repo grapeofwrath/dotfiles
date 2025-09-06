@@ -1,5 +1,5 @@
-
 #!/usr/bin/env bash
+# waybar utility script
 #
 # Connect to a Bluetooth device using bluetoothctl and fzf
 #

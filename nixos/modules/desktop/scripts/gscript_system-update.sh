@@ -1,5 +1,5 @@
-
 #!/usr/bin/env bash
+# waybar utility script
 #
 # Check for package updates using pacman and AUR helper
 #

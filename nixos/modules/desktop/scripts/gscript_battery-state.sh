@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# waybar utility script
 #
 # Send a notification when the battery state changes using udev rules
 #

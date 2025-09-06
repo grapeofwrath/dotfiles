@@ -1,5 +1,5 @@
-
 #!/usr/bin/env bash
+# waybar utility script
 #
 # Control audio and microphone using wpctl
 #

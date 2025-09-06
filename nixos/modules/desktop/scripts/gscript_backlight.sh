@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# waybar utility script
 
 case $1 in
 	'down') brightnessctl -n set 1%- ;;
