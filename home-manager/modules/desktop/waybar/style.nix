@@ -195,18 +195,6 @@
         color: @battery;
       }
 
-      /* power menu */
-
-      #custom-power_menu {
-        border-radius: 16px;
-        padding: 0 19px 0 16px;
-        font-size: 20px;
-        color: @accent;
-      }
-      #custom-power_menu:hover {
-        background-color: @hover-bg;
-      }
-
       /*---------------------
         general styling
         ---------------------*/

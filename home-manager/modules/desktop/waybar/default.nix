@@ -20,7 +20,6 @@ in {
       settings = {
         mainBar = {
           modules-left = [
-            "custom/left_div#1"
             "hyprland/workspaces"
             "custom/right_div#1"
             "hyprland/window"
@@ -56,8 +55,6 @@ in {
             "backlight"
             "custom/left_div#8"
             "battery"
-            "custom/left_inv#2"
-            "custom/power_menu"
           ];
 
           layer = "top";
@@ -203,7 +200,7 @@ in {
             format-icons = ["󰤟" "󰤢" "󰤥" "󰤨"];
             min-length = 2;
             max-length = 2;
-            on-click = "ghostty gscript_network";
+            on-click = "ghostty -e gscript_network";
             on-click-right = "nmcli radio wifi off && notify-send 'Wi-Fi Disabled' -r 1125";
             tooltip-format = "Gateway: {gwaddr}";
             tooltip-format-ethernet = "Interface: {ifname}";
@@ -237,9 +234,9 @@ in {
             format-icons = ["󰕿" "󰖀" "󰕾"];
             min-length = 7;
             max-length = 7;
-            on-click = "~/.config/waybar/scripts/wireplumber.sh out";
-            on-scroll-up = "~/.config/waybar/scripts/wireplumber.sh out raise";
-            on-scroll-down = "~/.config/waybar/scripts/wireplumber.sh out lower";
+            on-click = "gscript_wireplumber out";
+            on-scroll-up = "gscript_wireplumber out raise";
+            on-scroll-down = "gscript_wireplumber out lower";
             tooltip-format = "Device: {node_name}";
           };
 
@@ -248,15 +245,16 @@ in {
             format-muted = "󰍭 {volume}%";
             min-length = 7;
             max-length = 7;
-            on-click = "~/.config/waybar/scripts/wireplumber.sh mic";
-            on-scroll-up = "~/.config/waybar/scripts/wireplumber.sh mic raise";
-            on-scroll-down = "~/.config/waybar/scripts/wireplumber.sh mic lower";
+            on-click = "gscript_wireplumber mic";
+            on-scroll-up = "gscript_wireplumber mic raise";
+            on-scroll-down = "gscript_wireplumber mic lower";
             tooltip-format = "Device: {node_name}";
             node-type = "Audio/Source";
           };
 
           "custom/spacer" = {
             format = " ";
+            tooltip = false;
             min-length = 10;
             max-length = 10;
           };
@@ -328,11 +326,6 @@ in {
           };
           "custom/right_inv#1" = {
             format = "";
-            tooltip = false;
-          };
-          "custom/power_menu" = {
-            format = "󰤄";
-            on-click = "ghostty gscript_power-menu";
             tooltip = false;
           };
           "hyprland/window" = {

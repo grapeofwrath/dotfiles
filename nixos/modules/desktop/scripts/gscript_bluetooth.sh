@@ -11,7 +11,7 @@ gray='\033[1;30m'
 reset='\033[0m'
 
 # shellcheck disable=SC1091
-source "$HOME/.config/waybar/scripts/theme-switcher.sh" 'fzf'
+# source "$HOME/.config/waybar/scripts/theme-switcher.sh" 'fzf'
 
 status=$(bluetoothctl show | grep PowerState | awk '{print $2}')
 

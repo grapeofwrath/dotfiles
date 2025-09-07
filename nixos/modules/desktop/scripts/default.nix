@@ -24,7 +24,6 @@
   gscript_battery-state = gScript "gscript_battery-state";
   gscript_bluetooth = gScript "gscript_bluetooth";
   gscript_network = gScript "gscript_network";
-  gscript_power-menu = gScript "gscript_power-menu";
   gscript_wireplumber = gScript "gscript_wireplumber";
 in {
   # environment.systemPackages = map (n: "pkgs." + n) (builtins.attrNames scripts);
@@ -33,7 +32,6 @@ in {
     gscript_battery-state
     gscript_bluetooth
     gscript_network
-    gscript_power-menu
     gscript_wireplumber
   ];
 }

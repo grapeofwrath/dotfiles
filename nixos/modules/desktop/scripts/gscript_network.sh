@@ -9,7 +9,7 @@
 # License: MIT
 
 # shellcheck disable=SC1091
-source "$HOME/.config/waybar/scripts/theme-switcher.sh" 'fzf'
+# source "$HOME/.config/waybar/scripts/theme-switcher.sh" 'fzf'
 
 status=$(nmcli radio wifi)
 
