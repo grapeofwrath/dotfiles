@@ -9,16 +9,16 @@
       @define-color hover-fg      alpha(${campfire.text}, 0.75);
       @define-color outline       ${campfire.base};
 
-      @define-color workspaces    ${campfire.surface};
-      @define-color ip            ${campfire.surface};
-      @define-color memory        ${campfire.overlay};
-      @define-color cpu           ${campfire.muted};
-      @define-color time          ${campfire.muted};
-      @define-color date          ${campfire.overlay};
-      @define-color tray          ${campfire.surface};
-      @define-color wireplumber   ${campfire.surface};
-      @define-color backlight     ${campfire.overlay};
-      @define-color battery       ${campfire.muted};
+      @define-color workspaces    shade(${campfire.surface}, 0.75);
+      @define-color ip            shade(${campfire.surface}, 0.75);
+      @define-color memory        shade(${campfire.overlay}, 0.75);
+      @define-color cpu           shade(${campfire.overlay}, 0.75);
+      @define-color time          shade(${campfire.muted}, 0.75);
+      @define-color date          shade(${campfire.muted}, 0.75);
+      @define-color tray          shade(${campfire.surface}, 0.75);
+      @define-color wireplumber   shade(${campfire.surface}, 0.75);
+      @define-color backlight     shade(${campfire.overlay}, 0.75);
+      @define-color battery       shade(${campfire.muted}, 0.75);
 
       @define-color warning       ${campfire.ember};
       @define-color critical      ${campfire.dawn};
@@ -91,14 +91,14 @@
       /* cpu */
 
       #custom-left_div.4 {
-        background-color: @memory;
-        color: @cpu;
+        background-color: @cpu;
+        color: @time;
       }
       #cpu {
         background-color: @cpu;
       }
       #custom-left_inv.1 {
-        color: @cpu;
+        color: @time;
       }
 
       /* distro */
@@ -127,8 +127,8 @@
         background-color: @time;
       }
       #custom-right_div.3 {
-        background-color: @date;
-        color: @time;
+        background-color: @memory;
+        color: @date;
       }
 
       /* date */
@@ -139,7 +139,7 @@
       }
       #custom-right_div.4 {
         background-color: @tray;
-        color: @date;
+        color: @memory;
       }
 
       /* tray */

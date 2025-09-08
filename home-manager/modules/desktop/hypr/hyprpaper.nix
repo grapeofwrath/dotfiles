@@ -17,10 +17,10 @@ in {
         ipc = "on";
         splash = false;
         preload = [
-          "/home/marcus/Pictures/wallpapers/carlos-williams.png"
+          "/home/marcus/Pictures/wallpapers/dhc-2-beaver.jpg"
         ];
         wallpaper = [
-          ",/home/marcus/Pictures/wallpapers/carlos-williams.png"
+          ",/home/marcus/Pictures/wallpapers/dhc-2-beaver.jpg"
         ];
       };
     };

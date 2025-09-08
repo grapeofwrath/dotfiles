@@ -1,3 +1,7 @@
+# Currently based off of mechabar by sejjy
+#
+# https://github.com/sejjy/mechabar/
+
 {
   config,
   lib,
@@ -29,17 +33,17 @@ in {
             "custom/left_div#2"
             "network#ip"
             "custom/left_div#3"
-            "memory"
-            "custom/left_div#4"
             "cpu"
+            "custom/left_div#4"
+            "clock#time"
             "custom/left_inv#1"
             "custom/left_div#5"
             "custom/distro"
             "custom/right_div#2"
             "custom/right_inv#1"
-            "clock#time"
-            "custom/right_div#3"
             "clock#date"
+            "custom/right_div#3"
+            "memory"
             "custom/right_div#4"
             "network"
             "bluetooth"
@@ -255,8 +259,8 @@ in {
           "custom/spacer" = {
             format = " ";
             tooltip = false;
-            min-length = 10;
-            max-length = 10;
+            min-length = 12;
+            max-length = 12;
           };
           "custom/distro" = {
             format = "";
