@@ -80,6 +80,7 @@
       wget
       unzip
       lazygit
+      man
     ];
   };
 

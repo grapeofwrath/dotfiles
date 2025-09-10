@@ -35,7 +35,6 @@ in {
       in {
         exec-once = [
           "systemctl --user start ${lib.getExe pkgs.hyprpolkitagent}"
-          "walker --gapplication-service"
         ];
 
         env = [
@@ -58,7 +57,7 @@ in {
           [
             "$mod, RETURN, exec, ghostty"
             "$mod, W, exec, brave"
-            "$mod, A, exec, walker"
+            "$mod, A, exec, tofi-drun"
             "$mod, F, exec, nautilus"
             "$modSHIFT, S, exec, ${lib.getExe pkgs.grim}"
 
@@ -67,6 +66,8 @@ in {
             "$mod, S, togglesplit"
             "$modSHIFT, F, togglefloating"
             "$modSHIFT, L, exec, hyprlock"
+            "$modSHIFT, R, exec, systemctl reboot"
+            "$modSHIFT, P, exec, systemctl poweroff"
             "$mod, H, movefocus, l"
             "$mod, L, movefocus, r"
             "$mod, K, movefocus, u"

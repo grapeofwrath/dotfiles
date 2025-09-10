@@ -11,6 +11,6 @@
     monitors = [",1920x1080@60,auto,1"];
   };
   hyprlock.enable = true;
-  hyprpanel.enable = true;
-  walker.enable = true;
+  waybar.enable = true;
+  tofi.enable = true;
 }

@@ -257,10 +257,10 @@ in {
           };
 
           "custom/spacer" = {
-            format = " ";
+            format = "   ";
             tooltip = false;
-            min-length = 12;
-            max-length = 12;
+            min-length = 11;
+            max-length = 11;
           };
           "custom/distro" = {
             format = "";
