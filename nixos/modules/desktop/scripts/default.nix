@@ -21,6 +21,7 @@
   gScript = name: pkgs.writeScriptBin name (builtins.readFile ./${name}.sh);
 
   gscript_backlight = gScript "gscript_backlight";
+  gscript_battery-charge = gScript "gscript_battery-charge";
   gscript_battery-state = gScript "gscript_battery-state";
   gscript_bluetooth = gScript "gscript_bluetooth";
   gscript_network = gScript "gscript_network";
@@ -29,6 +30,7 @@ in {
   # environment.systemPackages = map (n: "pkgs." + n) (builtins.attrNames scripts);
   environment.systemPackages = with pkgs; [
     gscript_backlight
+    gscript_battery-charge
     gscript_battery-state
     gscript_bluetooth
     gscript_network

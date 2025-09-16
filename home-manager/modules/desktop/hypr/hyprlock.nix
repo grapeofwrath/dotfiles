@@ -64,12 +64,25 @@ in {
         label = [
           {
             monitor = "";
+            text = ''cmd[update:2000] gscript_battery-charge'';
+            color = "rgba(200, 200, 200, 1.0)";
+            font_size = 20;
+            font_family = "Fira Semibold";
+            position = "-100, 70";
+            halign = "right";
+            valign = "bottom";
+            shadow_passes = 5;
+            shadow_size = 10;
+          }
+
+          {
+            monitor = "";
             text = ''cmd[update:1000] echo "$TIME"'';
             color = "rgba(200, 200, 200, 1.0)";
             font_size = 55;
             font_family = "Fira Semibold";
-            position = "-100, 70";
-            halign = "right";
+            position = "100, 70";
+            halign = "left";
             valign = "bottom";
             shadow_passes = 5;
             shadow_size = 10;
@@ -81,8 +94,8 @@ in {
             color = "rgba(200, 200, 200, 1.0)";
             font_size = 20;
             font_family = "Fira Semibold";
-            position = "-100, 160";
-            halign = "right";
+            position = "100, 160";
+            halign = "left";
             valign = "bottom";
             shadow_passes = 5;
             shadow_size = 10;

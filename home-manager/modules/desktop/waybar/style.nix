@@ -250,6 +250,7 @@
         border: none;
         background-color: transparent;
       }
+      /*#custom-notification {}*/
     '';
   };
 }
