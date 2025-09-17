@@ -39,7 +39,7 @@ in {
         background-color = campfire.base;
         anchor = "center";
         matching-algorithm = "fuzzy";
-        terminal = "ghostty";
+        terminal = "kitty";
         drun-launch = true;
       };
     };

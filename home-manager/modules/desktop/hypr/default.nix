@@ -56,7 +56,7 @@ in {
         "$mod" = "SUPER";
         bind =
           [
-            "$mod, RETURN, exec, ghostty"
+            "$mod, RETURN, exec, kitty"
             "$mod, W, exec, brave"
             "$mod, A, exec, tofi-drun"
             "$mod, F, exec, nautilus"

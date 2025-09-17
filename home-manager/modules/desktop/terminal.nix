@@ -15,46 +15,45 @@ in {
 
   config = {
     programs = {
-      ghostty = {
+      kitty = {
         enable = true;
-        enableBashIntegration = true;
-        enableFishIntegration = true;
-        installVimSyntax = true;
-        settings = {
-          font-size = cfg.fontSize;
-          theme = "campfire";
-          window-padding-x = 2;
-          window-padding-y = 2;
-          window-padding-balance = true;
+        enableGitIntegration = true;
+        # extraConfig = "";
+        font = {
+          name = "Jetbrains Mono Nerd Font";
+          size = cfg.fontSize;
         };
-        themes = {
-          campfire = let
-            c = campfire;
-          in {
-            background = c.base;
-            cursor-color = c.text;
-            foreground = c.text;
-            selection-background = c.text;
-            selection-foreground = c.base;
-            palette = [
-              "0=${c.base}"
-              "1=${c.dusk}"
-              "2=${c.evergreen}"
-              "3=${c.ember}"
-              "4=${c.foam}"
-              "5=${c.fern}"
-              "6=${c.shore}"
-              "7=${c.text}"
-              "8=${c.subtle}"
-              "9=${c.dusk}"
-              "10=${c.evergreen}"
-              "11=${c.ember}"
-              "12=${c.foam}"
-              "13=${c.fern}"
-              "14=${c.shore}"
-              "15=${c.moon}"
-            ];
-          };
+        settings = {
+          enable_audio_bell = true;
+          # bell_path = "";
+          # linux_bell_theme = "";
+          window_padding_width = 5;
+          # theme
+          foreground = campfire.text;
+          background = campfire.base;
+          background_opacity = 1;
+          selection_foreground = "none";
+          selection_background = "none";
+          color0 = campfire.base;
+          color1 = campfire.dusk;
+          color2 = campfire.evergreen;
+          color3 = campfire.ember;
+          color4 = campfire.foam;
+          color5 = campfire.fern;
+          color6 = campfire.shore;
+          color7 = campfire.text;
+          color8 = campfire.subtle;
+          color9 = campfire.dusk;
+          color10 = campfire.evergreen;
+          color11 = campfire.ember;
+          color12 = campfire.foam;
+          color13 = campfire.fern;
+          color14 = campfire.shore;
+          color15 = campfire.moon;
+        };
+        shellIntegration = {
+          enableBashIntegration = true;
+          enableFishIntegration = true;
         };
       };
     };

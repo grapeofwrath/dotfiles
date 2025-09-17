@@ -108,7 +108,7 @@ in {
             format-connected = "󰂱";
             min-length = 2;
             max-length = 2;
-            on-click = "ghostty gscript_bluetooth";
+            on-click = "kitty gscript_bluetooth";
             on-click-right = "bluetoothctl power off && notify-send 'Bluetooth Off' -r 1925";
             tooltip-format = "Device Addr: {device_address}";
             tooltip-format-disabled = "Bluetooth Disabled";
@@ -206,7 +206,7 @@ in {
             format-icons = ["󰤟" "󰤢" "󰤥" "󰤨"];
             min-length = 2;
             max-length = 2;
-            on-click = "ghostty -e gscript_network";
+            on-click = "kitty -e gscript_network";
             on-click-right = "nmcli radio wifi off && notify-send 'Wi-Fi Disabled' -r 1125";
             tooltip-format = "Gateway: {gwaddr}";
             tooltip-format-ethernet = "Interface: {ifname}";
@@ -338,7 +338,7 @@ in {
             format = "{}";
             rewrite = {
               "^$" = "Desktop";
-              "^ghostty$" = "Terminal";
+              "^kitty$" = "Terminal";
               "^~$" = "Terminal";
             };
             tooltip = false;
