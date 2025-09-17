@@ -5,9 +5,8 @@ full=$(<"/sys/class/power_supply/BAT1/charge_full")
 p=$((100 * charge / full))
 stat=$(<"/sys/class/power_supply/BAT1/status")
 
-if [[ p == 100 ]]; then
-  icon="󰁹"
-fi
+icon="󰁹"
+
 if [[ p -lt 100 ]]; then
   icon="󰂂"
 fi
