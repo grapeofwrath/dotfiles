@@ -67,9 +67,11 @@ in {
 
     git = {
       enable = true;
-      userName = "grapeofwrath";
-      userEmail = "69535018+grapeofwrath@users.noreply.github.com";
-      extraConfig = {
+      settings = {
+        user = {
+          name = "grapeofwrath";
+          email = "69535018+grapeofwrath@users.noreply.github.com";
+        };
         url."ssh://git@github.com" = {
           insteadOf = "https://github.com";
         };
