@@ -13,4 +13,6 @@
   };
   hyprlock.enable = true;
   hyprpaper.enable = true;
+  waybar.enable = true;
+  tofi.enable = true;
 }

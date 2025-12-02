@@ -4,7 +4,7 @@
       @define-color main-br       ${campfire.subtle};
       @define-color main-bg       ${campfire.base};
       @define-color main-fg       ${campfire.text};
-      @define-color accent        ${campfire.text};
+      @define-color accent        ${campfire.moon};
       @define-color hover-bg      ${campfire.base};
       @define-color hover-fg      alpha(${campfire.text}, 0.75);
       @define-color outline       ${campfire.base};
@@ -13,8 +13,8 @@
       @define-color ip            shade(${campfire.surface}, 0.75);
       @define-color memory        shade(${campfire.overlay}, 0.75);
       @define-color cpu           shade(${campfire.overlay}, 0.75);
-      @define-color time          shade(${campfire.muted}, 0.75);
-      @define-color date          shade(${campfire.muted}, 0.75);
+      @define-color time          ${campfire.moon};
+      @define-color date          ${campfire.moon};
       @define-color tray          shade(${campfire.surface}, 0.75);
       @define-color wireplumber   shade(${campfire.surface}, 0.75);
       @define-color backlight     shade(${campfire.overlay}, 0.75);
@@ -27,8 +27,9 @@
       * {
         font-family: "Jetbrains Mono Nerd Font";
         font-weight: bold;
-        font-size: 16px;
+        font-size: 18px;
         color: @main-fg;
+        background-color: @accent;
       }
 
       /* workspaces */
@@ -106,12 +107,14 @@
       #custom-left_div.5,
       #custom-right_div.2 {
         color: @accent;
+        background-color: @main-bg;
       }
       #custom-distro {
-        padding: 0 15px 0 5px;
+        border-radius: 18px;
+        padding: 0 18px 0 9px;
         font-size: 23px;
-        background-color: @accent;
-        color: @main-bg;
+        background-color: @main-bg;
+        color: @accent;
       }
 
       /* idle inhibitor and time */
@@ -123,8 +126,10 @@
         background-color: @tray;
       }
       #clock.time {
-        padding-right: 6px;
+        margin-left: 5px;
+        margin-right: 0px;
         background-color: @time;
+        color: @main-bg;
       }
       #custom-right_div.3 {
         background-color: @memory;
@@ -134,8 +139,9 @@
       /* date */
 
       #clock.date {
-        padding-left: 6px;
+        margin: 5px;
         background-color: @date;
+        color: @main-bg;
       }
       #custom-right_div.4 {
         background-color: @tray;

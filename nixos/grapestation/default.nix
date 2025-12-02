@@ -33,8 +33,9 @@
       "libvirtd"
       "input"
     ];
-    # packages = with pkgs; [
-    # ];
+    packages = with pkgs; [
+      gnome-keyring
+    ];
   };
 
   programs = {
@@ -50,7 +51,7 @@
     # AMD
     enable32Bit = true;
     # NVIDIA
-    enable = true;
+    # enable = true;
   };
 
   # NVIDIA
@@ -60,9 +61,10 @@
   # Personal Modules
   hyprland.enable = true;
   plasma = {
-    enable = true;
+    enable = false;
     autoLogin = false;
   };
+  ttyLogin.enable = true;
 
   tailscaleAutoConnect = {
     enable = true;

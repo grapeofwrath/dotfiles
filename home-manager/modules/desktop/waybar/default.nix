@@ -30,25 +30,25 @@ in {
           ];
           modules-center = [
             "hyprland/windowcount"
-            "custom/left_div#2"
+            # "custom/left_div#2"
             "network#ip"
-            "custom/left_div#3"
+            # "custom/left_div#3"
             "cpu"
-            "custom/left_div#4"
+            # "custom/left_div#4"
             "clock#time"
-            "custom/left_inv#1"
-            "custom/left_div#5"
+            # "custom/left_inv#1"
+            # "custom/left_div#5"
             "custom/distro"
-            "custom/right_div#2"
-            "custom/right_inv#1"
+            # "custom/right_div#2"
+            # "custom/right_inv#1"
             "clock#date"
-            "custom/right_div#3"
+            # "custom/right_div#3"
             "memory"
-            "custom/right_div#4"
+            # "custom/right_div#4"
             "network"
             "bluetooth"
             "idle_inhibitor"
-            "custom/right_div#5"
+            # "custom/right_div#5"
             "custom/spacer"
           ];
           modules-right = [
@@ -286,7 +286,7 @@ in {
             tooltip = false;
           };
           "custom/left_div#5" = {
-            format = "";
+            format = "󰽨";
             tooltip = false;
           };
           "custom/left_div#6" = {
@@ -302,7 +302,7 @@ in {
             tooltip = false;
           };
           "custom/left_inv#1" = {
-            format = "";
+            format = "󰽥";
             tooltip = false;
           };
           "custom/left_inv#2" = {
@@ -315,7 +315,7 @@ in {
             tooltip = false;
           };
           "custom/right_div#2" = {
-            format = "";
+            format = "󰽦";
             tooltip = false;
           };
           "custom/right_div#3" = {
@@ -331,7 +331,7 @@ in {
             tooltip = false;
           };
           "custom/right_inv#1" = {
-            format = "";
+            format = "󰽧";
             tooltip = false;
           };
           "hyprland/window" = {
